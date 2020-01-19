@@ -52,11 +52,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Trigger.cs">
+    <Compile Include="FormTrigger.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Trigger.Designer.cs">
-      <DependentUpon>Trigger.cs</DependentUpon>
+    <Compile Include="FormTrigger.Designer.cs">
+      <DependentUpon>FormTrigger.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -70,8 +70,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Trigger.resx">
-      <DependentUpon>Trigger.cs</DependentUpon>
+    <EmbeddedResource Include="FormTrigger.resx">
+      <DependentUpon>FormTrigger.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

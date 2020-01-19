@@ -10,26 +10,120 @@ using System.Windows.Forms;
 namespace ETUI_TRIGGERS
 {
     public partial class CreateNewTrigger : Form
-    {
+    {         
+        Form triggerObj;
+
+        int positionX = 0, positionY = 0;
+        int currentScreenHeight ,currentScreenWidth;
+        public int triggerType;
+
+        string[] typeRange = new string[]
+        {
+            "Fluid",
+            "Recurring",
+            "Time Delay",
+            "Blink"
+        };
+
         public CreateNewTrigger()
         {
             InitializeComponent();
+            CreateTriggerObject(FormTrigger.TRIG_TYPE_FLUID);
+            ConfigTrackBars();
+            cmbobxTriggerType.Items.AddRange(typeRange);
+            cmbobxTriggerType.SelectedIndex = 0;
+        }
+
+        private void CreateTriggerObject(int trigType)
+        {         
+            this.triggerObj = new FormTrigger(trigType);
+            triggerObj.Height = 200;
+            triggerObj.Width = 300;
+            triggerObj.TopMost = true;
+            triggerObj.Show();
+            triggerObj.Location = new Point(positionX, positionY);
+            txtbxXposition.Text = triggerObj.Location.X.ToString();
+            txtbxYposition.Text = triggerObj.Location.X.ToString();             
+            //GET TRIGGER OPERATIONS FROM SOMEWHERE
+            //Or SET the 'triggerType' variable from somewhere                
+        }
+         
+        private void ConfigTrackBars()
+        {
+            currentScreenHeight = Screen.PrimaryScreen.WorkingArea.Size.Height;
+            currentScreenWidth = Screen.PrimaryScreen.WorkingArea.Size.Width;
+            trkbarHeight.Maximum = currentScreenHeight;
+            trkbarWidth.Maximum = currentScreenWidth;            
+            trkbarPositionY.Maximum = currentScreenHeight - triggerObj.Height; 
+            trkbarPositionY.Maximum = currentScreenHeight - triggerObj.Width;
+            trkbarPositionX.Value = triggerObj.Location.X;
+            trkbarPositionY.Value = triggerObj.Location.Y;
+            trkbarHeight.Value = triggerObj.Height;
+            trkbarWidth.Value = triggerObj.Width;
+
+            triggerObj.Height = trkbarHeight.Value - triggerObj.Location.Y;
+            trkbarPositionY.Maximum = currentScreenHeight - triggerObj.Height;
+            trkbarPositionY.Value = triggerObj.Location.Y;
+
+            triggerObj.Width = trkbarWidth.Value - triggerObj.Location.X;
+            trkbarPositionX.Maximum = currentScreenWidth - triggerObj.Width;
+            trkbarPositionX.Value = triggerObj.Location.X;
+
         }
 
         private void btnCreateTrigger_Click(object sender, EventArgs e)
         {
-            Trigger obj = new Trigger();
+            if (txtbxName.Equals(""))
+            {
+                MessageBox.Show("Name Feild Empty", "Please enter a name for your Trigger", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }       
+        }
 
-            int positionX, positionY;
+        private void trkbarPositionX_Scroll(object sender, EventArgs e)
+        {
+          //  trkbarPositionX.Maximum = currentScreenHeight - triggerObj.Height;
+            triggerObj.Location = new Point(trkbarPositionX.Value, triggerObj.Location.Y);
+            txtbxXposition.Text = triggerObj.Location.X.ToString();
+        }
 
-            positionX = int.Parse(txtbxXposition.Text);
-            positionY = int.Parse(txtbxYposition.Text);
+        private void trkbarPositionY_Scroll(object sender, EventArgs e)
+        {
+          //  trkbarPositionY.Maximum = currentScreenWidth - triggerObj.Width;
+            triggerObj.Location = new Point(triggerObj.Location.X, trkbarPositionY.Value);
+            txtbxYposition.Text = triggerObj.Location.Y.ToString();
+        }
 
-            
-   
-            obj.Show();
-            obj.Location = new Point(positionX, positionY);
-            obj.Size = new Size(positionX, positionY);
+        private void cmbobxTriggerType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbobxTriggerType.SelectedItem.Equals("Fluid")){
+                    triggerObj.BackColor = Color.Red;                    
+            }
+            else if (cmbobxTriggerType.SelectedItem.Equals("Recurring"))
+            {
+                triggerObj.BackColor = Color.Green;
+            }
+            else if (cmbobxTriggerType.SelectedItem.Equals("Time Delay"))
+            {
+                triggerObj.BackColor = Color.Blue;
+            }
+            else if (cmbobxTriggerType.SelectedItem.Equals("Blink"))
+            {
+                triggerObj.BackColor = Color.Yellow;
+            }
+        }
+
+        private void trkbarHeight_Scroll(object sender, EventArgs e)
+        {
+            triggerObj.Height = trkbarHeight.Value-triggerObj.Location.Y;
+            trkbarPositionY.Maximum = currentScreenHeight - triggerObj.Height;
+            trkbarPositionY.Value = triggerObj.Location.Y;
+        }
+
+        private void trkbarWidth_Scroll(object sender, EventArgs e)
+        {
+            triggerObj.Width = trkbarWidth.Value-triggerObj.Location.X;
+            trkbarPositionX.Maximum = currentScreenWidth - triggerObj.Width;
+            trkbarPositionX.Value = triggerObj.Location.X;
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace ETUI_TRIGGERS
 {
-    partial class Trigger
+    partial class FormTrigger
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,18 @@
         {
             this.SuspendLayout();
             // 
-            // Trigger
+            // FormTrigger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Trigger";
-            this.Opacity = 0.5D;
+            this.Name = "FormTrigger";
+            this.Opacity = 0.25D;
+            this.ShowInTaskbar = false;
             this.Text = "Trigger";
+            this.Load += new System.EventHandler(this.Trigger_Load);
             this.ResumeLayout(false);
 
         }

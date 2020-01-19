@@ -31,11 +31,11 @@
             this.lblName = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.txtbxName = new System.Windows.Forms.TextBox();
+            this.cmbobxTriggerType = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.trackBar1 = new System.Windows.Forms.TrackBar();
-            this.trackBar2 = new System.Windows.Forms.TrackBar();
+            this.trkbarWidth = new System.Windows.Forms.TrackBar();
+            this.trkbarHeight = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -55,9 +55,16 @@
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.btnCreateTrigger = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).BeginInit();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.trkbarPositionX = new System.Windows.Forms.TrackBar();
+            this.trkbarPositionY = new System.Windows.Forms.TrackBar();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarPositionX)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarPositionY)).BeginInit();
             this.SuspendLayout();
             // 
             // lblName
@@ -90,47 +97,58 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "Operation";
             // 
-            // textBox1
+            // txtbxName
             // 
-            this.textBox1.Location = new System.Drawing.Point(74, 15);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(121, 20);
-            this.textBox1.TabIndex = 3;
+            this.txtbxName.Location = new System.Drawing.Point(74, 15);
+            this.txtbxName.Name = "txtbxName";
+            this.txtbxName.Size = new System.Drawing.Size(121, 20);
+            this.txtbxName.TabIndex = 3;
             // 
-            // comboBox1
+            // cmbobxTriggerType
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(74, 42);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 4;
+            this.cmbobxTriggerType.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbobxTriggerType.FormattingEnabled = true;
+            this.cmbobxTriggerType.Location = new System.Drawing.Point(74, 42);
+            this.cmbobxTriggerType.Name = "cmbobxTriggerType";
+            this.cmbobxTriggerType.Size = new System.Drawing.Size(121, 21);
+            this.cmbobxTriggerType.TabIndex = 4;
+            this.cmbobxTriggerType.SelectedIndexChanged += new System.EventHandler(this.cmbobxTriggerType_SelectedIndexChanged);
             // 
             // comboBox2
             // 
+            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBox2.FormattingEnabled = true;
             this.comboBox2.Location = new System.Drawing.Point(74, 70);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 5;
             // 
-            // trackBar1
+            // trkbarWidth
             // 
-            this.trackBar1.Location = new System.Drawing.Point(53, 146);
-            this.trackBar1.Name = "trackBar1";
-            this.trackBar1.Size = new System.Drawing.Size(150, 45);
-            this.trackBar1.TabIndex = 6;
+            this.trkbarWidth.Location = new System.Drawing.Point(53, 101);
+            this.trkbarWidth.Maximum = 1000;
+            this.trkbarWidth.Minimum = 10;
+            this.trkbarWidth.Name = "trkbarWidth";
+            this.trkbarWidth.Size = new System.Drawing.Size(150, 45);
+            this.trkbarWidth.TabIndex = 6;
+            this.trkbarWidth.Value = 300;
+            this.trkbarWidth.Scroll += new System.EventHandler(this.trkbarWidth_Scroll);
             // 
-            // trackBar2
+            // trkbarHeight
             // 
-            this.trackBar2.Location = new System.Drawing.Point(53, 102);
-            this.trackBar2.Name = "trackBar2";
-            this.trackBar2.Size = new System.Drawing.Size(150, 45);
-            this.trackBar2.TabIndex = 7;
+            this.trkbarHeight.Location = new System.Drawing.Point(53, 141);
+            this.trkbarHeight.Maximum = 1000;
+            this.trkbarHeight.Minimum = 10;
+            this.trkbarHeight.Name = "trkbarHeight";
+            this.trkbarHeight.Size = new System.Drawing.Size(150, 45);
+            this.trkbarHeight.TabIndex = 7;
+            this.trkbarHeight.Value = 200;
+            this.trkbarHeight.Scroll += new System.EventHandler(this.trkbarHeight_Scroll);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(15, 106);
+            this.label2.Location = new System.Drawing.Point(15, 145);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(38, 13);
             this.label2.TabIndex = 8;
@@ -139,7 +157,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(15, 150);
+            this.label3.Location = new System.Drawing.Point(15, 105);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 13);
             this.label3.TabIndex = 9;
@@ -179,6 +197,7 @@
             // 
             // txtbxXposition
             // 
+            this.txtbxXposition.Enabled = false;
             this.txtbxXposition.Location = new System.Drawing.Point(286, 16);
             this.txtbxXposition.Name = "txtbxXposition";
             this.txtbxXposition.Size = new System.Drawing.Size(24, 20);
@@ -186,6 +205,7 @@
             // 
             // txtbxYposition
             // 
+            this.txtbxYposition.Enabled = false;
             this.txtbxYposition.Location = new System.Drawing.Point(338, 16);
             this.txtbxYposition.Name = "txtbxYposition";
             this.txtbxYposition.Size = new System.Drawing.Size(24, 20);
@@ -332,7 +352,7 @@
             this.btnCreateTrigger.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCreateTrigger.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCreateTrigger.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnCreateTrigger.Location = new System.Drawing.Point(18, 197);
+            this.btnCreateTrigger.Location = new System.Drawing.Point(19, 324);
             this.btnCreateTrigger.Name = "btnCreateTrigger";
             this.btnCreateTrigger.Size = new System.Drawing.Size(353, 38);
             this.btnCreateTrigger.TabIndex = 17;
@@ -340,13 +360,70 @@
             this.btnCreateTrigger.UseVisualStyleBackColor = false;
             this.btnCreateTrigger.Click += new System.EventHandler(this.btnCreateTrigger_Click);
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label8.Location = new System.Drawing.Point(159, 199);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 13);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Screen Location";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label9.Location = new System.Drawing.Point(14, 223);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(36, 13);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "X Axis";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label10.Location = new System.Drawing.Point(14, 266);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(36, 13);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Y Axis";
+            // 
+            // trkbarPositionX
+            // 
+            this.trkbarPositionX.Location = new System.Drawing.Point(53, 223);
+            this.trkbarPositionX.Maximum = 1000;
+            this.trkbarPositionX.Name = "trkbarPositionX";
+            this.trkbarPositionX.Size = new System.Drawing.Size(318, 45);
+            this.trkbarPositionX.TabIndex = 21;
+            this.trkbarPositionX.Value = 300;
+            this.trkbarPositionX.Scroll += new System.EventHandler(this.trkbarPositionX_Scroll);
+            // 
+            // trkbarPositionY
+            // 
+            this.trkbarPositionY.Location = new System.Drawing.Point(53, 266);
+            this.trkbarPositionY.Maximum = 1000;
+            this.trkbarPositionY.Name = "trkbarPositionY";
+            this.trkbarPositionY.Size = new System.Drawing.Size(315, 45);
+            this.trkbarPositionY.TabIndex = 22;
+            this.trkbarPositionY.Value = 300;
+            this.trkbarPositionY.Scroll += new System.EventHandler(this.trkbarPositionY_Scroll);
+            // 
             // CreateNewTrigger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(384, 241);
+            this.ClientSize = new System.Drawing.Size(384, 378);
+            this.Controls.Add(this.trkbarPositionY);
+            this.Controls.Add(this.trkbarPositionX);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.btnCreateTrigger);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.label7);
@@ -357,24 +434,25 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.trackBar2);
-            this.Controls.Add(this.trackBar1);
+            this.Controls.Add(this.trkbarHeight);
+            this.Controls.Add(this.trkbarWidth);
             this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.cmbobxTriggerType);
+            this.Controls.Add(this.txtbxName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblName);
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateNewTrigger";
-            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create New Trigger";
             this.TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBar2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarPositionX)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.trkbarPositionY)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -385,11 +463,11 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox txtbxName;
+        private System.Windows.Forms.ComboBox cmbobxTriggerType;
         private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.TrackBar trackBar1;
-        private System.Windows.Forms.TrackBar trackBar2;
+        private System.Windows.Forms.TrackBar trkbarWidth;
+        private System.Windows.Forms.TrackBar trkbarHeight;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
@@ -409,6 +487,11 @@
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button btnCreateTrigger;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TrackBar trkbarPositionX;
+        private System.Windows.Forms.TrackBar trkbarPositionY;
     }
 }
 
