@@ -60,6 +60,8 @@
             this.label10 = new System.Windows.Forms.Label();
             this.trkbarPositionX = new System.Windows.Forms.TrackBar();
             this.trkbarPositionY = new System.Windows.Forms.TrackBar();
+            this.labelTimeDelay = new System.Windows.Forms.Label();
+            this.txtBxTimeDelay = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).BeginInit();
             this.panel1.SuspendLayout();
@@ -215,7 +217,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.label7.Location = new System.Drawing.Point(272, 54);
+            this.label7.Location = new System.Drawing.Point(322, 75);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(46, 13);
             this.label7.TabIndex = 15;
@@ -233,7 +235,7 @@
             this.panel1.Controls.Add(this.button5);
             this.panel1.Controls.Add(this.button4);
             this.panel1.Controls.Add(this.button3);
-            this.panel1.Location = new System.Drawing.Point(221, 75);
+            this.panel1.Location = new System.Drawing.Point(221, 88);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(150, 93);
             this.panel1.TabIndex = 16;
@@ -413,6 +415,22 @@
             this.trkbarPositionY.Value = 300;
             this.trkbarPositionY.Scroll += new System.EventHandler(this.trkbarPositionY_Scroll);
             // 
+            // labelTimeDelay
+            // 
+            this.labelTimeDelay.AutoSize = true;
+            this.labelTimeDelay.Location = new System.Drawing.Point(201, 50);
+            this.labelTimeDelay.Name = "labelTimeDelay";
+            this.labelTimeDelay.Size = new System.Drawing.Size(93, 13);
+            this.labelTimeDelay.TabIndex = 23;
+            this.labelTimeDelay.Text = "Delay in Seconds:";
+            // 
+            // txtBxTimeDelay
+            // 
+            this.txtBxTimeDelay.Location = new System.Drawing.Point(298, 46);
+            this.txtBxTimeDelay.Name = "txtBxTimeDelay";
+            this.txtBxTimeDelay.Size = new System.Drawing.Size(24, 20);
+            this.txtBxTimeDelay.TabIndex = 24;
+            // 
             // CreateNewTrigger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -420,6 +438,8 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(384, 378);
+            this.Controls.Add(this.txtBxTimeDelay);
+            this.Controls.Add(this.labelTimeDelay);
             this.Controls.Add(this.trkbarPositionY);
             this.Controls.Add(this.trkbarPositionX);
             this.Controls.Add(this.label10);
@@ -447,7 +467,6 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "CreateNewTrigger";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create New Trigger";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).EndInit();
@@ -493,6 +512,8 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TrackBar trkbarPositionX;
         private System.Windows.Forms.TrackBar trkbarPositionY;
+        private System.Windows.Forms.Label labelTimeDelay;
+        private System.Windows.Forms.TextBox txtBxTimeDelay;
     }
 }
 

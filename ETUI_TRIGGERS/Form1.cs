@@ -10,11 +10,13 @@ namespace ETUI_TRIGGERS
 {
     public partial class CreateNewTrigger : Form
     {         
-        Form triggerObj;
+        FormTrigger triggerObj;
 
         int positionX = 0, positionY = 0;
         int currentScreenHeight ,currentScreenWidth;
         public int triggerType;
+
+        
 
         string[] typeRange = new string[]
         {
@@ -69,14 +71,27 @@ namespace ETUI_TRIGGERS
         }
         private void btnCreateTrigger_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtbxName.Text.ToString()))
+
+            if(triggerObj.triggerType != FormTrigger.TRIG_TYPE_TIMEDELAY)
+            {
+                txtBxTimeDelay.Text = "Dummy Text";
+            }
+
+            if (string.IsNullOrWhiteSpace(txtbxName.Text.ToString()) )
             {
                 MessageBox.Show("Please enter a name for your Trigger","Trigger Name is null", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (string.IsNullOrWhiteSpace(txtBxTimeDelay.Text.ToString())){
+
+                MessageBox.Show("Please enter a Time Delay in Seconds", "Time Delay null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
             else
             {
-                this.Hide();
+               // this.Hide();
             }
+
+            
             
         }
         private void trkbarPositionX_Scroll(object sender, EventArgs e)
@@ -95,20 +110,55 @@ namespace ETUI_TRIGGERS
         }
         private void cmbobxTriggerType_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            //Apply logic based on the selected item in comboBox
+
             if (cmbobxTriggerType.SelectedItem.Equals("Fluid")){
-                    triggerObj.BackColor = Color.Red;                    
+
+                triggerObj.BackColor = Color.Red;
+                
+                //Set Trigger Type in trigger Object;
+                triggerObj.triggerType = FormTrigger.TRIG_TYPE_FLUID;
+
+
+                triggerObj.isRecurringActive = false;
+                labelTimeDelay.Hide();
+                txtBxTimeDelay.Hide();
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Recurring"))
             {
                 triggerObj.BackColor = Color.Green;
+
+                //Set Trigger Type in trigger Object;
+                triggerObj.triggerType = FormTrigger.TRIG_TYPE_RECURRING;
+
+                triggerObj.isRecurringActive = true;
+                labelTimeDelay.Hide();
+                txtBxTimeDelay.Hide();
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Time Delay"))
             {
                 triggerObj.BackColor = Color.Blue;
+
+                //Set Trigger Type in trigger Object;
+                triggerObj.triggerType = FormTrigger.TRIG_TYPE_TIMEDELAY;
+                triggerObj.timeDelayInSeconds = 3f;
+
+
+                triggerObj.isRecurringActive = false;
+                labelTimeDelay.Show();
+                txtBxTimeDelay.Show();
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Blink"))
             {
                 triggerObj.BackColor = Color.Yellow;
+
+                //Set Trigger Type in trigger Object;
+                triggerObj.triggerType = FormTrigger.TRIG_TYPE_BLINK;
+
+                triggerObj.isRecurringActive = false;
+                labelTimeDelay.Hide();
+                txtBxTimeDelay.Hide();
             }
         }
         private void trkbarHeight_Scroll(object sender, EventArgs e)

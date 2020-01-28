@@ -18,11 +18,13 @@ namespace ETUI_TRIGGERS
         public static int TRIG_TYPE_BLINK = 14;
         Color currentColor;
 
-        bool isActive = false;
-
+        bool isTriggerActive = false;
+        public bool isRecurringActive { get; set; } 
         Thread triggerThread;
 
+
         public int triggerType { get; set; }
+        public float timeDelayInSeconds { get; set; }
 
         public FormTrigger(int triggerType)
         {
@@ -33,60 +35,59 @@ namespace ETUI_TRIGGERS
         private void Trigger_Load(object sender, EventArgs e)
         {
 
+            //Give the thread a color based  on its type
+            this.SetColor();
+
             //Initializes the Trigger Thread
             triggerThread = new Thread(this.TriggerThreadMethod);
 
             //Give it Background property
-            triggerThread.IsBackground = true;
+            //triggerThread.IsBackground = true;
 
-
-
-
-            //Givs the thread a color based  on its type
-            this.SetColor();
-
-        }
-        private void mouseHover(object sender, EventArgs e)
-        {
-
+            //this will start the TriggerThread;
+            triggerThread.Start();
         }
 
         private void FormTrigger_MouseLeave(object sender, EventArgs e)
-        {
-            
-                 
-            Console.WriteLine("Mouse Leave");
+        {   
+            //This will stop the Trigger from doing its job
+            isTriggerActive = false;
+
+           // Console.WriteLine("Mouse Leave");
+
             this.BackColor = currentColor;
-
-            //This starts a thread that gives System, some input           
-            triggerThread.Abort();
-
-
         }
         private void mouseEnter(object sender, EventArgs e)
         {
-            Console.WriteLine("Mouse Enter");
+           // Console.WriteLine("Mouse Enter");
+
             this.BackColor = Color.Green;
 
-            //this will kill the thread;
-            triggerThread.Start();
+            //Will Make the trigger active
+            isTriggerActive = true;
         }
 
         void TriggerThreadMethod()
         {
 
+            Console.WriteLine(" Trigger Type" + triggerType + " Active");
+
             while (true)
             {
-                while (isActive)
-                {
-                    Console.WriteLine("Thread Active");
-                }                
-            }
-            
+                this.ThreadLogic();
 
-        }
-
-
+                //while (isTriggerActive)
+                //{
+                //    Thread.Sleep(1);
+                //    Console.WriteLine("Thread Active");
+                //    if (!isTriggerActive)
+                //    {
+                //        Console.WriteLine("Thread Dead");
+                //        break;
+                //    }
+                //}
+            }            
+        }    
         void SetColor()
         {
 
@@ -112,6 +113,64 @@ namespace ETUI_TRIGGERS
             }
             currentColor = this.BackColor;
         }
+
+
+        void ThreadLogic()
+        {
+
+            if (triggerType == TRIG_TYPE_FLUID)
+            {
+                while (isTriggerActive)
+                {
+                    Thread.Sleep(1);
+                    Console.WriteLine("Trigger Active");
+                    if (!isTriggerActive)
+                    {
+                        Console.WriteLine("Trigger Deactive");
+                        break;
+                    }
+                }
+            }else if(triggerType == TRIG_TYPE_RECURRING)
+            {
+                while (isRecurringActive)
+                {
+                    Thread.Sleep(1);
+                    Console.WriteLine("Recurring Trigger Active");
+                }
+            }else if(triggerType == TRIG_TYPE_TIMEDELAY)
+            {
+              
+                while (isTriggerActive)
+                {
+                    Console.WriteLine(triggerType + "Trigger Activated - Waiting for " + timeDelayInSeconds + " seconds delay");
+                    int timeInMiliSeconds = (Int32)(timeDelayInSeconds * 1000);
+                    Thread.Sleep(timeInMiliSeconds);
+                    if (isTriggerActive)
+                    {
+                        while (true)
+                        {
+                            Thread.Sleep(1);
+                            Console.WriteLine("Trigger Active");
+                            if (!isTriggerActive)
+                            {
+                                Console.WriteLine("Trigger Deactive");
+                                break;
+                            }
+                        }
+                    }
+                    else Console.WriteLine("Time Delay Trigger Deactivated");                                        
+                }
+            }
+            else
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("Blink Trigger Under Development");
+                
+            }
+            
+
+
+        }       
     }
 
 }

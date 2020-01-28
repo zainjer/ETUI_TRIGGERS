@@ -44,7 +44,6 @@
             this.Load += new System.EventHandler(this.Trigger_Load);
             this.MouseEnter += new System.EventHandler(this.mouseEnter);
             this.MouseLeave += new System.EventHandler(this.FormTrigger_MouseLeave);
-            this.MouseHover += new System.EventHandler(this.mouseHover);
             this.ResumeLayout(false);
 
         }
