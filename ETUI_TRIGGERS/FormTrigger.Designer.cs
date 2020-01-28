@@ -34,14 +34,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormTrigger";
             this.Opacity = 0.25D;
-            this.ShowInTaskbar = false;
             this.Text = "Trigger";
             this.Load += new System.EventHandler(this.Trigger_Load);
+            this.MouseEnter += new System.EventHandler(this.mouseEnter);
+            this.MouseLeave += new System.EventHandler(this.FormTrigger_MouseLeave);
+            this.MouseHover += new System.EventHandler(this.mouseHover);
             this.ResumeLayout(false);
 
         }

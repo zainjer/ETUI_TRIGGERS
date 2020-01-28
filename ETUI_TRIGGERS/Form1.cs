@@ -90,6 +90,8 @@ namespace ETUI_TRIGGERS
           //  trkbarPositionY.Maximum = currentScreenWidth - triggerObj.Width;
             triggerObj.Location = new Point(triggerObj.Location.X, trkbarPositionY.Value);
             txtbxYposition.Text = triggerObj.Location.Y.ToString();
+
+
         }
         private void cmbobxTriggerType_SelectedIndexChanged(object sender, EventArgs e)
         {
