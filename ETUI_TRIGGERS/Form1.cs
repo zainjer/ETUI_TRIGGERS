@@ -6,7 +6,6 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 namespace ETUI_TRIGGERS
 {
     public partial class CreateNewTrigger : Form
@@ -46,8 +45,7 @@ namespace ETUI_TRIGGERS
             txtbxYposition.Text = triggerObj.Location.X.ToString();             
             //GET TRIGGER OPERATIONS FROM SOMEWHERE
             //Or SET the 'triggerType' variable from somewhere                
-        }
-         
+        }         
         private void ConfigTrackBars()
         {
             currentScreenHeight = Screen.PrimaryScreen.WorkingArea.Size.Height;
@@ -68,31 +66,31 @@ namespace ETUI_TRIGGERS
             triggerObj.Width = trkbarWidth.Value - triggerObj.Location.X;
             trkbarPositionX.Maximum = currentScreenWidth - triggerObj.Width;
             trkbarPositionX.Value = triggerObj.Location.X;
-
         }
-
         private void btnCreateTrigger_Click(object sender, EventArgs e)
         {
-            if (txtbxName.Equals(""))
+            if (string.IsNullOrWhiteSpace(txtbxName.Text.ToString()))
             {
-                MessageBox.Show("Name Feild Empty", "Please enter a name for your Trigger", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }       
+                MessageBox.Show("Please enter a name for your Trigger","Trigger Name is null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                this.Hide();
+            }
+            
         }
-
         private void trkbarPositionX_Scroll(object sender, EventArgs e)
         {
           //  trkbarPositionX.Maximum = currentScreenHeight - triggerObj.Height;
             triggerObj.Location = new Point(trkbarPositionX.Value, triggerObj.Location.Y);
             txtbxXposition.Text = triggerObj.Location.X.ToString();
         }
-
         private void trkbarPositionY_Scroll(object sender, EventArgs e)
         {
           //  trkbarPositionY.Maximum = currentScreenWidth - triggerObj.Width;
             triggerObj.Location = new Point(triggerObj.Location.X, trkbarPositionY.Value);
             txtbxYposition.Text = triggerObj.Location.Y.ToString();
         }
-
         private void cmbobxTriggerType_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbobxTriggerType.SelectedItem.Equals("Fluid")){
@@ -111,14 +109,12 @@ namespace ETUI_TRIGGERS
                 triggerObj.BackColor = Color.Yellow;
             }
         }
-
         private void trkbarHeight_Scroll(object sender, EventArgs e)
         {
             triggerObj.Height = trkbarHeight.Value-triggerObj.Location.Y;
             trkbarPositionY.Maximum = currentScreenHeight - triggerObj.Height;
             trkbarPositionY.Value = triggerObj.Location.Y;
         }
-
         private void trkbarWidth_Scroll(object sender, EventArgs e)
         {
             triggerObj.Width = trkbarWidth.Value-triggerObj.Location.X;

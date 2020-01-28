@@ -314,12 +314,13 @@
             // 
             this.button5.BackColor = System.Drawing.SystemColors.Highlight;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.SystemColors.Control;
             this.button5.Location = new System.Drawing.Point(4, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(44, 25);
             this.button5.TabIndex = 18;
-            this.button5.Text = "button5";
+            this.button5.Text = "Topleft";
             this.button5.UseVisualStyleBackColor = false;
             // 
             // button4
