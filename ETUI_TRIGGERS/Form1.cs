@@ -15,8 +15,7 @@ namespace ETUI_TRIGGERS
         int positionX = 0, positionY = 0;
         int currentScreenHeight ,currentScreenWidth;
         public int triggerType;
-
-        
+        public int SELECTED_DISPLAY = 0;
 
         string[] typeRange = new string[]
         {
@@ -50,8 +49,8 @@ namespace ETUI_TRIGGERS
         }         
         private void ConfigTrackBars()
         {
-            currentScreenHeight = Screen.PrimaryScreen.WorkingArea.Size.Height;
-            currentScreenWidth = Screen.PrimaryScreen.WorkingArea.Size.Width;
+            currentScreenHeight = Screen.AllScreens[SELECTED_DISPLAY].WorkingArea.Size.Height;
+            currentScreenWidth = Screen.AllScreens[SELECTED_DISPLAY].WorkingArea.Size.Width;
             trkbarHeight.Maximum = currentScreenHeight;
             trkbarWidth.Maximum = currentScreenWidth;            
             trkbarPositionY.Maximum = currentScreenHeight - triggerObj.Height; 
