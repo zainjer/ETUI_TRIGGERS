@@ -187,6 +187,7 @@
             this.Name = "WelcomeScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Eye Tracked User Interfaces";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.WelcomeScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
