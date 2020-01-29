@@ -41,7 +41,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtBxTriggerActives = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.systemTrayIcon = new System.Windows.Forms.NotifyIcon(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -155,6 +155,7 @@
             this.button3.TabIndex = 14;
             this.button3.Text = "Hide Control Panel";
             this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // btnBacktoMain
             // 
@@ -210,11 +211,13 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // notifyIcon1
+            // systemTrayIcon
             // 
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
-            this.notifyIcon1.Visible = true;
+            this.systemTrayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("systemTrayIcon.Icon")));
+            this.systemTrayIcon.Text = "ETUI Control Panel";
+            this.systemTrayIcon.Visible = true;
+            this.systemTrayIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MaximizeMethod);
+         
             // 
             // Dock
             // 
@@ -241,6 +244,7 @@
             this.Text = "Control Panel | ETUI © 2020";
             this.TopMost = true;
             this.Load += new System.EventHandler(this.Dock_Load);
+            this.SizeChanged += new System.EventHandler(this.MinimizeMethod);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -260,6 +264,6 @@
         private System.Windows.Forms.Button btnBacktoMain;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         public System.Windows.Forms.TextBox txtBxTriggerActives;
-        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        public System.Windows.Forms.NotifyIcon systemTrayIcon;
     }
 }

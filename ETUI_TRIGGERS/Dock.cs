@@ -16,6 +16,8 @@ namespace ETUI_TRIGGERS
 
         //Draggable Code
         Point lastPoint;
+
+        bool isfirstLoad = true;
        
         public Dock()
         {
@@ -38,7 +40,9 @@ namespace ETUI_TRIGGERS
         private void Dock_Load(object sender, EventArgs e)
         {
             this.Width = Screen.PrimaryScreen.WorkingArea.Width;
-            this.Location = new Point(0, 0);
+            this.Location = new Point(0, 0);            
+            
+            isfirstLoad = false;
         }
 
         private void DraggingOn(object sender, MouseEventArgs e)
@@ -63,5 +67,38 @@ namespace ETUI_TRIGGERS
             }
 
         }
+
+        private void MinimizeMethod(object sender, EventArgs e)
+        {
+            
+        }
+       
+
+        FormWindowState oldFormState;
+       
+        private void button3_Click(object sender, EventArgs e)
+        {
+            bool isPointerOnTaskbar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
+
+            oldFormState = this.WindowState;
+            this.WindowState = FormWindowState.Minimized;
+
+            if (this.WindowState == FormWindowState.Minimized && isPointerOnTaskbar && !isfirstLoad)
+            {
+                //systemTrayIcon.Icon = SystemIcons.Information;
+                systemTrayIcon.BalloonTipText = "Control Panel has been minimzed to System tray.";
+                systemTrayIcon.ShowBalloonTip(2500);
+                this.ShowInTaskbar = false;
+                systemTrayIcon.Visible = true;
+            }
+        }
+        private void MaximizeMethod(object sender, MouseEventArgs e)
+        {
+            this.WindowState = oldFormState;
+            this.ShowInTaskbar = true;
+            systemTrayIcon.Visible = false;
+        }
+
+
     }
 }
