@@ -464,9 +464,10 @@
             this.Controls.Add(this.lblType);
             this.Controls.Add(this.lblName);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "CreateNewTrigger";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Create New Trigger [Utility]";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).EndInit();

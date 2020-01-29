@@ -113,20 +113,17 @@ namespace ETUI_TRIGGERS
             }
             currentColor = this.BackColor;
         }
-
-
         void ThreadLogic()
         {
-
             if (triggerType == TRIG_TYPE_FLUID)
             {
                 while (isTriggerActive)
                 {
                     Thread.Sleep(1);
-                    Console.WriteLine("Trigger Active");
+                    Console.WriteLine("Fluid Trigger Active");
                     if (!isTriggerActive)
                     {
-                        Console.WriteLine("Trigger Deactive");
+                        Console.WriteLine("Fluid Trigger Deactive");
                         break;
                     }
                 }
