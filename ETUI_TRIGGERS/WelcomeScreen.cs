@@ -37,7 +37,7 @@ namespace ETUI_TRIGGERS
             this.Hide();
 
             var obj = new Dock();
-            obj.WelcomeScreenObj = this; 
+            obj.welcomeScreenObj = this; 
             obj.Show();
         }
 

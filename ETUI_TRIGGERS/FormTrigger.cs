@@ -12,19 +12,32 @@ namespace ETUI_TRIGGERS
 {
     public partial class FormTrigger : Form
     {
+
+        //Types of triggers
         public static int TRIG_TYPE_FLUID = 11;
         public static int TRIG_TYPE_RECURRING = 12;
         public static int TRIG_TYPE_TIMEDELAY = 13;
         public static int TRIG_TYPE_BLINK = 14;
+
+        //Current color of trigger
         Color currentColor;
 
+        //Thread and Loop controlling bools
         bool isTriggerActive = false;
-        public bool isRecurringActive { get; set; } 
-        Thread triggerThread;
+        public bool isRecurringActive { get; set; }
 
+        //Trigger Alive Bool
+        public bool isAlive { get; set; }
 
+        //Thread of this trigger
+        public Thread triggerThread;
+
+        //Variables to define trigger type and features
         public int triggerType { get; set; }
         public float timeDelayInSeconds { get; set; }
+
+        //The editor of current trigger (Create Trigger Window)
+        public TriggerEditor triggerEditor;
 
         public FormTrigger(int triggerType)
         {
@@ -36,7 +49,7 @@ namespace ETUI_TRIGGERS
         {
 
             //Give the thread a color based  on its type
-            this.SetColor();
+            SetColor();
 
             //Initializes the Trigger Thread
             triggerThread = new Thread(this.TriggerThreadMethod);
@@ -49,28 +62,32 @@ namespace ETUI_TRIGGERS
         }
 
         private void FormTrigger_MouseLeave(object sender, EventArgs e)
-        {   
-            //This will stop the Trigger from doing its job
-            isTriggerActive = false;
+        {
 
-           // Console.WriteLine("Mouse Leave");
+            if (isAlive)
+            {
+                //This will stop the Trigger from doing its job
+                isTriggerActive = false;
 
-            this.BackColor = currentColor;
+                // Console.WriteLine("Mouse Leave");
+                this.BackColor = currentColor;
+            }
+           
         }
         private void mouseEnter(object sender, EventArgs e)
         {
-           // Console.WriteLine("Mouse Enter");
-
-            this.BackColor = Color.Green;
-
-            //Will Make the trigger active
-            isTriggerActive = true;
+           
+            if (isAlive)
+            {
+                this.BackColor = Color.Green;
+                isTriggerActive = true;
+            }          
         }
 
         void TriggerThreadMethod()
         {
 
-            Console.WriteLine(" Trigger Type" + triggerType + " Active");
+            Console.WriteLine(" Trigger Type: " + triggerType + " [Thread Active]");
 
             while (true)
             {
@@ -113,6 +130,8 @@ namespace ETUI_TRIGGERS
             }
             currentColor = this.BackColor;
         }
+
+
         void ThreadLogic()
         {
             if (triggerType == TRIG_TYPE_FLUID)
@@ -164,10 +183,11 @@ namespace ETUI_TRIGGERS
                 Console.WriteLine("Blink Trigger Under Development");
                 
             }
-            
+        }
 
 
-        }       
+
+
     }
 
 }

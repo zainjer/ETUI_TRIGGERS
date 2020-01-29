@@ -1,6 +1,6 @@
 ﻿namespace ETUI_TRIGGERS
 {
-    partial class CreateNewTrigger
+    partial class TriggerEditor
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateNewTrigger));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TriggerEditor));
             this.lblName = new System.Windows.Forms.Label();
             this.lblType = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -250,7 +250,7 @@
             this.button7.Name = "button7";
             this.button7.Size = new System.Drawing.Size(44, 25);
             this.button7.TabIndex = 24;
-            this.button7.Text = "button7";
+            this.button7.Text = "BL";
             this.button7.UseVisualStyleBackColor = false;
             // 
             // button8
@@ -262,7 +262,7 @@
             this.button8.Name = "button8";
             this.button8.Size = new System.Drawing.Size(44, 25);
             this.button8.TabIndex = 23;
-            this.button8.Text = "button8";
+            this.button8.Text = "BC";
             this.button8.UseVisualStyleBackColor = false;
             // 
             // button9
@@ -274,7 +274,7 @@
             this.button9.Name = "button9";
             this.button9.Size = new System.Drawing.Size(44, 25);
             this.button9.TabIndex = 22;
-            this.button9.Text = "button9";
+            this.button9.Text = "BR";
             this.button9.UseVisualStyleBackColor = false;
             // 
             // button1
@@ -286,7 +286,7 @@
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(44, 25);
             this.button1.TabIndex = 21;
-            this.button1.Text = "button1";
+            this.button1.Text = "CL";
             this.button1.UseVisualStyleBackColor = false;
             // 
             // button2
@@ -298,7 +298,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(44, 25);
             this.button2.TabIndex = 20;
-            this.button2.Text = "button2";
+            this.button2.Text = "CC";
             this.button2.UseVisualStyleBackColor = false;
             // 
             // button6
@@ -310,20 +310,20 @@
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(44, 25);
             this.button6.TabIndex = 19;
-            this.button6.Text = "button6";
+            this.button6.Text = "CR";
             this.button6.UseVisualStyleBackColor = false;
             // 
             // button5
             // 
             this.button5.BackColor = System.Drawing.SystemColors.Highlight;
             this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button5.ForeColor = System.Drawing.SystemColors.Control;
             this.button5.Location = new System.Drawing.Point(4, 3);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(44, 25);
             this.button5.TabIndex = 18;
-            this.button5.Text = "Topleft";
+            this.button5.Text = "TL";
             this.button5.UseVisualStyleBackColor = false;
             // 
             // button4
@@ -335,7 +335,7 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(44, 25);
             this.button4.TabIndex = 17;
-            this.button4.Text = "button4";
+            this.button4.Text = "TC";
             this.button4.UseVisualStyleBackColor = false;
             // 
             // button3
@@ -347,7 +347,7 @@
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(44, 25);
             this.button3.TabIndex = 2;
-            this.button3.Text = "button3";
+            this.button3.Text = "TR";
             this.button3.UseVisualStyleBackColor = false;
             // 
             // btnCreateTrigger
@@ -419,7 +419,7 @@
             // labelTimeDelay
             // 
             this.labelTimeDelay.AutoSize = true;
-            this.labelTimeDelay.Location = new System.Drawing.Point(201, 50);
+            this.labelTimeDelay.Location = new System.Drawing.Point(201, 46);
             this.labelTimeDelay.Name = "labelTimeDelay";
             this.labelTimeDelay.Size = new System.Drawing.Size(93, 13);
             this.labelTimeDelay.TabIndex = 23;
@@ -427,12 +427,12 @@
             // 
             // txtBxTimeDelay
             // 
-            this.txtBxTimeDelay.Location = new System.Drawing.Point(298, 46);
+            this.txtBxTimeDelay.Location = new System.Drawing.Point(297, 42);
             this.txtBxTimeDelay.Name = "txtBxTimeDelay";
             this.txtBxTimeDelay.Size = new System.Drawing.Size(24, 20);
             this.txtBxTimeDelay.TabIndex = 24;
             // 
-            // CreateNewTrigger
+            // TriggerEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -467,9 +467,9 @@
             this.Cursor = System.Windows.Forms.Cursors.Default;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "CreateNewTrigger";
+            this.Name = "TriggerEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Create New Trigger [Utility]";
+            this.Text = "Create New Trigger [Trigger Editor]";
             this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).EndInit();

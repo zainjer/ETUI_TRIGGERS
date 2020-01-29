@@ -12,37 +12,40 @@ namespace ETUI_TRIGGERS
     public partial class Dock : Form
     {
         //Welcome Screen Object        
-        public WelcomeScreen WelcomeScreenObj;         
+        public WelcomeScreen welcomeScreenObj;         
 
         //Draggable Code
         Point lastPoint;
 
-        bool isfirstLoad = true;
-       
+        //Trigger List
+        public List<TriggerInfo> triggerList = new List<TriggerInfo>();
+
+        //Active Triggers
+        int activeTriggers=0;
+
         public Dock()
         {
             InitializeComponent();
         }
         private void TextbxActiveTrigger_MouseEnter(object sender, EventArgs e)
         {
-            txtBxTriggerActives.ForeColor = Color.Black;
-            txtBxTriggerActives.BackColor = Color.White;
+            txtBxTriggerActive.ForeColor = Color.Black;
+            txtBxTriggerActive.BackColor = Color.White;
             
         }
 
         private void TextbxActiveTrigger_MouseLeave(object sender, EventArgs e)
         {
-            txtBxTriggerActives.ForeColor = Color.White;
-            txtBxTriggerActives.BackColor = Color.Black;
+            txtBxTriggerActive.ForeColor = Color.White;
+            txtBxTriggerActive.BackColor = Color.Black;
 
         }
 
         private void Dock_Load(object sender, EventArgs e)
         {
             this.Width = Screen.PrimaryScreen.WorkingArea.Width;
-            this.Location = new Point(0, 0);            
-            
-            isfirstLoad = false;
+            this.Location = new Point(0, 0);
+                                   
         }
 
         private void DraggingOn(object sender, MouseEventArgs e)
@@ -62,7 +65,7 @@ namespace ETUI_TRIGGERS
 
             if (MessageBox.Show("Are you sure you want to Close All Triggers?", "Close Control Panel | ETUI © 2020", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
-                WelcomeScreenObj.Show();
+                welcomeScreenObj.Show();
                 this.Close();
             }
 
@@ -83,7 +86,7 @@ namespace ETUI_TRIGGERS
             oldFormState = this.WindowState;
             this.WindowState = FormWindowState.Minimized;
 
-            if (this.WindowState == FormWindowState.Minimized && isPointerOnTaskbar && !isfirstLoad)
+            if (this.WindowState == FormWindowState.Minimized && isPointerOnTaskbar)
             {
                 //systemTrayIcon.Icon = SystemIcons.Information;
                 systemTrayIcon.BalloonTipText = "Control Panel has been minimzed to System tray.";
@@ -99,6 +102,101 @@ namespace ETUI_TRIGGERS
             systemTrayIcon.Visible = false;
         }
 
+        private void btnCreateTrigger_Click(object sender, EventArgs e)
+        {
+            var obj = new TriggerEditor();
+            obj.Show();
+            obj.dockObject = this;           
+            this.Hide();
+        }
 
+        public void UpdateActiveTriggers()
+        {
+            activeTriggers = triggerList.Count;
+            txtBxTriggerActive.Text = "Triggers Active: " + activeTriggers;
+          
+        }
+
+        private void EditTrigger(object sender, EventArgs e)
+        {
+            if (activeTriggers > 0)
+            {
+                SelectTiggerToEdit obj = new SelectTiggerToEdit();
+                obj.triggerList = triggerList.ToArray();
+                obj.PopulateMe();
+                obj.dock = this;
+                obj.Show();
+                this.Hide();
+            }
+            else
+            {
+                MessageBox.Show("Error: No Triggers are created yet.", "No Triggers Found", MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+
+            
+        }
+
+        private void DeleteAllTriggers(object sender, EventArgs e)
+        {
+
+            //Create a triggerObject array
+            FormTrigger[] allTriggers = new FormTrigger[triggerList.Count];
+
+
+            //get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array
+            for(int i=0; i<triggerList.Count; i++)
+            {
+                allTriggers[i] = triggerList[i].obj;
+            }
+
+            //Destroy every object in allTrigges Array
+            foreach(FormTrigger x in allTriggers)
+            {
+
+                //Closes the thread attached to this trigger
+                x.triggerThread.Abort();
+
+                //Closes the trigger itself
+                x.Close();
+
+            }
+
+            activeTriggers = 0;
+            UpdateActiveTriggers();
+
+        }
+
+
+        //Deactives the triggers by stopping their threads;
+        private void ResetAllTriggers(object sender, EventArgs e)
+        {
+            FormTrigger[] allTriggers = new FormTrigger[triggerList.Count];
+            
+            //get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array
+            for (int i = 0; i < triggerList.Count; i++)
+            {
+                allTriggers[i] = triggerList[i].obj;
+            }
+
+            //Destroy every object in allTrigges Array
+            foreach (FormTrigger x in allTriggers)
+            {
+
+                //Closes the thread attached to this trigger
+                x.triggerThread.Abort();
+
+                //Changes color to black to show that its deactive
+                x.BackColor = Color.Black;
+
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            foreach(TriggerInfo x in triggerList)
+            {
+                x.obj.isAlive = true;
+            }
+        }
     }
 }
