@@ -38,13 +38,13 @@ namespace ETUI_TRIGGERS
         private void BtnEditTrigger(object sender, EventArgs e)
         {
             var obj = triggerList[selectedIndex].obj.triggerEditor;
-
             
             obj.UpdateToEditMode(triggerList[selectedIndex].Name);
             obj.Text = "Edit Trigger: " + triggerList[selectedIndex].Name;
             obj.Show();
             this.Hide();
             dock.Show();
+            
             // obj.setNameTypeOperation(triggerList[selectedIndex].Name, triggerList[selectedIndex].Type, triggerList[selectedIndex].Operation);            
 
         }
@@ -56,14 +56,12 @@ namespace ETUI_TRIGGERS
 
         public void PopulateMe()
         {
-
             triggerNames = new string[triggerList.Length];
 
             for (int i = 0; i < triggerNames.Length; i++)
             {
                 triggerNames[i] = triggerList[i].Name;
             }
-
             cmbxRange.Items.AddRange(triggerNames);
             cmbxRange.SelectedIndex = 0;
         }

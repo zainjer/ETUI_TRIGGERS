@@ -133,6 +133,7 @@ namespace ETUI_TRIGGERS
             //Create a triggerObject array
             FormTrigger[] allTriggers = new FormTrigger[triggerList.Count];
 
+            
 
             //get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array
             for(int i=0; i<triggerList.Count; i++)
@@ -145,13 +146,13 @@ namespace ETUI_TRIGGERS
             {
 
                 //Closes the thread attached to this trigger
-                x.triggerThread.Abort();
+               // x.triggerThread.Abort();
 
                 //Closes the trigger itself
                 x.Close();
 
             }
-
+            triggerList = new List<TriggerInfo>();
             activeTriggers = 0;
             UpdateActiveTriggers();
 

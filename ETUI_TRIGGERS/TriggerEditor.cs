@@ -127,7 +127,6 @@ namespace ETUI_TRIGGERS
         //Method for changing the Type of the trigger
         private void cmbobxTriggerType_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             //Apply logic based on the selected item in comboBox
 
             if (cmbobxTriggerType.SelectedItem.Equals("Fluid"))

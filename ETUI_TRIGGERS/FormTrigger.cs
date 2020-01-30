@@ -52,13 +52,13 @@ namespace ETUI_TRIGGERS
             SetColor();
 
             //Initializes the Trigger Thread
-            triggerThread = new Thread(this.TriggerThreadMethod);
+            //triggerThread = new Thread(this.TriggerThreadMethod);
 
             //Give it Background property
             //triggerThread.IsBackground = true;
 
             //this will start the TriggerThread;
-            triggerThread.Start();
+            //triggerThread.Start();
         }
 
         private void FormTrigger_MouseLeave(object sender, EventArgs e)
@@ -69,21 +69,28 @@ namespace ETUI_TRIGGERS
                 //This will stop the Trigger from doing its job
                 isTriggerActive = false;
 
+                //This will start a new thread
+                
+
                 // Console.WriteLine("Mouse Leave");
                 this.BackColor = currentColor;
+                triggerThread.Abort();
             }
            
         }
         private void mouseEnter(object sender, EventArgs e)
-        {
-           
+        {           
             if (isAlive)
             {
                 this.BackColor = Color.Green;
                 isTriggerActive = true;
+                
+                //Initializes the Trigger Thread
+                triggerThread = new Thread(this.TriggerThreadMethod);
+                triggerThread.Start();
+
             }          
         }
-
         void TriggerThreadMethod()
         {
 
