@@ -1,0 +1,214 @@
+<html>
+<head>
+<title>Dock.cs</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #c792ea; font-style: italic;}
+.s1 { color: #eeffff;}
+.s2 { color: #89ddff;}
+.s3 { color: #616161; font-style: italic;}
+.s4 { color: #f78c6c;}
+.s5 { color: #c3e88d;}
+</style>
+</head>
+<body bgcolor="#212121">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+Dock.cs</font>
+</center></td></tr></table>
+<pre><span class="s0">using </span><span class="s1">System</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">Collections</span><span class="s2">.</span><span class="s1">Generic</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">ComponentModel</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">Data</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">Drawing</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">Linq</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">Text</span><span class="s2">;</span>
+<span class="s0">using </span><span class="s1">System</span><span class="s2">.</span><span class="s1">Windows</span><span class="s2">.</span><span class="s1">Forms</span><span class="s2">;</span>
+
+<span class="s0">namespace </span><span class="s1">ETUI_TRIGGERS</span>
+<span class="s2">{</span>
+    <span class="s0">public </span><span class="s1">partial </span><span class="s0">class </span><span class="s1">Dock : Form</span>
+    <span class="s2">{</span>
+        <span class="s3">//Welcome Screen Object        </span>
+        <span class="s0">public </span><span class="s1">WelcomeScreen welcomeScreenObj</span><span class="s2">;         </span>
+
+        <span class="s3">//Draggable Code</span>
+        <span class="s1">Point lastPoint</span><span class="s2">;</span>
+
+        <span class="s3">//Trigger List</span>
+        <span class="s0">public </span><span class="s1">List&lt;TriggerInfo&gt; triggerList = </span><span class="s0">new </span><span class="s1">List&lt;TriggerInfo&gt;</span><span class="s2">();</span>
+
+        <span class="s3">//Active Triggers</span>
+        <span class="s0">int </span><span class="s1">activeTriggers=</span><span class="s4">0</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">Dock</span><span class="s2">()</span>
+        <span class="s2">{</span>
+            <span class="s1">InitializeComponent</span><span class="s2">();</span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">TextbxActiveTrigger_MouseEnter</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s1">txtBxTriggerActive</span><span class="s2">.</span><span class="s1">ForeColor = Color</span><span class="s2">.</span><span class="s1">Black</span><span class="s2">;</span>
+            <span class="s1">txtBxTriggerActive</span><span class="s2">.</span><span class="s1">BackColor = Color</span><span class="s2">.</span><span class="s1">White</span><span class="s2">;            </span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">TextbxActiveTrigger_MouseLeave</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s1">txtBxTriggerActive</span><span class="s2">.</span><span class="s1">ForeColor = Color</span><span class="s2">.</span><span class="s1">White</span><span class="s2">;</span>
+            <span class="s1">txtBxTriggerActive</span><span class="s2">.</span><span class="s1">BackColor = Color</span><span class="s2">.</span><span class="s1">Black</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">Dock_Load</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">Width = Screen</span><span class="s2">.</span><span class="s1">PrimaryScreen</span><span class="s2">.</span><span class="s1">WorkingArea</span><span class="s2">.</span><span class="s1">Width</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">Location = </span><span class="s0">new </span><span class="s1">Point</span><span class="s2">(</span><span class="s4">0</span><span class="s2">, </span><span class="s4">0</span><span class="s2">);                              </span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">DraggingOn</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">MouseEventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">e</span><span class="s2">.</span><span class="s1">Button == MouseButtons</span><span class="s2">.</span><span class="s1">Left</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s0">this</span><span class="s2">.</span><span class="s1">Left += e</span><span class="s2">.</span><span class="s1">X - lastPoint</span><span class="s2">.</span><span class="s1">X</span><span class="s2">;</span>
+                <span class="s0">this</span><span class="s2">.</span><span class="s1">Top += e</span><span class="s2">.</span><span class="s1">Y - lastPoint</span><span class="s2">.</span><span class="s1">Y</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}       </span>
+        <span class="s0">private void </span><span class="s1">DraggingOff</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">MouseEventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s1">lastPoint = </span><span class="s0">new </span><span class="s1">Point</span><span class="s2">(</span><span class="s1">e</span><span class="s2">.</span><span class="s1">X</span><span class="s2">, </span><span class="s1">e</span><span class="s2">.</span><span class="s1">Y</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">btnBacktoMain_Click</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">MessageBox</span><span class="s2">.</span><span class="s1">Show</span><span class="s2">(</span><span class="s5">&quot;Are you sure you want to Close All Triggers?&quot;</span><span class="s2">, </span><span class="s5">&quot;Close Control Panel | ETUI © 2020&quot;</span><span class="s2">, </span><span class="s1">MessageBoxButtons</span><span class="s2">.</span><span class="s1">YesNo</span><span class="s2">, </span><span class="s1">MessageBoxIcon</span><span class="s2">.</span><span class="s1">Warning</span><span class="s2">) </span><span class="s1">== DialogResult</span><span class="s2">.</span><span class="s1">Yes</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s1">welcomeScreenObj</span><span class="s2">.</span><span class="s1">Show</span><span class="s2">();</span>
+                <span class="s0">this</span><span class="s2">.</span><span class="s1">Close</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">private void </span><span class="s1">MinimizeMethod</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            
+        <span class="s2">}</span>
+       
+        <span class="s1">FormWindowState oldFormState</span><span class="s2">;</span>
+       
+        <span class="s0">private void </span><span class="s1">button3_Click</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">bool </span><span class="s1">isPointerOnTaskbar = Screen</span><span class="s2">.</span><span class="s1">GetWorkingArea</span><span class="s2">(</span><span class="s0">this</span><span class="s2">).</span><span class="s1">Contains</span><span class="s2">(</span><span class="s1">Cursor</span><span class="s2">.</span><span class="s1">Position</span><span class="s2">);</span>
+
+            <span class="s1">oldFormState = </span><span class="s0">this</span><span class="s2">.</span><span class="s1">WindowState</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">WindowState = FormWindowState</span><span class="s2">.</span><span class="s1">Minimized</span><span class="s2">;</span>
+
+            <span class="s0">if </span><span class="s2">(</span><span class="s0">this</span><span class="s2">.</span><span class="s1">WindowState == FormWindowState</span><span class="s2">.</span><span class="s1">Minimized &amp;&amp; isPointerOnTaskbar</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s3">//systemTrayIcon.Icon = SystemIcons.Information;</span>
+                <span class="s1">systemTrayIcon</span><span class="s2">.</span><span class="s1">BalloonTipText = </span><span class="s5">&quot;Control Panel has been minimzed to System tray.&quot;</span><span class="s2">;</span>
+                <span class="s1">systemTrayIcon</span><span class="s2">.</span><span class="s1">ShowBalloonTip</span><span class="s2">(</span><span class="s4">2500</span><span class="s2">);</span>
+                <span class="s0">this</span><span class="s2">.</span><span class="s1">ShowInTaskbar = </span><span class="s0">false</span><span class="s2">;</span>
+                <span class="s1">systemTrayIcon</span><span class="s2">.</span><span class="s1">Visible = </span><span class="s0">true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">private void </span><span class="s1">MaximizeMethod</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">MouseEventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">WindowState = oldFormState</span><span class="s2">;</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">ShowInTaskbar = </span><span class="s0">true</span><span class="s2">;</span>
+            <span class="s1">systemTrayIcon</span><span class="s2">.</span><span class="s1">Visible = </span><span class="s0">false</span><span class="s2">;</span>
+        <span class="s2">}</span>
+        <span class="s0">private void </span><span class="s1">btnCreateTrigger_Click</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s1">var obj = </span><span class="s0">new </span><span class="s1">TriggerEditor</span><span class="s2">();</span>
+            <span class="s1">obj</span><span class="s2">.</span><span class="s1">Show</span><span class="s2">();</span>
+            <span class="s1">obj</span><span class="s2">.</span><span class="s1">dockObject = </span><span class="s0">this</span><span class="s2">;           </span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">Hide</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">public void </span><span class="s1">UpdateActiveTriggers</span><span class="s2">()</span>
+        <span class="s2">{</span>
+            <span class="s1">activeTriggers = triggerList</span><span class="s2">.</span><span class="s1">Count</span><span class="s2">;</span>
+            <span class="s1">txtBxTriggerActive</span><span class="s2">.</span><span class="s1">Text = </span><span class="s5">&quot;Triggers Active: &quot; </span><span class="s1">+ activeTriggers</span><span class="s2">;</span>
+          
+        <span class="s2">}</span>
+        <span class="s0">private void </span><span class="s1">EditTrigger</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">activeTriggers &gt; </span><span class="s4">0</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s1">SelectTiggerToEdit obj = </span><span class="s0">new </span><span class="s1">SelectTiggerToEdit</span><span class="s2">();</span>
+                <span class="s1">obj</span><span class="s2">.</span><span class="s1">triggerList = triggerList</span><span class="s2">.</span><span class="s1">ToArray</span><span class="s2">();</span>
+                <span class="s1">obj</span><span class="s2">.</span><span class="s1">PopulateMe</span><span class="s2">();</span>
+                <span class="s1">obj</span><span class="s2">.</span><span class="s1">dock = </span><span class="s0">this</span><span class="s2">;</span>
+                <span class="s1">obj</span><span class="s2">.</span><span class="s1">Show</span><span class="s2">();</span>
+                <span class="s0">this</span><span class="s2">.</span><span class="s1">Hide</span><span class="s2">();</span>
+            <span class="s2">}</span>
+            <span class="s0">else</span>
+            <span class="s2">{</span>
+                <span class="s1">MessageBox</span><span class="s2">.</span><span class="s1">Show</span><span class="s2">(</span><span class="s5">&quot;Error: No Triggers are created yet.&quot;</span><span class="s2">, </span><span class="s5">&quot;No Triggers Found&quot;</span><span class="s2">, </span><span class="s1">MessageBoxButtons</span><span class="s2">.</span><span class="s1">OK</span><span class="s2">,</span><span class="s1">MessageBoxIcon</span><span class="s2">.</span><span class="s1">Error</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            
+        <span class="s2">}</span>
+        <span class="s0">private void </span><span class="s1">DeleteAllTriggers</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+
+            <span class="s3">//Create a triggerObject array</span>
+            <span class="s1">FormTrigger</span><span class="s2">[] </span><span class="s1">allTriggers = </span><span class="s0">new </span><span class="s1">FormTrigger</span><span class="s2">[</span><span class="s1">triggerList</span><span class="s2">.</span><span class="s1">Count</span><span class="s2">];</span>
+
+
+            <span class="s3">//get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array</span>
+            <span class="s0">for</span><span class="s2">(</span><span class="s0">int </span><span class="s1">i=</span><span class="s4">0</span><span class="s2">; </span><span class="s1">i&lt;triggerList</span><span class="s2">.</span><span class="s1">Count</span><span class="s2">; </span><span class="s1">i++</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s1">allTriggers</span><span class="s2">[</span><span class="s1">i</span><span class="s2">] </span><span class="s1">= triggerList</span><span class="s2">[</span><span class="s1">i</span><span class="s2">].</span><span class="s1">obj</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s3">//Destroy every object in allTrigges Array</span>
+            <span class="s0">foreach</span><span class="s2">(</span><span class="s1">FormTrigger x </span><span class="s0">in </span><span class="s1">allTriggers</span><span class="s2">)</span>
+            <span class="s2">{</span>
+
+                <span class="s3">//Closes the thread attached to this trigger</span>
+                <span class="s1">x</span><span class="s2">.</span><span class="s1">triggerThread</span><span class="s2">.</span><span class="s1">Abort</span><span class="s2">();</span>
+
+                <span class="s3">//Closes the trigger itself</span>
+                <span class="s1">x</span><span class="s2">.</span><span class="s1">Close</span><span class="s2">();</span>
+
+            <span class="s2">}</span>
+
+            <span class="s1">activeTriggers = </span><span class="s4">0</span><span class="s2">;</span>
+            <span class="s1">UpdateActiveTriggers</span><span class="s2">();</span>
+
+        <span class="s2">}</span>
+
+        <span class="s3">//Deactives the triggers by stopping their threads;</span>
+        <span class="s0">private void </span><span class="s1">ResetAllTriggers</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s1">FormTrigger</span><span class="s2">[] </span><span class="s1">allTriggers = </span><span class="s0">new </span><span class="s1">FormTrigger</span><span class="s2">[</span><span class="s1">triggerList</span><span class="s2">.</span><span class="s1">Count</span><span class="s2">];</span>
+            
+            <span class="s3">//get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i = </span><span class="s4">0</span><span class="s2">; </span><span class="s1">i &lt; triggerList</span><span class="s2">.</span><span class="s1">Count</span><span class="s2">; </span><span class="s1">i++</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s1">allTriggers</span><span class="s2">[</span><span class="s1">i</span><span class="s2">] </span><span class="s1">= triggerList</span><span class="s2">[</span><span class="s1">i</span><span class="s2">].</span><span class="s1">obj</span><span class="s2">;</span>
+            <span class="s2">}</span>
+
+            <span class="s3">//Destroy every object in allTrigges Array</span>
+            <span class="s0">foreach </span><span class="s2">(</span><span class="s1">FormTrigger x </span><span class="s0">in </span><span class="s1">allTriggers</span><span class="s2">)</span>
+            <span class="s2">{</span>
+
+                <span class="s3">//Closes the thread attached to this trigger</span>
+                <span class="s1">x</span><span class="s2">.</span><span class="s1">triggerThread</span><span class="s2">.</span><span class="s1">Abort</span><span class="s2">();</span>
+
+                <span class="s3">//Changes color to black to show that its deactive</span>
+                <span class="s1">x</span><span class="s2">.</span><span class="s1">BackColor = Color</span><span class="s2">.</span><span class="s1">Black</span><span class="s2">;</span>
+
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">button2_Click</span><span class="s2">(</span><span class="s0">object </span><span class="s1">sender</span><span class="s2">, </span><span class="s1">EventArgs e</span><span class="s2">)</span>
+        <span class="s2">{</span>
+            <span class="s0">foreach</span><span class="s2">(</span><span class="s1">TriggerInfo x </span><span class="s0">in </span><span class="s1">triggerList</span><span class="s2">)</span>
+            <span class="s2">{</span>
+                <span class="s1">x</span><span class="s2">.</span><span class="s1">obj</span><span class="s2">.</span><span class="s1">isAlive = </span><span class="s0">true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

@@ -14,9 +14,7 @@ namespace ETUI_TRIGGERS
 
         string[] triggerNames;
         int selectedIndex;
-
         public TriggerInfo[] triggerList;
-
         public Dock dock;
        
 
@@ -41,11 +39,13 @@ namespace ETUI_TRIGGERS
         {
             var obj = triggerList[selectedIndex].obj.triggerEditor;
 
-            obj.Show();
-
-            obj.setNameTypeOperation(triggerList[selectedIndex].Name, triggerList[selectedIndex].Type, triggerList[selectedIndex].Operation);
             
-
+            obj.UpdateToEditMode(triggerList[selectedIndex].Name);
+            obj.Text = "Edit Trigger: " + triggerList[selectedIndex].Name;
+            obj.Show();
+            this.Hide();
+            dock.Show();
+            // obj.setNameTypeOperation(triggerList[selectedIndex].Name, triggerList[selectedIndex].Type, triggerList[selectedIndex].Operation);            
 
         }
 

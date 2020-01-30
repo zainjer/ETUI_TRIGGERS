@@ -27,25 +27,23 @@ namespace ETUI_TRIGGERS
         {
             InitializeComponent();
         }
+
         private void TextbxActiveTrigger_MouseEnter(object sender, EventArgs e)
         {
             txtBxTriggerActive.ForeColor = Color.Black;
-            txtBxTriggerActive.BackColor = Color.White;
-            
+            txtBxTriggerActive.BackColor = Color.White;            
         }
 
         private void TextbxActiveTrigger_MouseLeave(object sender, EventArgs e)
         {
             txtBxTriggerActive.ForeColor = Color.White;
             txtBxTriggerActive.BackColor = Color.Black;
-
         }
 
         private void Dock_Load(object sender, EventArgs e)
         {
             this.Width = Screen.PrimaryScreen.WorkingArea.Width;
-            this.Location = new Point(0, 0);
-                                   
+            this.Location = new Point(0, 0);                              
         }
 
         private void DraggingOn(object sender, MouseEventArgs e)
@@ -60,23 +58,20 @@ namespace ETUI_TRIGGERS
         {
             lastPoint = new Point(e.X, e.Y);
         }
+
         private void btnBacktoMain_Click(object sender, EventArgs e)
         {
-
             if (MessageBox.Show("Are you sure you want to Close All Triggers?", "Close Control Panel | ETUI © 2020", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 welcomeScreenObj.Show();
                 this.Close();
             }
-
         }
-
         private void MinimizeMethod(object sender, EventArgs e)
         {
             
         }
        
-
         FormWindowState oldFormState;
        
         private void button3_Click(object sender, EventArgs e)
@@ -101,7 +96,6 @@ namespace ETUI_TRIGGERS
             this.ShowInTaskbar = true;
             systemTrayIcon.Visible = false;
         }
-
         private void btnCreateTrigger_Click(object sender, EventArgs e)
         {
             var obj = new TriggerEditor();
@@ -109,14 +103,12 @@ namespace ETUI_TRIGGERS
             obj.dockObject = this;           
             this.Hide();
         }
-
         public void UpdateActiveTriggers()
         {
             activeTriggers = triggerList.Count;
             txtBxTriggerActive.Text = "Triggers Active: " + activeTriggers;
           
         }
-
         private void EditTrigger(object sender, EventArgs e)
         {
             if (activeTriggers > 0)
@@ -135,7 +127,6 @@ namespace ETUI_TRIGGERS
 
             
         }
-
         private void DeleteAllTriggers(object sender, EventArgs e)
         {
 
@@ -165,7 +156,6 @@ namespace ETUI_TRIGGERS
             UpdateActiveTriggers();
 
         }
-
 
         //Deactives the triggers by stopping their threads;
         private void ResetAllTriggers(object sender, EventArgs e)

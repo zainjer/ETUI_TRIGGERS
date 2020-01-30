@@ -17,6 +17,7 @@ namespace ETUI_TRIGGERS
         int currentScreenHeight ,currentScreenWidth;
         public int triggerType;
         public int SELECTED_DISPLAY = 0;
+        public bool isTriggerEdit;
 
         string[] typeRange = new string[]
         {
@@ -75,46 +76,52 @@ namespace ETUI_TRIGGERS
         private void btnCreateTrigger_Click(object sender, EventArgs e)
         {
 
-            if(myTriggerObject.triggerType != FormTrigger.TRIG_TYPE_TIMEDELAY)
+            if (!isTriggerEdit)
             {
-                txtBxTimeDelay.Text = "Dummy Text";
-            }
+                if (myTriggerObject.triggerType != FormTrigger.TRIG_TYPE_TIMEDELAY)
+                {
+                    txtBxTimeDelay.Text = "Dummy Text";
+                }
 
-            if (string.IsNullOrWhiteSpace(txtbxName.Text.ToString()) )
-            {
-                MessageBox.Show("Please enter a name for your Trigger","Trigger Name is null", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else if (string.IsNullOrWhiteSpace(txtBxTimeDelay.Text.ToString())){
+                if (string.IsNullOrWhiteSpace(txtbxName.Text.ToString()))
+                {
+                    MessageBox.Show("Please enter a name for your Trigger", "Trigger Name is null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (string.IsNullOrWhiteSpace(txtBxTimeDelay.Text.ToString()))
+                {
 
-                MessageBox.Show("Please enter a Time Delay in Seconds", "Time Delay null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please enter a Time Delay in Seconds", "Time Delay null", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+                else
+                {
+                    this.Hide();
+
+                    //this line activates the trigger
+                    //myTriggerObject.isAlive = true;
+
+                    myTriggerObject.triggerEditor = this;
+                    //Adds a trigger and its info to the triggerList 
+
+                    String name = txtbxName.Text.ToString();
+                    int Type = myTriggerObject.triggerType;
+                    TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
+                    dockObject.triggerList.Add(thisTriggerInfo);
+
+                    //Updates Active Triggers in Dock
+                    dockObject.UpdateActiveTriggers();
+                    dockObject.Show();
+
+                    isTriggerEdit = true;
+                }
+
 
             }
             else
             {
                 this.Hide();
-
-                //this line activates the trigger
-                //myTriggerObject.isAlive = true;
-
-                myTriggerObject.triggerEditor = this;
-
-
-                //Adds a trigger and its info to the triggerList 
-                String name = txtbxName.Text.ToString();
-                int Type = myTriggerObject.triggerType;
-                TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject,name,Type);
-                dockObject.triggerList.Add(thisTriggerInfo);
-
-                //Updates Active Triggers in Dock
-                dockObject.UpdateActiveTriggers();
-
-                dockObject.Show();
-
-
             }
-
-            
-            
+           
         }
 
         //Method for changing the Type of the trigger
@@ -224,13 +231,19 @@ namespace ETUI_TRIGGERS
         //this public methods lets others set the name type etc of this form window
         public void setNameTypeOperation(string name,int type,string operation)
         {
-
             txtbxName.Text = name;
             this.Name = "Edit " + name + " [Trigger Editor]";
             cmbobxTriggerType.SelectedIndex = type;
-            btnCreateTrigger.Text = "Save Changes";
-            
+            btnCreateTrigger.Text = "Save Changes";            
         }
 
+        public void UpdateToEditMode(string name) {
+
+            btnCreateTrigger.Text = "Edit Trigger: " + name;
+            txtbxName.Enabled = false;
+            txtBxTimeDelay.Enabled = false;
+            cmbobxTriggerType.Enabled = false;
+            cmbobxOperations.Enabled = false;
+        }
     }
 }

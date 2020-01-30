@@ -34,7 +34,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtbxName = new System.Windows.Forms.TextBox();
             this.cmbobxTriggerType = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cmbobxOperations = new System.Windows.Forms.ComboBox();
             this.trkbarWidth = new System.Windows.Forms.TrackBar();
             this.trkbarHeight = new System.Windows.Forms.TrackBar();
             this.label2 = new System.Windows.Forms.Label();
@@ -117,14 +117,14 @@
             this.cmbobxTriggerType.TabIndex = 4;
             this.cmbobxTriggerType.SelectedIndexChanged += new System.EventHandler(this.cmbobxTriggerType_SelectedIndexChanged);
             // 
-            // comboBox2
+            // cmbobxOperations
             // 
-            this.comboBox2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(74, 70);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 5;
+            this.cmbobxOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbobxOperations.FormattingEnabled = true;
+            this.cmbobxOperations.Location = new System.Drawing.Point(74, 70);
+            this.cmbobxOperations.Name = "cmbobxOperations";
+            this.cmbobxOperations.Size = new System.Drawing.Size(121, 21);
+            this.cmbobxOperations.TabIndex = 5;
             // 
             // trkbarWidth
             // 
@@ -458,7 +458,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.trkbarHeight);
             this.Controls.Add(this.trkbarWidth);
-            this.Controls.Add(this.comboBox2);
+            this.Controls.Add(this.cmbobxOperations);
             this.Controls.Add(this.cmbobxTriggerType);
             this.Controls.Add(this.txtbxName);
             this.Controls.Add(this.label1);
@@ -488,7 +488,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtbxName;
         private System.Windows.Forms.ComboBox cmbobxTriggerType;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cmbobxOperations;
         private System.Windows.Forms.TrackBar trkbarWidth;
         private System.Windows.Forms.TrackBar trkbarHeight;
         private System.Windows.Forms.Label label2;
