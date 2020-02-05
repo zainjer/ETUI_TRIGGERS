@@ -63,6 +63,14 @@ namespace ETUI_TRIGGERS
         {
             if (MessageBox.Show("Are you sure you want to Close All Triggers?", "Close Control Panel | ETUI © 2020", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                foreach(TriggerInfo x in triggerList)
+                {
+                    if(x.obj!=null)
+                        x.obj.Close();
+                }
+
+                
+
                 welcomeScreenObj.Show();
                 this.Close();
             }
@@ -172,9 +180,9 @@ namespace ETUI_TRIGGERS
             //Destroy every object in allTrigges Array
             foreach (FormTrigger x in allTriggers)
             {
-
                 //Closes the thread attached to this trigger
-                x.triggerThread.Abort();
+                if (x.triggerThread!=null)                
+                    x.triggerThread.Abort();
 
                 //Changes color to black to show that its deactive
                 x.BackColor = Color.Black;
@@ -184,10 +192,18 @@ namespace ETUI_TRIGGERS
 
         private void button2_Click(object sender, EventArgs e)
         {
-            foreach(TriggerInfo x in triggerList)
+            if (activeTriggers != 0)
             {
-                x.obj.isAlive = true;
+                foreach (TriggerInfo x in triggerList)
+                {
+                    x.obj.isAlive = true;
+                }
             }
+            else
+            {
+                MessageBox.Show("Error: No Triggers Found", "No Active Triggers", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            
         }
     }
 }

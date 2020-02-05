@@ -42,6 +42,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormTrigger";
             this.Opacity = 0.25D;
+            this.ShowInTaskbar = false;
             this.Text = "Trigger";
             this.Load += new System.EventHandler(this.Trigger_Load);
             this.MouseEnter += new System.EventHandler(this.mouseEnter);
