@@ -162,6 +162,7 @@
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.BackColor = System.Drawing.Color.Black;
+            this.pictureBox1.Cursor = System.Windows.Forms.Cursors.SizeAll;
             this.pictureBox1.Image = global::ETUI_TRIGGERS.Properties.Resources.logo_reverse;
             this.pictureBox1.Location = new System.Drawing.Point(176, 3);
             this.pictureBox1.Name = "pictureBox1";
@@ -169,6 +170,8 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggingOff);
+            this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggingOn);
             // 
             // WelcomeScreen
             // 

@@ -10,12 +10,15 @@ using System.Windows.Forms;
 namespace ETUI_TRIGGERS
 {
     public partial class WelcomeScreen : Form
-    {
+    {  
+        
+        //Draggable Code
+        Point lastPoint;
+
         public WelcomeScreen()
         {
             InitializeComponent();
         }
-
      
         private void WelcomeScreen_Load(object sender, EventArgs e)
         {
@@ -51,6 +54,20 @@ namespace ETUI_TRIGGERS
         private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
         {
 
+        }
+
+        private void DraggingOff(object sender, MouseEventArgs e)
+        {
+            lastPoint = new Point(e.X, e.Y);
+        }
+
+        private void DraggingOn(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Left += e.X - lastPoint.X;
+                this.Top += e.Y - lastPoint.Y;
+            }
         }
     }
 }
