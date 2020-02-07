@@ -18,6 +18,7 @@ namespace ETUI_TRIGGERS
         public int triggerType;
         public int SELECTED_DISPLAY = 0;
         public bool isTriggerEdit;
+        public bool isDraggable;
 
         string[] typeRange = new string[]
         {
@@ -46,11 +47,11 @@ namespace ETUI_TRIGGERS
             myTriggerObject.Show();
             myTriggerObject.Location = new Point(positionX, positionY);
             txtbxXposition.Text = myTriggerObject.Location.X.ToString();
-            txtbxYposition.Text = myTriggerObject.Location.X.ToString();             
-            
+            txtbxYposition.Text = myTriggerObject.Location.X.ToString();
+            myTriggerObject.triggerEditor = this;
             //GET TRIGGER OPERATIONS FROM SOMEWHERE
             //Or SET the 'triggerType' variable from somewhere
-            
+
         }         
         private void ConfigTrackBars()
         {
@@ -113,6 +114,8 @@ namespace ETUI_TRIGGERS
                     dockObject.Show();
 
                     isTriggerEdit = true;
+                    isDraggable = false;
+                    checkBox1.Checked = false;
                 }
 
 
@@ -363,6 +366,18 @@ namespace ETUI_TRIGGERS
         private void button8_Click(object sender, EventArgs e)
         {
             SetAnchor(ANK_BC);
+        }
+
+        private void Draggable(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                isDraggable = true;
+            }
+            else
+            {
+                isDraggable = false;
+            }
         }
 
         private void button9_Click(object sender, EventArgs e)

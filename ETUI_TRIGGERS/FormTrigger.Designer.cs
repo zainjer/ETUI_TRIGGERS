@@ -45,8 +45,10 @@
             this.ShowInTaskbar = false;
             this.Text = "Trigger";
             this.Load += new System.EventHandler(this.Trigger_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DraggingOff);
             this.MouseEnter += new System.EventHandler(this.mouseEnter);
             this.MouseLeave += new System.EventHandler(this.FormTrigger_MouseLeave);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.DraggingOn);
             this.ResumeLayout(false);
 
         }

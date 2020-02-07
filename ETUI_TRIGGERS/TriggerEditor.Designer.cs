@@ -63,6 +63,7 @@
             this.trkbarPositionY = new System.Windows.Forms.TrackBar();
             this.labelTimeDelay = new System.Windows.Forms.Label();
             this.txtBxTimeDelay = new System.Windows.Forms.TextBox();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).BeginInit();
             this.panel1.SuspendLayout();
@@ -441,6 +442,18 @@
             this.txtBxTimeDelay.Size = new System.Drawing.Size(24, 20);
             this.txtBxTimeDelay.TabIndex = 24;
             // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox1.Location = new System.Drawing.Point(288, 187);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(75, 17);
+            this.checkBox1.TabIndex = 25;
+            this.checkBox1.Text = "Draggable";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.Draggable);
+            // 
             // TriggerEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -448,6 +461,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(384, 378);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtBxTimeDelay);
             this.Controls.Add(this.labelTimeDelay);
             this.Controls.Add(this.trkbarPositionY);
@@ -526,6 +540,7 @@
         private System.Windows.Forms.TrackBar trkbarPositionY;
         private System.Windows.Forms.Label labelTimeDelay;
         private System.Windows.Forms.TextBox txtBxTimeDelay;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }
 

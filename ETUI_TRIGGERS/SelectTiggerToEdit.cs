@@ -14,7 +14,9 @@ namespace ETUI_TRIGGERS
 
         string[] triggerNames;
         int selectedIndex;
-        public TriggerInfo[] triggerList;
+        public TriggerInfo[] triggerArray;
+        public List<TriggerInfo> triggerList;
+
         public Dock dock;
        
 
@@ -37,10 +39,10 @@ namespace ETUI_TRIGGERS
 
         private void BtnEditTrigger(object sender, EventArgs e)
         {
-            var obj = triggerList[selectedIndex].obj.triggerEditor;
+            var obj = triggerArray[selectedIndex].obj.triggerEditor;
             
-            obj.UpdateToEditMode(triggerList[selectedIndex].Name);
-            obj.Text = "Edit Trigger: " + triggerList[selectedIndex].Name;
+            obj.UpdateToEditMode(triggerArray[selectedIndex].Name);
+            obj.Text = "Edit Trigger: " + triggerArray[selectedIndex].Name;
             obj.Show();
             this.Hide();
             dock.Show();
@@ -56,14 +58,42 @@ namespace ETUI_TRIGGERS
 
         public void PopulateMe()
         {
-            triggerNames = new string[triggerList.Length];
+            triggerNames = new string[triggerArray.Length];
 
             for (int i = 0; i < triggerNames.Length; i++)
             {
-                triggerNames[i] = triggerList[i].Name;
+                triggerNames[i] = triggerArray[i].Name;
             }
             cmbxRange.Items.AddRange(triggerNames);
             cmbxRange.SelectedIndex = 0;
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            
+            if(triggerArray.Length  == 1)
+            {
+                MessageBox.Show("Cannot delete last available item."+"","Cannot Empty List",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                //code for deleting a trigger currently selected in the list
+                TriggerInfo itemToDelete = triggerArray[selectedIndex];
+                triggerList.Remove(itemToDelete);
+
+                //this closes the trigger
+                itemToDelete.obj.Close();
+
+                //make sure the list is updated after the trigger is deleted.
+                triggerArray = triggerList.ToArray();
+                cmbxRange.Items.Clear();
+                PopulateMe();
+            }
+            
+           
+
+            
+
         }
     }
 }

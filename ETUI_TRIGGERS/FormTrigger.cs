@@ -63,7 +63,6 @@ namespace ETUI_TRIGGERS
 
         private void FormTrigger_MouseLeave(object sender, EventArgs e)
         {
-
             if (isAlive)
             {
                 //This will stop the Trigger from doing its job
@@ -137,8 +136,6 @@ namespace ETUI_TRIGGERS
             }
             currentColor = this.BackColor;
         }
-
-
         void ThreadLogic()
         {
             if (triggerType == TRIG_TYPE_FLUID)
@@ -192,9 +189,26 @@ namespace ETUI_TRIGGERS
             }
         }
 
+        #region Draggable Code
+        Point lastPoint;
+        private void DraggingOff(object sender, MouseEventArgs e)
+        {
+            if(triggerEditor.isDraggable)
+                lastPoint = new Point(e.X, e.Y);
+        }
 
-
-
+        private void DraggingOn(object sender, MouseEventArgs e)
+        {
+            if (triggerEditor.isDraggable)
+                {
+                    if (e.Button == MouseButtons.Left)
+                    {
+                        this.Left += e.X - lastPoint.X;
+                        this.Top += e.Y - lastPoint.Y;
+                    }
+            } 
+        }
+        #endregion
     }
 
 }

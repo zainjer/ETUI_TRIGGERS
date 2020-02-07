@@ -110,6 +110,7 @@ namespace ETUI_TRIGGERS
             obj.Show();
             obj.dockObject = this;           
             this.Hide();
+            DeactiveUI();
         }
         public void UpdateActiveTriggers()
         {
@@ -122,7 +123,9 @@ namespace ETUI_TRIGGERS
             if (activeTriggers > 0)
             {
                 SelectTiggerToEdit obj = new SelectTiggerToEdit();
-                obj.triggerList = triggerList.ToArray();
+                obj.triggerList = triggerList;
+                obj.triggerArray = triggerList.ToArray();
+               
                 obj.PopulateMe();
                 obj.dock = this;
                 obj.Show();
@@ -167,43 +170,69 @@ namespace ETUI_TRIGGERS
         }
 
         //Deactives the triggers by stopping their threads;
-        private void ResetAllTriggers(object sender, EventArgs e)
+        private void DeactiveAll(object sender, EventArgs e)
         {
-            FormTrigger[] allTriggers = new FormTrigger[triggerList.Count];
+            if (activeTriggers != 0)
+            {
+                DeactiveUI();
+            }
+            else
+            {
+                MessageBox.Show("Error: No Triggers Found", "No Active Triggers", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+            /* 
+             * //FormTrigger[] allTriggers = new FormTrigger[triggerList.Count];
             
-            //get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array
-            for (int i = 0; i < triggerList.Count; i++)
+            ////get each triggeObject from triggeList (TriggerInfo) and insert it into allTriggers array
+            //for (int i = 0; i < triggerList.Count; i++)
+            //{
+            //    allTriggers[i] = triggerList[i].obj;
+            //}
+
+            ////Destroy every object in allTrigges Array
+            //foreach (FormTrigger x in allTriggers)
+            //{
+            //    //Closes the thread attached to this trigger
+            //    if (x.triggerThread!=null)                
+            //        x.triggerThread.Abort();
+
+            //    //Changes color to black to show that its deactive
+            //    x.BackColor = Color.Black;
+
+            //} 
+            */
+        }
+
+        private void DeactiveUI()
+        {
+            foreach (TriggerInfo x in triggerList)
             {
-                allTriggers[i] = triggerList[i].obj;
+                x.obj.isAlive = false;
             }
-
-            //Destroy every object in allTrigges Array
-            foreach (FormTrigger x in allTriggers)
-            {
-                //Closes the thread attached to this trigger
-                if (x.triggerThread!=null)                
-                    x.triggerThread.Abort();
-
-                //Changes color to black to show that its deactive
-                x.BackColor = Color.Black;
-
-            }
+    
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             if (activeTriggers != 0)
             {
-                foreach (TriggerInfo x in triggerList)
-                {
-                    x.obj.isAlive = true;
-                }
+                ActivateUI();
             }
             else
             {
                 MessageBox.Show("Error: No Triggers Found", "No Active Triggers", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+        }
+        void ActivateUI()
+        {
+           
+                foreach (TriggerInfo x in triggerList)
+                {
+                    x.obj.isAlive = true;
+                }
+           
         }
     }
 }

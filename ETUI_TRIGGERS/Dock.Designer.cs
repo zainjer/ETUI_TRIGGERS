@@ -124,9 +124,9 @@
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(149, 50);
             this.button4.TabIndex = 12;
-            this.button4.Text = "Reset All Trigges";
+            this.button4.Text = "Deactive All";
             this.button4.UseVisualStyleBackColor = false;
-            this.button4.Click += new System.EventHandler(this.ResetAllTriggers);
+            this.button4.Click += new System.EventHandler(this.DeactiveAll);
             // 
             // button8
             // 
