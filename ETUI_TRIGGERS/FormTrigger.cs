@@ -78,7 +78,11 @@ namespace ETUI_TRIGGERS
            
         }
         private void mouseEnter(object sender, EventArgs e)
-        {           
+        {
+            if (triggerEditor.isDraggable)
+            {
+
+            }
             if (isAlive)
             {
                 this.BackColor = Color.Green;
@@ -111,7 +115,7 @@ namespace ETUI_TRIGGERS
                 //}
             }            
         }    
-        void SetColor()
+        public void SetColor()
         {
 
             if (triggerType == TRIG_TYPE_FLUID)
@@ -120,7 +124,7 @@ namespace ETUI_TRIGGERS
             }
             else if (triggerType == TRIG_TYPE_RECURRING)
             {
-                this.BackColor = Color.Green;
+                this.BackColor = Color.Cyan;
             }
             else if (triggerType == TRIG_TYPE_TIMEDELAY)
             {
@@ -200,15 +204,28 @@ namespace ETUI_TRIGGERS
         private void DraggingOn(object sender, MouseEventArgs e)
         {
             if (triggerEditor.isDraggable)
-                {
+            {
                     if (e.Button == MouseButtons.Left)
                     {
-                        this.Left += e.X - lastPoint.X;
-                        this.Top += e.Y - lastPoint.Y;
+                        var Left = this.Left + e.X - lastPoint.X;
+                        var Top = this.Top + e.Y - lastPoint.Y;
+
+                    if(Left + this.Width < triggerEditor.currentScreenWidth && Left > 0)
+                        this.Left = Left;
+                    if (Top + this.Height < triggerEditor.currentScreenHeight && Top > 0)
+                        this.Top = Top;
                     }
             } 
         }
         #endregion
+
+        public void toggleLogo()
+        {
+            if (picLogo.Visible)
+                picLogo.Visible = false;
+            else
+                picLogo.Visible = true;
+        }
     }
 
 }

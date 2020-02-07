@@ -14,7 +14,7 @@ namespace ETUI_TRIGGERS
         public Dock dockObject;
 
         int positionX = 0, positionY = 0;
-        int currentScreenHeight ,currentScreenWidth;
+        public int currentScreenHeight ,currentScreenWidth;
         public int triggerType;
         public int SELECTED_DISPLAY = 0;
         public bool isTriggerEdit;
@@ -102,8 +102,9 @@ namespace ETUI_TRIGGERS
                     //myTriggerObject.isAlive = true;
 
                     myTriggerObject.triggerEditor = this;
+                    
+                    
                     //Adds a trigger and its info to the triggerList 
-
                     String name = txtbxName.Text.ToString();
                     int Type = myTriggerObject.triggerType;
                     TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
@@ -113,15 +114,24 @@ namespace ETUI_TRIGGERS
                     dockObject.UpdateActiveTriggers();
                     dockObject.Show();
 
+                    //updates bools 
                     isTriggerEdit = true;
                     isDraggable = false;
                     checkBox1.Checked = false;
+
+                    //updates Visual Elements
+                    myTriggerObject.toggleLogo();
+                    myTriggerObject.SetColor();
                 }
 
 
             }
             else
             {
+                myTriggerObject.toggleLogo();
+                myTriggerObject.SetColor();
+                dockObject.Show();
+                
                 this.Hide();
             }
            
@@ -134,23 +144,21 @@ namespace ETUI_TRIGGERS
 
             if (cmbobxTriggerType.SelectedItem.Equals("Fluid"))
             {
-
-                myTriggerObject.BackColor = Color.Red;
-
                 //Set Trigger Type in trigger Object;
                 myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_FLUID;
 
+                myTriggerObject.SetColor();
 
                 myTriggerObject.isRecurringActive = false;
                 labelTimeDelay.Hide();
                 txtBxTimeDelay.Hide();
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Recurring"))
-            {
-                myTriggerObject.BackColor = Color.Green;
-
+            {             
                 //Set Trigger Type in trigger Object;
                 myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_RECURRING;
+
+                myTriggerObject.SetColor();
 
                 myTriggerObject.isRecurringActive = true;
                 labelTimeDelay.Hide();
@@ -158,10 +166,11 @@ namespace ETUI_TRIGGERS
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Time Delay"))
             {
-                myTriggerObject.BackColor = Color.Blue;
 
                 //Set Trigger Type in trigger Object;
                 myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_TIMEDELAY;
+                myTriggerObject.SetColor();
+
                 myTriggerObject.timeDelayInSeconds = 3f;
 
 
@@ -171,10 +180,10 @@ namespace ETUI_TRIGGERS
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Blink"))
             {
-                myTriggerObject.BackColor = Color.Yellow;
-
                 //Set Trigger Type in trigger Object;
                 myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_BLINK;
+
+                myTriggerObject.SetColor();
 
                 myTriggerObject.isRecurringActive = false;
                 labelTimeDelay.Hide();

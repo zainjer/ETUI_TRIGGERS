@@ -45,8 +45,8 @@ namespace ETUI_TRIGGERS
             obj.Text = "Edit Trigger: " + triggerArray[selectedIndex].Name;
             obj.Show();
             this.Hide();
-            dock.Show();
-            
+            obj.myTriggerObject.toggleLogo();
+            //dock.Show();            
             // obj.setNameTypeOperation(triggerList[selectedIndex].Name, triggerList[selectedIndex].Type, triggerList[selectedIndex].Operation);            
 
         }
@@ -54,6 +54,7 @@ namespace ETUI_TRIGGERS
         private void cmbxRange_SelectedIndexChanged(object sender, EventArgs e)
         {
             this.selectedIndex = cmbxRange.SelectedIndex;
+            
         }
 
         public void PopulateMe()
