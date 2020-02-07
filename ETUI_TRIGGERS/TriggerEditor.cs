@@ -226,6 +226,15 @@ namespace ETUI_TRIGGERS
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_TL);
+        }
+        private void button4_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_TC);
+        }
+
 
         //this public methods lets others set the name type etc of this form window
         public void setNameTypeOperation(string name,int type,string operation)
@@ -244,5 +253,130 @@ namespace ETUI_TRIGGERS
             cmbobxTriggerType.Enabled = false;
             cmbobxOperations.Enabled = false;
         }
+
+        #region Anchors Logic
+        
+        void SetAnchor(int anchorType)
+        {
+            switch (anchorType)
+            {
+                case ANK_TL:
+
+                    myTriggerObject.Location = new Point(0, 0);
+                    break;
+
+                case ANK_TC:
+
+                    tempAnkX = currentScreenWidth / 2;
+                    tempAnkX = tempAnkX - (myTriggerObject.Width / 2);
+
+                    myTriggerObject.Location = new Point(tempAnkX, 0);
+
+                    break;
+                case ANK_TR:
+
+                    tempAnkX = currentScreenWidth - myTriggerObject.Width;
+                    myTriggerObject.Location = new Point(tempAnkX, 0);
+
+
+
+                    break;
+                case ANK_CL:
+
+                    tempAnkY = (currentScreenHeight / 2) - (myTriggerObject.Height / 2);
+                    myTriggerObject.Location = new Point(0, tempAnkY);
+
+                    break;
+                case ANK_CC:
+
+                    tempAnkY = (currentScreenHeight / 2) - (myTriggerObject.Height / 2);
+                    tempAnkX = (currentScreenWidth / 2) - (myTriggerObject.Width / 2);
+                    myTriggerObject.Location = new Point(tempAnkX, tempAnkY);
+
+                    break;
+                case ANK_CR:
+
+                    tempAnkY = (currentScreenHeight / 2) - (myTriggerObject.Height / 2);
+                    tempAnkX = currentScreenWidth - myTriggerObject.Width;
+                    myTriggerObject.Location = new Point(tempAnkX, tempAnkY);
+
+                    break;
+                case ANK_BL:
+
+                    tempAnkY = currentScreenHeight - myTriggerObject.Height;
+
+                    myTriggerObject.Location = new Point(0, tempAnkY);
+
+                    break;
+                case ANK_BC:
+
+                    tempAnkX = (currentScreenWidth / 2) - (myTriggerObject.Width / 2);
+                    tempAnkY = currentScreenHeight - myTriggerObject.Height;
+
+                    myTriggerObject.Location = new Point(tempAnkX, tempAnkY);
+
+                    break;
+                case ANK_BR:
+
+                    tempAnkY = currentScreenHeight - myTriggerObject.Height;
+                    tempAnkX = currentScreenWidth - myTriggerObject.Width;
+
+                    myTriggerObject.Location = new Point(tempAnkX, tempAnkY);
+                    break;
+            }
+        }
+
+        private int tempAnkX;    //To calculate Screen positioning for anchors
+        private int tempAnkY;    //To calculate Screen positioning for anchors
+        //constants for Anchors 
+        public const int ANK_TL = 77;
+        public const int ANK_TC = 78;
+        public const int ANK_TR = 79;
+        public const int ANK_CL = 80;
+        public const int ANK_CC = 81;
+        public const int ANK_CR = 82;
+        public const int ANK_BL = 83;
+        public const int ANK_BC = 84;
+        public const int ANK_BR = 85;
+       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_CL);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_CC);
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_CR);
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_BL);
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_BC);
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_BR);
+        }
+
+      
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SetAnchor(ANK_TR);
+        }
+        #endregion
+
+
     }
 }
