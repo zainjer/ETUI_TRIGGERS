@@ -103,16 +103,6 @@ namespace ETUI_TRIGGERS
             {
                 this.ThreadLogic();
 
-                //while (isTriggerActive)
-                //{
-                //    Thread.Sleep(1);
-                //    Console.WriteLine("Thread Active");
-                //    if (!isTriggerActive)
-                //    {
-                //        Console.WriteLine("Thread Dead");
-                //        break;
-                //    }
-                //}
             }            
         }
         void ThreadLogic()
@@ -143,7 +133,7 @@ namespace ETUI_TRIGGERS
 
                 while (isTriggerActive)
                 {
-                    Console.WriteLine(triggerType + "Trigger Activated - Waiting for " + timeDelayInSeconds + " seconds delay");
+                    Console.WriteLine("Trigger Activated - Waiting for " + timeDelayInSeconds + " seconds delay");
                     int timeInMiliSeconds = (Int32)(timeDelayInSeconds * 1000);
                     Thread.Sleep(timeInMiliSeconds);
                     if (isTriggerActive)
@@ -165,7 +155,7 @@ namespace ETUI_TRIGGERS
             else
             {
                 Thread.Sleep(1000);
-                Console.WriteLine("Blink Trigger Under Development");
+                Console.WriteLine("Trigger Under Development");
 
             }
         }

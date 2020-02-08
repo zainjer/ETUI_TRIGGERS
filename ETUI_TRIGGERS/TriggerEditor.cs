@@ -25,7 +25,7 @@ namespace ETUI_TRIGGERS
             "Fluid",
             "Recurring",
             "Time Delay",
-            "Blink"
+            "Time Once"
         };
 
         public TriggerEditor()

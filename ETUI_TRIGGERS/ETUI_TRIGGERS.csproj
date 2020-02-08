@@ -68,6 +68,12 @@
     <Compile Include="Dock.Designer.cs">
       <DependentUpon>Dock.cs</DependentUpon>
     </Compile>
+    <Compile Include="SelectOperation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SelectOperation.Designer.cs">
+      <DependentUpon>SelectOperation.cs</DependentUpon>
+    </Compile>
     <Compile Include="SelectTiggerToEdit.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </Compile>
     <EmbeddedResource Include="Dock.resx">
       <DependentUpon>Dock.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SelectOperation.resx">
+      <DependentUpon>SelectOperation.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SelectTiggerToEdit.resx">
       <DependentUpon>SelectTiggerToEdit.cs</DependentUpon>
