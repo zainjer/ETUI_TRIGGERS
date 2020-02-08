@@ -35,6 +35,7 @@ namespace ETUI_TRIGGERS
             ConfigTrackBars();
             cmbobxTriggerType.Items.AddRange(typeRange);
             cmbobxTriggerType.SelectedIndex = 0;
+            
         }
 
         private void CreateTriggerObject(int trigType)
@@ -96,7 +97,6 @@ namespace ETUI_TRIGGERS
                 }
                 else
                 {
-                    this.Hide();
 
                     //this line activates the trigger
                     //myTriggerObject.isAlive = true;
@@ -104,10 +104,39 @@ namespace ETUI_TRIGGERS
                     myTriggerObject.triggerEditor = this;
                     
                     
-                    //Adds a trigger and its info to the triggerList 
+                    //creates a triggerInfo 
                     String name = txtbxName.Text.ToString();
                     int Type = myTriggerObject.triggerType;
                     TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
+
+                    //Checks if the name already exists
+                    if (dockObject.triggerList.Count > 0)
+                    {
+                        foreach (var ti in dockObject.triggerList)
+                        {
+                            if(ti.Name == thisTriggerInfo.Name)
+                            {
+                                MessageBox.Show("Please provide a Unique name for your Trigger", "Trigger Name not Unique", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                return;
+                            }
+                        }
+                    }
+
+                    if(myTriggerObject.triggerType == FormTrigger.TRIG_TYPE_TIMEDELAY)
+                    {                      
+                        float inputTime;
+                        if (!float.TryParse(txtBxTimeDelay.Text.ToString(), out inputTime))
+                        {
+                            MessageBox.Show("Please enter a valid Time Delay value","Invalid Format",MessageBoxButtons.OK,MessageBoxIcon.Warning);
+                            return;
+                        }
+                        else
+                        {
+                            myTriggerObject.timeDelayInSeconds = inputTime;
+                        }
+                    }
+                    
+
                     dockObject.triggerList.Add(thisTriggerInfo);
 
                     //Updates Active Triggers in Dock
@@ -122,6 +151,8 @@ namespace ETUI_TRIGGERS
                     //updates Visual Elements
                     myTriggerObject.toggleLogo();
                     myTriggerObject.SetColor();
+
+                    this.Hide();
                 }
 
 
@@ -171,7 +202,13 @@ namespace ETUI_TRIGGERS
                 myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_TIMEDELAY;
                 myTriggerObject.SetColor();
 
-                myTriggerObject.timeDelayInSeconds = 3f;
+
+                //float inputTime = -1f;
+                //if(!float.TryParse(txtBxTimeDelay.Text.ToString(),out inputTime))
+                //{
+                //    MessageBox.Show("Enter a valid time delay");
+                //}        
+                //myTriggerObject.timeDelayInSeconds = inputTime;
 
 
                 myTriggerObject.isRecurringActive = false;
@@ -254,8 +291,9 @@ namespace ETUI_TRIGGERS
             txtbxName.Text = name;
             this.Name = "Edit " + name + " [Trigger Editor]";
             cmbobxTriggerType.SelectedIndex = type;
-            btnCreateTrigger.Text = "Save Changes";            
-        }
+            btnCreateTrigger.Text = "Save Changes";
+           
+        }      
 
         public void UpdateToEditMode(string name) {
 
@@ -264,10 +302,49 @@ namespace ETUI_TRIGGERS
             txtBxTimeDelay.Enabled = false;
             cmbobxTriggerType.Enabled = false;
             cmbobxOperations.Enabled = false;
+            btnClose.Text = "Delete";
+        }
+
+        private void closeBtn(object sender, EventArgs e)
+        {
+            if (!isTriggerEdit)
+            {
+                dockObject.Show();
+                closeItAll();
+            }
+            else  //Delete the trigger
+            {
+                //remove item from list 
+                TriggerInfo toRemove = new TriggerInfo();
+                foreach(TriggerInfo ti in dockObject.triggerList)
+                {
+                    if(ti.obj == myTriggerObject)
+                    {
+                        toRemove = ti;
+                    }
+                }
+                dockObject.triggerList.Remove(toRemove);
+
+                dockObject.createdTriggers -= 1;
+                dockObject.UpdateActiveTriggers();    
+                
+                dockObject.Show();
+                closeItAll();
+
+            }
+
+
+            
+        }
+
+        private void closeItAll()
+        {
+            myTriggerObject.Close();
+            this.Close();
         }
 
         #region Anchors Logic
-        
+
         void SetAnchor(int anchorType)
         {
             switch (anchorType)
@@ -388,6 +465,8 @@ namespace ETUI_TRIGGERS
                 isDraggable = false;
             }
         }
+
+       
 
         private void button9_Click(object sender, EventArgs e)
         {

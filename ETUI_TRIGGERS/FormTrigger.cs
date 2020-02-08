@@ -114,7 +114,63 @@ namespace ETUI_TRIGGERS
                 //    }
                 //}
             }            
-        }    
+        }
+        void ThreadLogic()
+        {
+            if (triggerType == TRIG_TYPE_FLUID)
+            {
+                while (isTriggerActive)
+                {
+                    Thread.Sleep(1);
+                    Console.WriteLine("Fluid Trigger Active");
+                    if (!isTriggerActive)
+                    {
+                        Console.WriteLine("Fluid Trigger Deactive");
+                        break;
+                    }
+                }
+            }
+            else if (triggerType == TRIG_TYPE_RECURRING)
+            {
+                while (isRecurringActive)
+                {
+                    Thread.Sleep(1);
+                    Console.WriteLine("Recurring Trigger Active");
+                }
+            }
+            else if (triggerType == TRIG_TYPE_TIMEDELAY)
+            {
+
+                while (isTriggerActive)
+                {
+                    Console.WriteLine(triggerType + "Trigger Activated - Waiting for " + timeDelayInSeconds + " seconds delay");
+                    int timeInMiliSeconds = (Int32)(timeDelayInSeconds * 1000);
+                    Thread.Sleep(timeInMiliSeconds);
+                    if (isTriggerActive)
+                    {
+                        while (true)
+                        {
+                            Thread.Sleep(1);
+                            Console.WriteLine("Trigger Active");
+                            if (!isTriggerActive)
+                            {
+                                Console.WriteLine("Trigger Deactive");
+                                break;
+                            }
+                        }
+                    }
+                    else Console.WriteLine("Time Delay Trigger Deactivated");
+                }
+            }
+            else
+            {
+                Thread.Sleep(1000);
+                Console.WriteLine("Blink Trigger Under Development");
+
+            }
+        }
+
+
         public void SetColor()
         {
 
@@ -140,59 +196,7 @@ namespace ETUI_TRIGGERS
             }
             currentColor = this.BackColor;
         }
-        void ThreadLogic()
-        {
-            if (triggerType == TRIG_TYPE_FLUID)
-            {
-                while (isTriggerActive)
-                {
-                    Thread.Sleep(1);
-                    Console.WriteLine("Fluid Trigger Active");
-                    if (!isTriggerActive)
-                    {
-                        Console.WriteLine("Fluid Trigger Deactive");
-                        break;
-                    }
-                }
-            }else if(triggerType == TRIG_TYPE_RECURRING)
-            {
-                while (isRecurringActive)
-                {
-                    Thread.Sleep(1);
-                    Console.WriteLine("Recurring Trigger Active");
-                }
-            }else if(triggerType == TRIG_TYPE_TIMEDELAY)
-            {
-              
-                while (isTriggerActive)
-                {
-                    Console.WriteLine(triggerType + "Trigger Activated - Waiting for " + timeDelayInSeconds + " seconds delay");
-                    int timeInMiliSeconds = (Int32)(timeDelayInSeconds * 1000);
-                    Thread.Sleep(timeInMiliSeconds);
-                    if (isTriggerActive)
-                    {
-                        while (true)
-                        {
-                            Thread.Sleep(1);
-                            Console.WriteLine("Trigger Active");
-                            if (!isTriggerActive)
-                            {
-                                Console.WriteLine("Trigger Deactive");
-                                break;
-                            }
-                        }
-                    }
-                    else Console.WriteLine("Time Delay Trigger Deactivated");                                        
-                }
-            }
-            else
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine("Blink Trigger Under Development");
-                
-            }
-        }
-
+        
         #region Draggable Code
         Point lastPoint;
         private void DraggingOff(object sender, MouseEventArgs e)

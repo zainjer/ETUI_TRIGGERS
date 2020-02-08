@@ -15,10 +15,10 @@ namespace ETUI_TRIGGERS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new CreateNewTrigger());
-            Application.Run(new WelcomeScreen());
+            
+            //Application.Run(new WelcomeScreen());
             //Application.Run(new TriggerEditor());
-            //Application.Run(new Dock());
+            Application.Run(new Dock());
         }
     }
 }

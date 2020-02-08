@@ -64,6 +64,7 @@
             this.labelTimeDelay = new System.Windows.Forms.Label();
             this.txtBxTimeDelay = new System.Windows.Forms.TextBox();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.btnClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).BeginInit();
             this.panel1.SuspendLayout();
@@ -368,7 +369,7 @@
             this.btnCreateTrigger.ForeColor = System.Drawing.SystemColors.Control;
             this.btnCreateTrigger.Location = new System.Drawing.Point(19, 324);
             this.btnCreateTrigger.Name = "btnCreateTrigger";
-            this.btnCreateTrigger.Size = new System.Drawing.Size(353, 38);
+            this.btnCreateTrigger.Size = new System.Drawing.Size(250, 38);
             this.btnCreateTrigger.TabIndex = 17;
             this.btnCreateTrigger.Text = "Create Trigger";
             this.btnCreateTrigger.UseVisualStyleBackColor = false;
@@ -454,6 +455,20 @@
             this.checkBox1.UseVisualStyleBackColor = true;
             this.checkBox1.CheckedChanged += new System.EventHandler(this.Draggable);
             // 
+            // button10
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.LightCoral;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnClose.Location = new System.Drawing.Point(274, 324);
+            this.btnClose.Name = "button10";
+            this.btnClose.Size = new System.Drawing.Size(97, 38);
+            this.btnClose.TabIndex = 26;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.closeBtn);
+            // 
             // TriggerEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -461,6 +476,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(384, 378);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.txtBxTimeDelay);
             this.Controls.Add(this.labelTimeDelay);
@@ -509,7 +525,7 @@
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblType;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtbxName;
+        public System.Windows.Forms.TextBox txtbxName;
         private System.Windows.Forms.ComboBox cmbobxTriggerType;
         private System.Windows.Forms.ComboBox cmbobxOperations;
         private System.Windows.Forms.TrackBar trkbarWidth;
@@ -541,6 +557,7 @@
         private System.Windows.Forms.Label labelTimeDelay;
         private System.Windows.Forms.TextBox txtBxTimeDelay;
         private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.Button btnClose;
     }
 }
 

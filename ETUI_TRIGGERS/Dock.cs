@@ -21,7 +21,9 @@ namespace ETUI_TRIGGERS
         public List<TriggerInfo> triggerList = new List<TriggerInfo>();
 
         //Active Triggers
-        int activeTriggers=0;
+        public int createdTriggers=0;
+
+        public bool isUIActive;
 
         public Dock()
         {
@@ -108,19 +110,20 @@ namespace ETUI_TRIGGERS
         {
             var obj = new TriggerEditor();
             obj.Show();
+            obj.txtbxName.Text = "ETUI_" + createdTriggers;
             obj.dockObject = this;           
             this.Hide();
             DeactiveUI();
         }
         public void UpdateActiveTriggers()
         {
-            activeTriggers = triggerList.Count;
-            txtBxTriggerActive.Text = "Triggers Active: " + activeTriggers;
+            createdTriggers = triggerList.Count;
+            txtBxTriggerActive.Text = "Triggers Created: " + createdTriggers;
           
         }
         private void EditTrigger(object sender, EventArgs e)
         {
-            if (activeTriggers > 0)
+            if (createdTriggers > 0)
             {
                 SelectTiggerToEdit obj = new SelectTiggerToEdit();
                 obj.triggerList = triggerList;
@@ -164,7 +167,7 @@ namespace ETUI_TRIGGERS
 
             }
             triggerList = new List<TriggerInfo>();
-            activeTriggers = 0;
+            createdTriggers = 0;
             UpdateActiveTriggers();
 
         }
@@ -172,7 +175,7 @@ namespace ETUI_TRIGGERS
         //Deactives the triggers by stopping their threads;
         private void DeactiveAll(object sender, EventArgs e)
         {
-            if (activeTriggers != 0)
+            if (createdTriggers != 0)
             {
                 DeactiveUI();
             }
@@ -211,12 +214,12 @@ namespace ETUI_TRIGGERS
             {
                 x.obj.isAlive = false;
             }
-    
+            this.isUIActive = false;
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            if (activeTriggers != 0)
+            if (createdTriggers != 0)
             {
                 ActivateUI();
             }
@@ -224,6 +227,8 @@ namespace ETUI_TRIGGERS
             {
                 MessageBox.Show("Error: No Triggers Found", "No Active Triggers", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            
         }
         void ActivateUI()
         {
@@ -232,7 +237,9 @@ namespace ETUI_TRIGGERS
                 {
                     x.obj.isAlive = true;
                 }
-           
+            this.isUIActive = true;
         }
+
+        
     }
 }
