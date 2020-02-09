@@ -20,6 +20,7 @@ namespace ETUI_TRIGGERS
         public bool isTriggerEdit;
         public bool isDraggable;
 
+
         string[] typeRange = new string[]
         {
             "Fluid",
