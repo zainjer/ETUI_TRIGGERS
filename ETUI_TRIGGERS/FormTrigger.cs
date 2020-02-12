@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using ActionLibraryWindows;
 
 namespace ETUI_TRIGGERS
 {
@@ -39,6 +40,8 @@ namespace ETUI_TRIGGERS
         //The editor of current trigger (Create Trigger Window)
         public TriggerEditor triggerEditor;
 
+        public ActionLibrary actionLibrary = new ActionLibrary(); 
+
         public FormTrigger(int triggerType)
         {
             InitializeComponent();
@@ -51,14 +54,7 @@ namespace ETUI_TRIGGERS
             //Give the thread a color based  on its type
             SetColor();
 
-            //Initializes the Trigger Thread
-            //triggerThread = new Thread(this.TriggerThreadMethod);
-
-            //Give it Background property
-            //triggerThread.IsBackground = true;
-
-            //this will start the TriggerThread;
-            //triggerThread.Start();
+         
         }
 
         private void FormTrigger_MouseLeave(object sender, EventArgs e)
@@ -115,6 +111,11 @@ namespace ETUI_TRIGGERS
                     Console.WriteLine("Fluid Trigger Active");
                     if (!isTriggerActive)
                     {
+
+
+                        actionLibrary.Keyboard_Key_A(ActionLibrary.KeyPress);
+
+
                         Console.WriteLine("Fluid Trigger Deactive");
                         break;
                     }
@@ -122,6 +123,7 @@ namespace ETUI_TRIGGERS
             }
             else if (triggerType == TRIG_TYPE_RECURRING)
             {
+                bool isDown = false;
                 while (isRecurringActive)
                 {
                     Thread.Sleep(1);
@@ -140,7 +142,7 @@ namespace ETUI_TRIGGERS
                     {
                         while (true)
                         {
-                            Thread.Sleep(1);
+                            actionLibrary.Keyboard_Key_A(ActionLibrary.KeyPress);
                             Console.WriteLine("Trigger Active");
                             if (!isTriggerActive)
                             {
