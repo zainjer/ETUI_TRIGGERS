@@ -61,6 +61,7 @@ namespace ETUI_TRIGGERS
             "Down",
             "Right",
             "Home",
+            "End",
             "Page-up",
             "Page-down"
         };
@@ -105,30 +106,26 @@ namespace ETUI_TRIGGERS
             "Esc"
         };
 
-        string[] rangeOther = new string[]
+        string[] rangeArithematic = new string[]
         {
             "-",
             "+",
             "/",
-            "*",
-            "!",
-            "@",
-            "#",
-            "$",
+            "*"
         };
 
-        string[] rangeMouse = new string[]
+        string[] rangeMouseButton = new string[]
         {
-            "Left Mouse Button",
-            "Right Mouse Button",
-            "Middle Mouse Button"
+            "Left Mouse button",
+            "Right Mouse button",
+            "Middle Mouse button"
 
         };
 
         string[] rangeEventType = new string[]
         {
-            "KeyDown",            
-            "KeyPress"
+            "Key Down",            
+            "Key Press"
 
         };
 
@@ -177,54 +174,177 @@ namespace ETUI_TRIGGERS
             InitializeComponent();
 
             #region Adding Ranges to Dropdown menus
-            comboBox1.Items.AddRange(rangeAlphabets);
-            comboBox1.SelectedIndex = 0;
+            cbAlphabets.Items.AddRange(rangeAlphabets);
+            cbAlphabets.SelectedIndex = 0;
            
-            comboBox3.Items.AddRange(rangeFormatting);
-            comboBox3.SelectedIndex = 0;
+            cbFormatting.Items.AddRange(rangeFormatting);
+            cbFormatting.SelectedIndex = 0;
 
-            comboBox5.Items.AddRange(rangeNavigation);
-            comboBox5.SelectedIndex = 0;
+            cbNavigation.Items.AddRange(rangeNavigation);
+            cbNavigation.SelectedIndex = 0;
 
-            comboBox7.Items.AddRange(rangeNumber);
-            comboBox7.SelectedIndex = 0;
+            cbNumbers.Items.AddRange(rangeNumber);
+            cbNumbers.SelectedIndex = 0;
 
-            comboBox2.Items.AddRange(rangeFuncKey);
-            comboBox2.SelectedIndex = 0;
+            cbFuntionKeys.Items.AddRange(rangeFuncKey);
+            cbFuntionKeys.SelectedIndex = 0;
 
-            comboBox4.Items.AddRange(rangeCtrlKey);
-            comboBox4.SelectedIndex = 0;
+            cbControlKeys.Items.AddRange(rangeCtrlKey);
+            cbControlKeys.SelectedIndex = 0;
 
-            comboBox6.Items.AddRange(rangeOther);
-            comboBox6.SelectedIndex = 0;
+            cbArithematic.Items.AddRange(rangeArithematic);
+            cbArithematic.SelectedIndex = 0;
 
-            comboBox8.Items.AddRange(rangeMouse);
-            comboBox8.SelectedIndex = 0;
+            cbMouseButton.Items.AddRange(rangeMouseButton);
+            cbMouseButton.SelectedIndex = 0;
 
-            comboBox9.Items.AddRange(rangeEventType);
-            comboBox9.SelectedIndex = 0;
+            cbEventType.Items.AddRange(rangeEventType);
+            cbEventType.SelectedIndex = 0;
 
-            comboBox11.Items.AddRange(rangeIntBrowser);
-            comboBox11.SelectedIndex = 0;
+            cbInternetBrowser.Items.AddRange(rangeIntBrowser);
+            cbInternetBrowser.SelectedIndex = 0;
 
-            comboBox10.Items.AddRange(rangeSystemActions);
-            comboBox10.SelectedIndex = 0;
+            cbSystemActions.Items.AddRange(rangeSystemActions);
+            cbSystemActions.SelectedIndex = 0;
 
-            comboBox12.Items.AddRange(rangeWindowsPrograms);
-            comboBox12.SelectedIndex = 0;
+            cbWindowsPrograms.Items.AddRange(rangeWindowsPrograms);
+            cbWindowsPrograms.SelectedIndex = 0;
             #endregion
 
+            rbKeyboardMouse.Checked = true;
+
+        }
+
+        void DisableAll()
+        {
+            cbAlphabets.Enabled = false;
+            cbFuntionKeys.Enabled = false;
+            cbFormatting.Enabled = false;
+            cbControlKeys.Enabled = false;
+            cbNavigation.Enabled = false;
+            cbArithematic.Enabled = false;
+            cbNumbers.Enabled = false;
+            cbMouseButton.Enabled = false;            
+            cbSystemActions.Enabled = false;
+            cbInternetBrowser.Enabled = false;
+            cbWindowsPrograms.Enabled = false;
+            tbApplicationPath.Enabled = false;
+            rtbPowershellCommands.Enabled = false;
         }
 
         private void SelectOperation_Load(object sender, EventArgs e)
         {
                 
-        }
-
-    
+        }    
         private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void rbKeyboardMouse_CheckedChanged(object sender, EventArgs e)
+        {
+            gbKeyboardMouse.Enabled = true;
+            gbPowershell.Enabled = false;
+            gbRun.Enabled = false;
+            radioButton1.Checked = true;
+        }
+
+        private void rbRun_CheckedChanged(object sender, EventArgs e)
+        {
+            gbKeyboardMouse.Enabled = false;
+            gbPowershell.Enabled = false;
+            gbRun.Enabled = true;
+
+            radioButton9.Checked = true;
+        }
+
+        private void rbPowershell_CheckedChanged(object sender, EventArgs e)
+        {
+            gbKeyboardMouse.Enabled = false;
+            gbPowershell.Enabled = true;
+            gbRun.Enabled = false;
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbAlphabets.Enabled = true;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbFormatting.Enabled = true;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbNavigation.Enabled = true;
+        }
+
+        private void radioButton8_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbNumbers.Enabled = true;
+        }
+
+        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbFuntionKeys.Enabled = true;
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbControlKeys.Enabled = true;
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbArithematic.Enabled = true;
+        }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbMouseButton.Enabled = true;
+        }
+
+        private void radioButton12_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            if (radioButton12.Checked)
+            {
+                MessageBox.Show("Add OpenFileDialog here");
+            }                
+        }
+
+        private void radioButton9_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbSystemActions.Enabled = true;
+        }
+
+        private void radioButton10_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbInternetBrowser.Enabled = true;
+
+        }
+
+        private void radioButton11_CheckedChanged(object sender, EventArgs e)
+        {
+            DisableAll();
+            cbWindowsPrograms.Enabled = true;
+        }
+
+        private void btnCreateOperation_Click(object sender, EventArgs e)
+        {
+            Operation op = new Operation();
+            
         }
     }
 }

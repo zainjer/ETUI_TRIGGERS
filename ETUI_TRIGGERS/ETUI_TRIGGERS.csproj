@@ -74,6 +74,7 @@
     <Compile Include="Dock.Designer.cs">
       <DependentUpon>Dock.cs</DependentUpon>
     </Compile>
+    <Compile Include="Operation.cs" />
     <Compile Include="SelectOperation.cs">
       <SubType>Form</SubType>
     </Compile>
