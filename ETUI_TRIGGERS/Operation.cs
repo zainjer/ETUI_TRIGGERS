@@ -7,11 +7,17 @@ namespace ETUI_TRIGGERS
 {
     public class Operation
     {
+
+        #region Constant Values
         //Operation Types
         public static int TYPE_INPUTKEY = 101;
-        public static int TYPE_RUN = 102;
+        public static int TYPE_ACTION = 102;
 
         #region INPUT KEYS (KEYBOARD/MOUSE)
+        //Event types 
+        public static int EVENT_KEYPRESS = 501;
+        public static int EVENT_KEYDOWN = 502;
+        
         //Alphabets
         public static int KEY_A = 1001;
         public static int KEY_B = 1002;
@@ -103,6 +109,8 @@ namespace ETUI_TRIGGERS
         public static int KEY_MOUSE_RIGHT = 8003;
         #endregion
 
+        #region RUN Actions and Programs
+
         //System Actions
         public static int SYSTEM_LOCKSCREEN = 1101;
         public static int SYSTEM_SLEEP = 1102;
@@ -133,5 +141,39 @@ namespace ETUI_TRIGGERS
         public static int WIN_COMPUTER_MANAGEMENT = 1313;
         public static int WIN_CLEAN_MANAGER = 1314;
         public static int WIN_SYSTEM_PROPERTIES = 1315;
+
+        //Custom Application
+        public static int APPLICATION = 1400;
+
+        //Shell Command
+        public static int POWERSHELL_COMMAND = 1500;
+        #endregion
+        #endregion
+
+
+        //Properties 
+        public int Type { get; set; }
+        public int Action { get; set; }
+        public int Key { get; set; }
+        public int KeyEvent { get; set; }
+
+
+        //Constructors
+        public Operation(int action)
+        {
+            this.Type = Operation.TYPE_ACTION;
+            this.Action = action;
+        }
+
+        public Operation(int key,int keyEvent)
+        {
+            this.Type = Operation.TYPE_INPUTKEY;
+            this.Key = key;
+            this.KeyEvent = keyEvent;
+        }
+        
+
+        //Methods
+
     }
 }
