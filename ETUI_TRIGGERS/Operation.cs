@@ -5,13 +5,14 @@ using System.Text;
 
 namespace ETUI_TRIGGERS
 {
+    [Serializable]
     public class Operation
     {
-
         #region Constant Values
         //Operation Types
         public static int TYPE_INPUTKEY = 101;
         public static int TYPE_ACTION = 102;
+        public static int TYPE_POWERSHELL = 103;
 
         #region INPUT KEYS (KEYBOARD/MOUSE)
         //Event types 
@@ -150,12 +151,14 @@ namespace ETUI_TRIGGERS
         #endregion
         #endregion
 
-
         //Properties 
         public int Type { get; set; }
         public int Action { get; set; }
         public int Key { get; set; }
         public int KeyEvent { get; set; }
+        public string ApplicationPath { get; set; }
+        public FormTrigger Trigger;
+        public string PowerShellCommand { get; set; }
 
 
         //Constructors
@@ -170,10 +173,9 @@ namespace ETUI_TRIGGERS
             this.Type = Operation.TYPE_INPUTKEY;
             this.Key = key;
             this.KeyEvent = keyEvent;
-        }
-        
-
+        }  
+               
         //Methods
-
+        
     }
 }

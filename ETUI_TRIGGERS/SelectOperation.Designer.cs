@@ -57,10 +57,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCreateOperation = new System.Windows.Forms.Button();
             this.gbRun = new System.Windows.Forms.GroupBox();
-            this.radioButton12 = new System.Windows.Forms.RadioButton();
-            this.radioButton11 = new System.Windows.Forms.RadioButton();
-            this.radioButton10 = new System.Windows.Forms.RadioButton();
-            this.radioButton9 = new System.Windows.Forms.RadioButton();
+            this.rbApplication = new System.Windows.Forms.RadioButton();
+            this.rbWindowsProgram = new System.Windows.Forms.RadioButton();
+            this.rbInternet = new System.Windows.Forms.RadioButton();
+            this.rbSystemActions = new System.Windows.Forms.RadioButton();
             this.cbWindowsPrograms = new System.Windows.Forms.ComboBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cbInternetBrowser = new System.Windows.Forms.ComboBox();
@@ -369,10 +369,10 @@
             // 
             // gbRun
             // 
-            this.gbRun.Controls.Add(this.radioButton12);
-            this.gbRun.Controls.Add(this.radioButton11);
-            this.gbRun.Controls.Add(this.radioButton10);
-            this.gbRun.Controls.Add(this.radioButton9);
+            this.gbRun.Controls.Add(this.rbApplication);
+            this.gbRun.Controls.Add(this.rbWindowsProgram);
+            this.gbRun.Controls.Add(this.rbInternet);
+            this.gbRun.Controls.Add(this.rbSystemActions);
             this.gbRun.Controls.Add(this.cbWindowsPrograms);
             this.gbRun.Controls.Add(this.label13);
             this.gbRun.Controls.Add(this.cbInternetBrowser);
@@ -387,49 +387,49 @@
             this.gbRun.TabIndex = 20;
             this.gbRun.TabStop = false;
             // 
-            // radioButton12
+            // rbApplication
             // 
-            this.radioButton12.AutoSize = true;
-            this.radioButton12.Location = new System.Drawing.Point(312, 122);
-            this.radioButton12.Name = "radioButton12";
-            this.radioButton12.Size = new System.Drawing.Size(14, 13);
-            this.radioButton12.TabIndex = 30;
-            this.radioButton12.TabStop = true;
-            this.radioButton12.UseVisualStyleBackColor = true;
-            this.radioButton12.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged);
+            this.rbApplication.AutoSize = true;
+            this.rbApplication.Location = new System.Drawing.Point(312, 122);
+            this.rbApplication.Name = "rbApplication";
+            this.rbApplication.Size = new System.Drawing.Size(14, 13);
+            this.rbApplication.TabIndex = 30;
+            this.rbApplication.TabStop = true;
+            this.rbApplication.UseVisualStyleBackColor = true;
+            this.rbApplication.CheckedChanged += new System.EventHandler(this.radioButton12_CheckedChanged);
             // 
-            // radioButton11
+            // rbWindowsProgram
             // 
-            this.radioButton11.AutoSize = true;
-            this.radioButton11.Location = new System.Drawing.Point(312, 92);
-            this.radioButton11.Name = "radioButton11";
-            this.radioButton11.Size = new System.Drawing.Size(14, 13);
-            this.radioButton11.TabIndex = 29;
-            this.radioButton11.TabStop = true;
-            this.radioButton11.UseVisualStyleBackColor = true;
-            this.radioButton11.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged);
+            this.rbWindowsProgram.AutoSize = true;
+            this.rbWindowsProgram.Location = new System.Drawing.Point(312, 92);
+            this.rbWindowsProgram.Name = "rbWindowsProgram";
+            this.rbWindowsProgram.Size = new System.Drawing.Size(14, 13);
+            this.rbWindowsProgram.TabIndex = 29;
+            this.rbWindowsProgram.TabStop = true;
+            this.rbWindowsProgram.UseVisualStyleBackColor = true;
+            this.rbWindowsProgram.CheckedChanged += new System.EventHandler(this.radioButton11_CheckedChanged);
             // 
-            // radioButton10
+            // rbInternet
             // 
-            this.radioButton10.AutoSize = true;
-            this.radioButton10.Location = new System.Drawing.Point(312, 62);
-            this.radioButton10.Name = "radioButton10";
-            this.radioButton10.Size = new System.Drawing.Size(14, 13);
-            this.radioButton10.TabIndex = 28;
-            this.radioButton10.TabStop = true;
-            this.radioButton10.UseVisualStyleBackColor = true;
-            this.radioButton10.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
+            this.rbInternet.AutoSize = true;
+            this.rbInternet.Location = new System.Drawing.Point(312, 62);
+            this.rbInternet.Name = "rbInternet";
+            this.rbInternet.Size = new System.Drawing.Size(14, 13);
+            this.rbInternet.TabIndex = 28;
+            this.rbInternet.TabStop = true;
+            this.rbInternet.UseVisualStyleBackColor = true;
+            this.rbInternet.CheckedChanged += new System.EventHandler(this.radioButton10_CheckedChanged);
             // 
-            // radioButton9
+            // rbSystemActions
             // 
-            this.radioButton9.AutoSize = true;
-            this.radioButton9.Location = new System.Drawing.Point(312, 32);
-            this.radioButton9.Name = "radioButton9";
-            this.radioButton9.Size = new System.Drawing.Size(14, 13);
-            this.radioButton9.TabIndex = 18;
-            this.radioButton9.TabStop = true;
-            this.radioButton9.UseVisualStyleBackColor = true;
-            this.radioButton9.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
+            this.rbSystemActions.AutoSize = true;
+            this.rbSystemActions.Location = new System.Drawing.Point(312, 32);
+            this.rbSystemActions.Name = "rbSystemActions";
+            this.rbSystemActions.Size = new System.Drawing.Size(14, 13);
+            this.rbSystemActions.TabIndex = 18;
+            this.rbSystemActions.TabStop = true;
+            this.rbSystemActions.UseVisualStyleBackColor = true;
+            this.rbSystemActions.CheckedChanged += new System.EventHandler(this.radioButton9_CheckedChanged);
             // 
             // cbWindowsPrograms
             // 
@@ -636,10 +636,10 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cbInternetBrowser;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.RadioButton radioButton11;
-        private System.Windows.Forms.RadioButton radioButton10;
-        private System.Windows.Forms.RadioButton radioButton9;
-        private System.Windows.Forms.RadioButton radioButton12;
+        private System.Windows.Forms.RadioButton rbWindowsProgram;
+        private System.Windows.Forms.RadioButton rbInternet;
+        private System.Windows.Forms.RadioButton rbSystemActions;
+        private System.Windows.Forms.RadioButton rbApplication;
         private System.Windows.Forms.GroupBox gbPowershell;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label14;

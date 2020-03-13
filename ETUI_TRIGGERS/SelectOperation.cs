@@ -11,6 +11,9 @@ namespace ETUI_TRIGGERS
 {
     public partial class SelectOperation : Form
     {
+
+        public Operation operation;
+        
         #region Value Arrays
 
         string[] rangeAlphabets = new string[]
@@ -255,7 +258,7 @@ namespace ETUI_TRIGGERS
             gbPowershell.Enabled = false;
             gbRun.Enabled = true;
 
-            radioButton9.Checked = true;
+            rbSystemActions.Checked = true;
         }
 
         private void rbPowershell_CheckedChanged(object sender, EventArgs e)
@@ -316,7 +319,7 @@ namespace ETUI_TRIGGERS
         private void radioButton12_CheckedChanged(object sender, EventArgs e)
         {
             DisableAll();
-            if (radioButton12.Checked)
+            if (rbApplication.Checked)
             {
                 MessageBox.Show("Add OpenFileDialog here");
             }                
@@ -343,7 +346,146 @@ namespace ETUI_TRIGGERS
 
         private void btnCreateOperation_Click(object sender, EventArgs e)
         {
-            Operation op = new Operation();
+            ConstructOperation();            
+        }
+
+        void ConstructOperation()
+        {
+            if (rbKeyboardMouse.Checked)
+            {
+                KeyboardMouseOperationHandler();
+            }
+            else if (rbRun.Checked)
+            {
+                RunOperationHandler();
+            }
+            else if (rbPowershell.Checked)
+            {
+                PowerShellOperationHandler();
+            }
+            else
+            {
+                MessageBox.Show("Please Select an Operation Type");
+            }
+        }
+        void PowerShellOperationHandler()
+        {
+            Operation op = new Operation(Operation.POWERSHELL_COMMAND);
+            op.PowerShellCommand = rtbPowershellCommands.Text;
+            this.operation = op;
+        }
+
+
+        void RunOperationHandler()
+        {
+            if (rbSystemActions.Checked)
+            {
+                switch (cbSystemActions.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.SYSTEM_LOCKSCREEN);                                
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.SYSTEM_SLEEP);                                                        
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.SYSTEM_HIBERNATE);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.SYSTEM_LOGOFF);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.SYSTEM_SHUTDOWN);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.SYSTEM_RESTART);
+                        break;
+                }
+            }
+            else if (rbInternet.Checked)
+            {
+                switch (cbInternetBrowser.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.BROWSER_CHROME);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.BROWSER_FIREFOX);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.BROWSER_EDGE);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.BROWSER_IEXPLORER);
+                        break;
+                      
+                }
+            }
+            else if (rbWindowsProgram.Checked)
+            {
+                switch (cbWindowsPrograms.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.WIN_TASKMANAGER);
+                            break;
+                    case 1:
+                        operation = new Operation(Operation.WIN_EXPLORER);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.WIN_COMMAND_PROMPT);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.WIN_REGISTRY);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.WIN_PROGRAM_AND_FEATURES);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.WIN_DESKTOP_SETTINGS);
+                        break;
+                    case 6:
+                        operation = new Operation(Operation.WIN_POWER_OPTIONS);
+                        break;
+                    case 7:
+                        operation = new Operation(Operation.WIN_MOUSE_PROPERTIES);
+                        break;
+                    case 8:
+                        operation = new Operation(Operation.WIN_SNIPPING_TOOL);
+                        break;                       
+                    case 9:
+                        operation = new Operation(Operation.WIN_SYSTEM_CONFIG);
+                        break;
+                    case 10:
+                        operation = new Operation(Operation.WIN_DISK_MANAGEMENT);
+                        break;
+                    case 11:
+                        operation = new Operation(Operation.WIN_CALCULATOR);
+                        break;
+                    case 12:
+                        operation = new Operation(Operation.WIN_COMPUTER_MANAGEMENT);
+                        break;
+                    case 13:
+                        operation = new Operation(Operation.WIN_CLEAN_MANAGER);
+                        break;
+                    case 14:
+                        operation = new Operation(Operation.WIN_SYSTEM_PROPERTIES);
+                        break;                           
+                }
+            }
+            else if (rbApplication.Checked)
+            {
+                operation = new Operation(Operation.APPLICATION);                
+                operation.ApplicationPath = tbApplicationPath.Text;
+                MessageBox.Show("Application Path:"+tbApplicationPath.Text);
+            }
+            else
+            {
+                
+            }
+            //MessageBox.Show("Type: " + operation.Type + " Action: " + operation.Action);
+        }
+        void KeyboardMouseOperationHandler()
+        {
             
         }
     }
