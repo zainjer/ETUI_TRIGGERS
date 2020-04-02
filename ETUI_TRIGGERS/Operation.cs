@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ActionLibraryWindows;
 
 namespace ETUI_TRIGGERS
 {
@@ -151,7 +152,7 @@ namespace ETUI_TRIGGERS
         #endregion
         #endregion
 
-        //Properties 
+        #region Properties
         public int Type { get; set; }
         public int Action { get; set; }
         public int Key { get; set; }
@@ -159,23 +160,125 @@ namespace ETUI_TRIGGERS
         public string ApplicationPath { get; set; }
         public FormTrigger Trigger;
         public string PowerShellCommand { get; set; }
-
-
-        //Constructors
+        #endregion
+        
+        #region Constructors
         public Operation(int action)
         {
             this.Type = Operation.TYPE_ACTION;
             this.Action = action;
         }
-
         public Operation(int key,int keyEvent)
         {
             this.Type = Operation.TYPE_INPUTKEY;
             this.Key = key;
             this.KeyEvent = keyEvent;
-        }  
-               
-        //Methods
+        }
+        ActionLibrary al = new ActionLibrary();
+        #endregion
         
+        #region Methods
+
+
+
+
+        public void HandleFluidTrigger()
+        {
+            //find out the trigger type 
+            int type = GetOperationType();
+
+            //Handling the types
+            if (type == Operation.TYPE_INPUTKEY)
+            {
+                PerformAction(this.Key, this.KeyEvent);
+            }
+            else if(type == Operation.TYPE_ACTION)
+            {
+                PerformAction(this.Action);
+            }
+            else if(type == Operation.TYPE_POWERSHELL)
+            {
+                PerformAction(this.PowerShellCommand);
+            }
+            else  // if The returning value is 0
+            {
+
+            }
+        }
+
+        private void PerformAction(string powerShellCommand)
+        {
+
+        }
+
+        private void PerformAction(int action)
+        {
+
+        }
+
+        private void PerformAction(int key, int keyEvent)
+        {
+            var keyEvt = GetKeyEventType();
+            if (key == Operation.KEY_A)
+            {
+                al.Keyboard_Key_A(KeyEvent);
+            }
+        }
+
+        public void HandleTimeDelayTrigger(float timeDelay)
+        {
+
+        }
+        public void HandleRecurring(float timeDelay)
+        {
+
+        }
+        public void HandleTimeBlink(float timeDelay)
+        {
+
+        }
+
+        public void StopOperation()
+        {
+            //REMOVE THIS LINE
+            al.Keyboard_Key_A(ActionLibrary.KeyUp);
+
+        }
+
+        int GetOperationType()
+        {
+            switch (this.Type)
+            {
+                case 101:  //InputKeys
+                    return Operation.TYPE_INPUTKEY;
+                    break;
+
+                case 102: //Action
+                    return Operation.TYPE_ACTION;
+                    break;
+
+                case 103: //PowerShell
+                    return Operation.TYPE_POWERSHELL;
+                    break;
+            }
+            return 0;
+        }
+        int GetKeyEventType()
+        {
+            if(this.KeyEvent == Operation.EVENT_KEYDOWN)
+            {
+                return ActionLibrary.KeyDown;
+            }
+            if (this.KeyEvent == Operation.EVENT_KEYPRESS)
+            {
+                return ActionLibrary.KeyPress;
+            }
+            else
+            {
+                return ActionLibrary.KeyUp;
+            }
+        }
+
+        #endregion
     }
 }

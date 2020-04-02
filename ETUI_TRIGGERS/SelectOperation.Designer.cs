@@ -29,24 +29,24 @@
         private void InitializeComponent()
         {
             this.gbKeyboardMouse = new System.Windows.Forms.GroupBox();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
+            this.rbMouseButton = new System.Windows.Forms.RadioButton();
             this.cbMouseButton = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
+            this.rbArithematic = new System.Windows.Forms.RadioButton();
             this.cbEventType = new System.Windows.Forms.ComboBox();
-            this.radioButton6 = new System.Windows.Forms.RadioButton();
+            this.rbControlKeys = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
-            this.radioButton7 = new System.Windows.Forms.RadioButton();
-            this.radioButton8 = new System.Windows.Forms.RadioButton();
+            this.rbFunctionKeys = new System.Windows.Forms.RadioButton();
+            this.rbNumbers = new System.Windows.Forms.RadioButton();
             this.cbNumbers = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cbArithematic = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
+            this.rbNavigation = new System.Windows.Forms.RadioButton();
             this.cbNavigation = new System.Windows.Forms.ComboBox();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
+            this.rbFormatting = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.rbAlphabets = new System.Windows.Forms.RadioButton();
             this.cbControlKeys = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -83,24 +83,24 @@
             // 
             // gbKeyboardMouse
             // 
-            this.gbKeyboardMouse.Controls.Add(this.radioButton4);
+            this.gbKeyboardMouse.Controls.Add(this.rbMouseButton);
             this.gbKeyboardMouse.Controls.Add(this.cbMouseButton);
             this.gbKeyboardMouse.Controls.Add(this.label8);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton5);
+            this.gbKeyboardMouse.Controls.Add(this.rbArithematic);
             this.gbKeyboardMouse.Controls.Add(this.cbEventType);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton6);
+            this.gbKeyboardMouse.Controls.Add(this.rbControlKeys);
             this.gbKeyboardMouse.Controls.Add(this.label9);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton7);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton8);
+            this.gbKeyboardMouse.Controls.Add(this.rbFunctionKeys);
+            this.gbKeyboardMouse.Controls.Add(this.rbNumbers);
             this.gbKeyboardMouse.Controls.Add(this.cbNumbers);
             this.gbKeyboardMouse.Controls.Add(this.label7);
             this.gbKeyboardMouse.Controls.Add(this.cbArithematic);
             this.gbKeyboardMouse.Controls.Add(this.label6);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton3);
+            this.gbKeyboardMouse.Controls.Add(this.rbNavigation);
             this.gbKeyboardMouse.Controls.Add(this.cbNavigation);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton2);
+            this.gbKeyboardMouse.Controls.Add(this.rbFormatting);
             this.gbKeyboardMouse.Controls.Add(this.label5);
-            this.gbKeyboardMouse.Controls.Add(this.radioButton1);
+            this.gbKeyboardMouse.Controls.Add(this.rbAlphabets);
             this.gbKeyboardMouse.Controls.Add(this.cbControlKeys);
             this.gbKeyboardMouse.Controls.Add(this.label4);
             this.gbKeyboardMouse.Controls.Add(this.label3);
@@ -115,16 +115,16 @@
             this.gbKeyboardMouse.TabIndex = 0;
             this.gbKeyboardMouse.TabStop = false;
             // 
-            // radioButton4
+            // rbMouseButton
             // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(215, 218);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(14, 13);
-            this.radioButton4.TabIndex = 17;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.UseVisualStyleBackColor = true;
-            this.radioButton4.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
+            this.rbMouseButton.AutoSize = true;
+            this.rbMouseButton.Location = new System.Drawing.Point(215, 218);
+            this.rbMouseButton.Name = "rbMouseButton";
+            this.rbMouseButton.Size = new System.Drawing.Size(14, 13);
+            this.rbMouseButton.TabIndex = 17;
+            this.rbMouseButton.TabStop = true;
+            this.rbMouseButton.UseVisualStyleBackColor = true;
+            this.rbMouseButton.CheckedChanged += new System.EventHandler(this.radioButton4_CheckedChanged);
             // 
             // cbMouseButton
             // 
@@ -143,16 +143,16 @@
             this.label8.TabIndex = 15;
             this.label8.Text = "Mouse Button:";
             // 
-            // radioButton5
+            // rbArithematic
             // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(215, 190);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(14, 13);
-            this.radioButton5.TabIndex = 5;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.UseVisualStyleBackColor = true;
-            this.radioButton5.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
+            this.rbArithematic.AutoSize = true;
+            this.rbArithematic.Location = new System.Drawing.Point(215, 190);
+            this.rbArithematic.Name = "rbArithematic";
+            this.rbArithematic.Size = new System.Drawing.Size(14, 13);
+            this.rbArithematic.TabIndex = 5;
+            this.rbArithematic.TabStop = true;
+            this.rbArithematic.UseVisualStyleBackColor = true;
+            this.rbArithematic.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
             // cbEventType
             // 
@@ -163,16 +163,16 @@
             this.cbEventType.TabIndex = 18;
             this.cbEventType.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
             // 
-            // radioButton6
+            // rbControlKeys
             // 
-            this.radioButton6.AutoSize = true;
-            this.radioButton6.Location = new System.Drawing.Point(215, 163);
-            this.radioButton6.Name = "radioButton6";
-            this.radioButton6.Size = new System.Drawing.Size(14, 13);
-            this.radioButton6.TabIndex = 6;
-            this.radioButton6.TabStop = true;
-            this.radioButton6.UseVisualStyleBackColor = true;
-            this.radioButton6.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
+            this.rbControlKeys.AutoSize = true;
+            this.rbControlKeys.Location = new System.Drawing.Point(215, 163);
+            this.rbControlKeys.Name = "rbControlKeys";
+            this.rbControlKeys.Size = new System.Drawing.Size(14, 13);
+            this.rbControlKeys.TabIndex = 6;
+            this.rbControlKeys.TabStop = true;
+            this.rbControlKeys.UseVisualStyleBackColor = true;
+            this.rbControlKeys.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
             // 
             // label9
             // 
@@ -183,27 +183,27 @@
             this.label9.TabIndex = 1;
             this.label9.Text = "Select Event Type:";
             // 
-            // radioButton7
+            // rbFunctionKeys
             // 
-            this.radioButton7.AutoSize = true;
-            this.radioButton7.Location = new System.Drawing.Point(215, 136);
-            this.radioButton7.Name = "radioButton7";
-            this.radioButton7.Size = new System.Drawing.Size(14, 13);
-            this.radioButton7.TabIndex = 7;
-            this.radioButton7.TabStop = true;
-            this.radioButton7.UseVisualStyleBackColor = true;
-            this.radioButton7.CheckedChanged += new System.EventHandler(this.radioButton7_CheckedChanged);
+            this.rbFunctionKeys.AutoSize = true;
+            this.rbFunctionKeys.Location = new System.Drawing.Point(215, 136);
+            this.rbFunctionKeys.Name = "rbFunctionKeys";
+            this.rbFunctionKeys.Size = new System.Drawing.Size(14, 13);
+            this.rbFunctionKeys.TabIndex = 7;
+            this.rbFunctionKeys.TabStop = true;
+            this.rbFunctionKeys.UseVisualStyleBackColor = true;
+            this.rbFunctionKeys.CheckedChanged += new System.EventHandler(this.radioButton7_CheckedChanged);
             // 
-            // radioButton8
+            // rbNumbers
             // 
-            this.radioButton8.AutoSize = true;
-            this.radioButton8.Location = new System.Drawing.Point(215, 109);
-            this.radioButton8.Name = "radioButton8";
-            this.radioButton8.Size = new System.Drawing.Size(14, 13);
-            this.radioButton8.TabIndex = 8;
-            this.radioButton8.TabStop = true;
-            this.radioButton8.UseVisualStyleBackColor = true;
-            this.radioButton8.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
+            this.rbNumbers.AutoSize = true;
+            this.rbNumbers.Location = new System.Drawing.Point(215, 109);
+            this.rbNumbers.Name = "rbNumbers";
+            this.rbNumbers.Size = new System.Drawing.Size(14, 13);
+            this.rbNumbers.TabIndex = 8;
+            this.rbNumbers.TabStop = true;
+            this.rbNumbers.UseVisualStyleBackColor = true;
+            this.rbNumbers.CheckedChanged += new System.EventHandler(this.radioButton8_CheckedChanged);
             // 
             // cbNumbers
             // 
@@ -239,16 +239,16 @@
             this.label6.TabIndex = 11;
             this.label6.Text = "Navigation:";
             // 
-            // radioButton3
+            // rbNavigation
             // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(215, 82);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(14, 13);
-            this.radioButton3.TabIndex = 3;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.UseVisualStyleBackColor = true;
-            this.radioButton3.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            this.rbNavigation.AutoSize = true;
+            this.rbNavigation.Location = new System.Drawing.Point(215, 82);
+            this.rbNavigation.Name = "rbNavigation";
+            this.rbNavigation.Size = new System.Drawing.Size(14, 13);
+            this.rbNavigation.TabIndex = 3;
+            this.rbNavigation.TabStop = true;
+            this.rbNavigation.UseVisualStyleBackColor = true;
+            this.rbNavigation.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
             // 
             // cbNavigation
             // 
@@ -258,16 +258,16 @@
             this.cbNavigation.Size = new System.Drawing.Size(121, 21);
             this.cbNavigation.TabIndex = 10;
             // 
-            // radioButton2
+            // rbFormatting
             // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(215, 55);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(14, 13);
-            this.radioButton2.TabIndex = 2;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.UseVisualStyleBackColor = true;
-            this.radioButton2.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
+            this.rbFormatting.AutoSize = true;
+            this.rbFormatting.Location = new System.Drawing.Point(215, 55);
+            this.rbFormatting.Name = "rbFormatting";
+            this.rbFormatting.Size = new System.Drawing.Size(14, 13);
+            this.rbFormatting.TabIndex = 2;
+            this.rbFormatting.TabStop = true;
+            this.rbFormatting.UseVisualStyleBackColor = true;
+            this.rbFormatting.CheckedChanged += new System.EventHandler(this.radioButton2_CheckedChanged);
             // 
             // label5
             // 
@@ -278,16 +278,16 @@
             this.label5.TabIndex = 9;
             this.label5.Text = "Control Keys:";
             // 
-            // radioButton1
+            // rbAlphabets
             // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(215, 28);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(14, 13);
-            this.radioButton1.TabIndex = 1;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.UseVisualStyleBackColor = true;
-            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
+            this.rbAlphabets.AutoSize = true;
+            this.rbAlphabets.Location = new System.Drawing.Point(215, 28);
+            this.rbAlphabets.Name = "rbAlphabets";
+            this.rbAlphabets.Size = new System.Drawing.Size(14, 13);
+            this.rbAlphabets.TabIndex = 1;
+            this.rbAlphabets.TabStop = true;
+            this.rbAlphabets.UseVisualStyleBackColor = true;
+            this.rbAlphabets.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged);
             // 
             // cbControlKeys
             // 
@@ -614,16 +614,16 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbNavigation;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.RadioButton radioButton4;
+        private System.Windows.Forms.RadioButton rbMouseButton;
         private System.Windows.Forms.ComboBox cbMouseButton;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton6;
-        private System.Windows.Forms.RadioButton radioButton7;
-        private System.Windows.Forms.RadioButton radioButton8;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rbArithematic;
+        private System.Windows.Forms.RadioButton rbControlKeys;
+        private System.Windows.Forms.RadioButton rbFunctionKeys;
+        private System.Windows.Forms.RadioButton rbNumbers;
+        private System.Windows.Forms.RadioButton rbNavigation;
+        private System.Windows.Forms.RadioButton rbFormatting;
+        private System.Windows.Forms.RadioButton rbAlphabets;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cbEventType;
         private System.Windows.Forms.Button btnCreateOperation;

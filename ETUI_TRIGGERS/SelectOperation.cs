@@ -127,8 +127,8 @@ namespace ETUI_TRIGGERS
 
         string[] rangeEventType = new string[]
         {
-            "Key Down",            
-            "Key Press"
+            "Key Press",            
+            "Key Down"
 
         };
 
@@ -172,6 +172,8 @@ namespace ETUI_TRIGGERS
 
         #endregion
 
+
+        //Form Constructor
         public SelectOperation()
         {
             InitializeComponent();
@@ -218,6 +220,8 @@ namespace ETUI_TRIGGERS
 
         }
 
+        #region Methods for UI
+
         void DisableAll()
         {
             cbAlphabets.Enabled = false;
@@ -249,7 +253,7 @@ namespace ETUI_TRIGGERS
             gbKeyboardMouse.Enabled = true;
             gbPowershell.Enabled = false;
             gbRun.Enabled = false;
-            radioButton1.Checked = true;
+            rbAlphabets.Checked = true;
         }
 
         private void rbRun_CheckedChanged(object sender, EventArgs e)
@@ -349,6 +353,10 @@ namespace ETUI_TRIGGERS
             ConstructOperation();            
         }
 
+        #endregion
+
+
+        #region Operation Generator
         void ConstructOperation()
         {
             if (rbKeyboardMouse.Checked)
@@ -367,6 +375,9 @@ namespace ETUI_TRIGGERS
             {
                 MessageBox.Show("Please Select an Operation Type");
             }
+
+            MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
+
         }
         void PowerShellOperationHandler()
         {
@@ -374,8 +385,6 @@ namespace ETUI_TRIGGERS
             op.PowerShellCommand = rtbPowershellCommands.Text;
             this.operation = op;
         }
-
-
         void RunOperationHandler()
         {
             if (rbSystemActions.Checked)
@@ -480,13 +489,302 @@ namespace ETUI_TRIGGERS
             }
             else
             {
-                
+                MessageBox.Show("Invalid Selection");
             }
             //MessageBox.Show("Type: " + operation.Type + " Action: " + operation.Action);
         }
         void KeyboardMouseOperationHandler()
         {
-            
-        }
+
+            //Getting KeyEvent
+            int keyEvt = GetKeyEvent();
+
+            if (rbAlphabets.Checked)
+            {
+                switch (cbAlphabets.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_A, keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_B, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_C, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_D, keyEvt);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.KEY_E, keyEvt);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.KEY_F, keyEvt);
+                        break;
+                    case 6:
+                        operation = new Operation(Operation.KEY_G, keyEvt);
+                        break;
+                    case 7:
+                        operation = new Operation(Operation.KEY_H, keyEvt);
+                        break;
+                    case 8:
+                        operation = new Operation(Operation.KEY_I, keyEvt);
+                        break;
+                    case 9:
+                        operation = new Operation(Operation.KEY_J, keyEvt);
+                        break;
+                    case 10:
+                        operation = new Operation(Operation.KEY_K, keyEvt);
+                        break;
+                    case 11:
+                        operation = new Operation(Operation.KEY_L, keyEvt);
+                        break;
+                    case 12:
+                        operation = new Operation(Operation.KEY_M, keyEvt);
+                        break;
+                    case 13:
+                        operation = new Operation(Operation.KEY_N, keyEvt);
+                        break;
+                    case 14:
+                        operation = new Operation(Operation.KEY_O, keyEvt);
+                        break;
+                    case 15:
+                        operation = new Operation(Operation.KEY_P, keyEvt);
+                        break;
+                    case 16:
+                        operation = new Operation(Operation.KEY_Q, keyEvt);
+                        break;
+                    case 17:
+                        operation = new Operation(Operation.KEY_R, keyEvt);
+                        break;
+                    case 18:
+                        operation = new Operation(Operation.KEY_S, keyEvt);
+                        break;
+                    case 19:
+                        operation = new Operation(Operation.KEY_T, keyEvt);
+                        break;
+                    case 20:
+                        operation = new Operation(Operation.KEY_U, keyEvt);
+                        break;
+                    case 21:
+                        operation = new Operation(Operation.KEY_V, keyEvt);
+                        break;
+                    case 22:
+                        operation = new Operation(Operation.KEY_W, keyEvt);
+                        break;
+                    case 23:
+                        operation = new Operation(Operation.KEY_X, keyEvt);
+                        break;
+                    case 24:
+                        operation = new Operation(Operation.KEY_Y, keyEvt);
+                        break;
+                    case 25:
+                        operation = new Operation(Operation.KEY_Z, keyEvt);
+                        break;
+
+                }
+            }
+            else if (rbFormatting.Checked)
+            {
+                switch (cbFormatting.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_ENTER,keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_TAB,keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_SPACE, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_BACKSPACE, keyEvt);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.KEY_INSERT, keyEvt);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.KEY_DELETE, keyEvt);
+                        break;
+                }
+            }
+            else if (rbNavigation.Checked)
+            {
+                switch (cbNavigation.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_UP, keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_DOWN, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_LEFT, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_RIGHT, keyEvt);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.KEY_HOME, keyEvt);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.KEY_END, keyEvt);
+                        break;
+                    case 6:
+                        operation = new Operation(Operation.KEY_PAGEUP, keyEvt);
+                        break;
+                    case 7:
+                        operation = new Operation(Operation.KEY_PAGEDOWN, keyEvt);
+                        break;
+                }
+            }
+            else if (rbNumbers.Checked)
+            {
+                switch (cbNumbers.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_0, keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_1, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_2, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_3, keyEvt);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.KEY_4, keyEvt);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.KEY_5, keyEvt);
+                        break;
+                    case 6:
+                        operation = new Operation(Operation.KEY_6, keyEvt);
+                        break;
+                    case 7:
+                        operation = new Operation(Operation.KEY_7, keyEvt);
+                        break;
+                    case 8:
+                        operation = new Operation(Operation.KEY_8, keyEvt);
+                        break;
+                    case 9:
+                        operation = new Operation(Operation.KEY_9, keyEvt);
+                        break;
+                }
+            }
+            else if (rbFunctionKeys.Checked)
+            {
+                switch (cbFuntionKeys.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_F1, keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_F2, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_F3, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_F4, keyEvt);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.KEY_F5, keyEvt);
+                        break;
+                    case 5:
+                        operation = new Operation(Operation.KEY_F6, keyEvt);
+                        break;
+                    case 6:
+                        operation = new Operation(Operation.KEY_F7, keyEvt);
+                        break;
+                    case 7:
+                        operation = new Operation(Operation.KEY_F8, keyEvt);
+                        break;
+                    case 8:
+                        operation = new Operation(Operation.KEY_F9, keyEvt);
+                        break;
+                    case 9:
+                        operation = new Operation(Operation.KEY_F10, keyEvt);
+                        break;
+                    case 10:
+                        operation = new Operation(Operation.KEY_F11, keyEvt);
+                        break;
+                    case 11:
+                        operation = new Operation(Operation.KEY_F12, keyEvt);
+                        break;
+                }
+            }
+            else if (rbControlKeys.Checked)
+            {
+                switch (cbControlKeys.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_SHIFT, keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_CTRL, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_ALT, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_DEL, keyEvt);
+                        break;
+                    case 4:
+                        operation = new Operation(Operation.KEY_ESC, keyEvt);
+                        break;
+                }
+            }
+            else if (rbArithematic.Checked)
+            {
+                switch (cbArithematic.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_MINUS, keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_PLUS, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_DIVIDE, keyEvt);
+                        break;
+                    case 3:
+                        operation = new Operation(Operation.KEY_MULTIPLY, keyEvt);
+                        break;                    
+                }
+            }
+            else if (rbMouseButton.Checked)
+            {
+                switch (cbMouseButton.SelectedIndex)
+                {
+                    case 0:
+                        operation = new Operation(Operation.KEY_MOUSE_LEFT,keyEvt);
+                        break;
+                    case 1:
+                        operation = new Operation(Operation.KEY_MOUSE_MIDDLE, keyEvt);
+                        break;
+                    case 2:
+                        operation = new Operation(Operation.KEY_MOUSE_RIGHT, keyEvt);
+                        break;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Invalid Selection");
+            }
     }
+
+        private int GetKeyEvent()
+        {
+            if (cbEventType.SelectedIndex == 0)
+                return Operation.EVENT_KEYPRESS;
+            else
+                return Operation.EVENT_KEYDOWN;
+        }
+        #endregion
+    }
+
 }
+
