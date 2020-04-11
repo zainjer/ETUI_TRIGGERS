@@ -7,6 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 
+/// <summary>
+/// This class is responsible for creating an operation object. With Relevant propoerties that contain what the user wants with this operation.  
+/// It create an operation object that knows what type of operation it is (Action , Powershell command or Keyboard/Mouse Event) The operation also knows its KeyEvent. Such as KeyPress and KeyUp
+/// </summary>
+
+
 namespace ETUI_TRIGGERS
 {
     public partial class SelectOperation : Form
@@ -236,7 +242,7 @@ namespace ETUI_TRIGGERS
             cbInternetBrowser.Enabled = false;
             cbWindowsPrograms.Enabled = false;
             tbApplicationPath.Enabled = false;
-            rtbPowershellCommands.Enabled = false;
+           // rtbPowershellCommands.Enabled = false;
         }
 
         private void SelectOperation_Load(object sender, EventArgs e)
@@ -376,7 +382,8 @@ namespace ETUI_TRIGGERS
                 MessageBox.Show("Please Select an Operation Type");
             }
 
-            MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
+            //Debug Message Box that shows if the operation object creation is successful             
+            //MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
 
         }
         void PowerShellOperationHandler()
@@ -784,6 +791,31 @@ namespace ETUI_TRIGGERS
                 return Operation.EVENT_KEYDOWN;
         }
         #endregion
+
+
+
+        //This button is currently being used as a test feature for all the Operations to actually work. 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            //This method will create the operation Object. 
+            KeyboardMouseOperationHandler();
+
+
+
+            //This method will run the operation method found within opeartion class    
+            for (int i = 0; i < 1000; i++)
+            {
+                operation.Run();
+            Console.WriteLine(i);
+        }
+
+
+
+
+    }
+
+      
     }
 
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using ActionLibraryWindows;
 
+
 namespace ETUI_TRIGGERS
 {
     [Serializable]
@@ -181,7 +182,6 @@ namespace ETUI_TRIGGERS
 
 
 
-
         public void HandleFluidTrigger()
         {
             //find out the trigger type 
@@ -206,43 +206,84 @@ namespace ETUI_TRIGGERS
             }
         }
 
+
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         private void PerformAction(string powerShellCommand)
         {
 
         }
 
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         private void PerformAction(int action)
         {
 
         }
 
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
+        // I think this method will compare what actually 'key' is and then perform the specific action.  
         private void PerformAction(int key, int keyEvent)
         {
-            var keyEvt = GetKeyEventType();
+            var AL_Option = GetKeyEventType();
             if (key == Operation.KEY_A)
             {
-                al.Keyboard_Key_A(KeyEvent);
+                al.Keyboard_Key_A(AL_Option);
             }
         }
+        
 
+
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeDelayTrigger(float timeDelay)
         {
 
         }
+
+
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleRecurring(float timeDelay)
         {
 
         }
+
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeBlink(float timeDelay)
         {
 
         }
 
+
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void StopOperation()
         {
             //REMOVE THIS LINE
             al.Keyboard_Key_A(ActionLibrary.KeyUp);
 
+        }
+
+
+        //Method that'll run on our test button in OperationForms
+        public void Run()
+        {
+            //find out the trigger type 
+            int type = GetOperationType();
+
+            //Handling the types
+            if (type == Operation.TYPE_INPUTKEY)
+            {
+                PerformAction(this.Key, this.KeyEvent);
+            }
+            else if (type == Operation.TYPE_ACTION)
+            {
+                PerformAction(this.Action);
+            }
+            else if (type == Operation.TYPE_POWERSHELL)
+            {
+                PerformAction(this.PowerShellCommand);
+            }
+            else  // if The returning value is 0
+            {
+                System.Windows.Forms.MessageBox.Show("Operation has no TYPE!");
+            }
         }
 
         int GetOperationType()
@@ -263,6 +304,7 @@ namespace ETUI_TRIGGERS
             }
             return 0;
         }
+
         int GetKeyEventType()
         {
             if(this.KeyEvent == Operation.EVENT_KEYDOWN)
@@ -278,7 +320,6 @@ namespace ETUI_TRIGGERS
                 return ActionLibrary.KeyUp;
             }
         }
-
         #endregion
     }
 }

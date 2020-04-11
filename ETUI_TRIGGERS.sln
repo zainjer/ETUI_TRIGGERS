@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29609.76
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1062
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETUI_TRIGGERS", "ETUI_TRIGGERS\ETUI_TRIGGERS.csproj", "{D7A4164B-1129-41C1-8163-CBEA02D0C022}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionLibrary", "..\..\..\..\..\..\~D\Studies\FYP Code\FYP_ActionLibrary\ActionLibrary\ActionLibrary.csproj", "{E9A198A2-087D-4491-AEF5-E5B8D83000FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D7A4164B-1129-41C1-8163-CBEA02D0C022}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7A4164B-1129-41C1-8163-CBEA02D0C022}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7A4164B-1129-41C1-8163-CBEA02D0C022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9A198A2-087D-4491-AEF5-E5B8D83000FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9A198A2-087D-4491-AEF5-E5B8D83000FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9A198A2-087D-4491-AEF5-E5B8D83000FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9A198A2-087D-4491-AEF5-E5B8D83000FA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
