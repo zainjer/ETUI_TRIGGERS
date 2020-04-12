@@ -259,7 +259,7 @@ namespace ETUI_TRIGGERS
             gbKeyboardMouse.Enabled = true;
             gbPowershell.Enabled = false;
             gbRun.Enabled = false;
-            rbAlphabets.Checked = true;
+          //  rbAlphabets.Checked = true;
         }
 
         private void rbRun_CheckedChanged(object sender, EventArgs e)

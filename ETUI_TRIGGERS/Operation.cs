@@ -38,16 +38,16 @@ namespace ETUI_TRIGGERS
         public static int KEY_N = 1014;
         public static int KEY_O = 1015;
         public static int KEY_P = 1016;
-        public static int KEY_Q = 1016;
-        public static int KEY_R = 1016;
-        public static int KEY_S = 1017;
-        public static int KEY_T = 1018;
-        public static int KEY_U = 1019;
-        public static int KEY_V = 1020;
-        public static int KEY_W = 1021;
-        public static int KEY_X = 1022;
-        public static int KEY_Y = 1023;
-        public static int KEY_Z = 1024;
+        public static int KEY_Q = 1017;
+        public static int KEY_R = 1018;
+        public static int KEY_S = 1019;
+        public static int KEY_T = 1020;
+        public static int KEY_U = 1021;
+        public static int KEY_V = 1022;
+        public static int KEY_W = 1023;
+        public static int KEY_X = 1024;
+        public static int KEY_Y = 1025;
+        public static int KEY_Z = 1026;
 
         //Formatting
         public static int KEY_ENTER = 2001;
@@ -224,12 +224,363 @@ namespace ETUI_TRIGGERS
         private void PerformAction(int key, int keyEvent)
         {
             var AL_Option = GetKeyEventType();
+
+            #region ALPHABETIC
             if (key == Operation.KEY_A)
             {
                 al.Keyboard_Key_A(AL_Option);
             }
+            else if(key == Operation.KEY_B)
+            {
+                al.Keyboard_Key_B(AL_Option);
+            }
+            else if (key == Operation.KEY_C)
+            {
+                al.Keyboard_Key_C(AL_Option);
+            }
+            else if (key == Operation.KEY_D)
+            {
+                al.Keyboard_Key_D(AL_Option);
+            }
+            else if (key == Operation.KEY_E)
+            {
+                al.Keyboard_Key_E(AL_Option);
+            }
+            else if (key == Operation.KEY_F)
+            {
+                al.Keyboard_Key_F(AL_Option);
+            }
+            else if (key == Operation.KEY_G)
+            {
+                al.Keyboard_Key_G(AL_Option);
+            }
+            else if (key == Operation.KEY_H)
+            {
+                al.Keyboard_Key_H(AL_Option);
+            }
+            else if (key == Operation.KEY_I)
+            {
+                al.Keyboard_Key_I(AL_Option);
+            }
+            else if (key == Operation.KEY_J)
+            {
+                al.Keyboard_Key_J(AL_Option);
+            }
+            else if (key == Operation.KEY_K)
+            {
+                al.Keyboard_Key_K(AL_Option);
+            }
+            else if (key == Operation.KEY_L)
+            {
+                al.Keyboard_Key_L(AL_Option);
+            }
+            else if (key == Operation.KEY_M)
+            {
+                al.Keyboard_Key_M(AL_Option);
+            }
+            else if (key == Operation.KEY_N)
+            {
+                al.Keyboard_Key_N(AL_Option);
+            }
+            else if (key == Operation.KEY_O)
+            {
+                al.Keyboard_Key_O(AL_Option);
+            }
+            else if (key == Operation.KEY_P)
+            {
+                al.Keyboard_Key_P(AL_Option);
+            }
+            else if (key == Operation.KEY_Q)
+            {
+                al.Keyboard_Key_Q(AL_Option);
+            }
+            else if (key == Operation.KEY_R)
+            {
+                al.Keyboard_Key_R(AL_Option);
+            }
+            else if (key == Operation.KEY_S)
+            {
+                al.Keyboard_Key_S(AL_Option);
+            }
+            else if (key == Operation.KEY_T)
+            {
+                al.Keyboard_Key_T(AL_Option);
+            }
+            else if (key == Operation.KEY_U)
+            {
+                al.Keyboard_Key_U(AL_Option);
+            }
+            else if (key == Operation.KEY_V)
+            {
+                al.Keyboard_Key_V(AL_Option);
+            }
+            else if (key == Operation.KEY_W)
+            {
+                al.Keyboard_Key_W(AL_Option);
+            }
+            else if (key == Operation.KEY_X)
+            {
+                al.Keyboard_Key_X(AL_Option);
+            }
+            else if (key == Operation.KEY_Y)
+            {
+                al.Keyboard_Key_Y(AL_Option);
+            }
+            else if (key == Operation.KEY_Z)
+            {
+                al.Keyboard_Key_Z(AL_Option);
+            }
+
+            #endregion
+
+            #region Formatting Keys
+
+
+            else if (key == Operation.KEY_ENTER)
+            {
+                al.Keyboard_Key_ENTER(AL_Option);
+            }
+            else if (key == Operation.KEY_TAB)
+            {
+                al.Keyboard_Key_TAB(AL_Option);
+            }
+            else if (key == Operation.KEY_SPACE)
+            {
+                al.Keyboard_Key_SPACE(AL_Option);
+            }
+            else if (key == Operation.KEY_BACKSPACE)
+            {
+                al.Keyboard_Key_BACKSPACE(AL_Option);
+            }
+            else if (key == Operation.KEY_INSERT)
+            {
+                al.Keyboard_Key_INSERT(AL_Option);
+            }
+            else if (key == Operation.KEY_DELETE)
+            {
+                al.Keyboard_Key_DELETE(AL_Option);
+            }
+
+            #endregion
+
+            #region Control Keys
+
+
+            else if (key == Operation.KEY_SHIFT)
+            {
+                al.Keyboard_Key_SHIFT(AL_Option);
+            }
+
+            else if (key == Operation.KEY_CTRL)
+            {
+                al.Keyboard_Key_CONTROL(AL_Option);
+            }
+
+            else if (key == Operation.KEY_ALT)
+            {
+                al.Keyboard_Key_ALT(AL_Option);
+            }
+
+            else if (key == Operation.KEY_DEL)
+            {
+                al.Keyboard_Key_DELETE(AL_Option);
+            }
+
+            else if (key == Operation.KEY_ESC)
+            {
+                al.Keyboard_Key_ESC(AL_Option);
+            }
+
+            #endregion
+
+            #region Function Keys
+
+
+            else if (key == Operation.KEY_F1)
+            {
+                al.Keyboard_Key_F1(AL_Option);
+            }
+
+            else if (key == Operation.KEY_F2)
+            {
+                al.Keyboard_Key_F2(AL_Option);
+            }
+            else if (key == Operation.KEY_F3)
+            {
+                al.Keyboard_Key_F3(AL_Option);
+            }
+            else if (key == Operation.KEY_F4)
+            {
+                al.Keyboard_Key_F4(AL_Option);
+            }
+            else if (key == Operation.KEY_F5)
+            {
+                al.Keyboard_Key_F5(AL_Option);
+            }
+            else if (key == Operation.KEY_F6)
+            {
+                al.Keyboard_Key_F6(AL_Option);
+            }
+            else if (key == Operation.KEY_F7)
+            {
+                al.Keyboard_Key_F7(AL_Option);
+            }
+            else if (key == Operation.KEY_F8)
+            {
+                al.Keyboard_Key_F8(AL_Option);
+            }
+            else if (key == Operation.KEY_F9)
+            {
+                al.Keyboard_Key_F9(AL_Option);
+            }
+            else if (key == Operation.KEY_F10)
+            {
+                al.Keyboard_Key_F10(AL_Option);
+            }
+            else if (key == Operation.KEY_F11)
+            {
+                al.Keyboard_Key_F11(AL_Option);
+            }
+            else if (key == Operation.KEY_F12)
+            {
+                al.Keyboard_Key_F12(AL_Option);
+            }
+            #endregion
+
+            #region Navigation Keys
+
+            else if (key == Operation.KEY_UP)
+            {
+                al.Keyboard_Key_UP(AL_Option);
+            }
+            else if (key == Operation.KEY_DOWN)
+            {
+                al.Keyboard_Key_DOWN(AL_Option);
+            }
+            else if (key == Operation.KEY_LEFT)
+            {
+                al.Keyboard_Key_LEFT(AL_Option);
+            }
+            else if (key == Operation.KEY_RIGHT)
+            {
+                al.Keyboard_Key_RIGHT(AL_Option);
+            }
+
+            else if (key == Operation.KEY_HOME)
+            {
+                al.Keyboard_Key_HOME(AL_Option);
+            }
+
+            else if (key == Operation.KEY_END)
+            {
+                al.Keyboard_Key_END(AL_Option);
+            }
+
+            else if (key == Operation.KEY_PAGEUP)
+            {
+                al.Keyboard_Key_PAGEUP(AL_Option);
+            }
+
+            else if (key == Operation.KEY_PAGEDOWN)
+            {
+                al.Keyboard_Key_PAGEDOWN(AL_Option);
+            }
+
+            #endregion
+
+            #region ARITHEMATIC KEYS
+
+
+            else if (key == Operation.KEY_PLUS)
+            {
+                al.Keyboard_Key_ADD(AL_Option);
+            }
+
+            else if (key == Operation.KEY_MINUS)
+            {
+                al.Keyboard_Key_SUBTRACT(AL_Option);
+            }
+
+            else if (key == Operation.KEY_DIVIDE)
+            {
+                al.Keyboard_Key_DIVIDE(AL_Option);
+            }
+
+            else if (key == Operation.KEY_MULTIPLY)
+            {
+                al.Keyboard_Key_MULTIPLY(AL_Option);
+            }
+
+            #endregion
+
+            #region Mouse Keys
+
+            else if (key == Operation.KEY_MOUSE_LEFT)
+            {
+                al.Mouse_Key_LEFT(AL_Option);
+            }
+
+            else if (key == Operation.KEY_MOUSE_MIDDLE)
+            {
+                al.Mouse_Key_MIDDLE(AL_Option);
+            }
+
+            else if (key == Operation.KEY_MOUSE_RIGHT)
+            {
+                al.Mouse_Key_RIGHT(AL_Option);
+            }
+
+            #endregion
+
+            #region Numberic Keys
+            else if (key == Operation.KEY_0)
+            {
+                al.Keyboard_Key_0(AL_Option);
+            }
+            else if (key == Operation.KEY_1)
+            {
+                al.Keyboard_Key_1(AL_Option);
+            }
+            else if (key == Operation.KEY_2)
+            {
+                al.Keyboard_Key_2(AL_Option);
+            }
+            else if (key == Operation.KEY_3)
+            {
+                al.Keyboard_Key_3(AL_Option);
+            }
+            else if (key == Operation.KEY_4)
+            {
+                al.Keyboard_Key_4(AL_Option);
+            }
+            else if (key == Operation.KEY_5)
+            {
+                al.Keyboard_Key_5(AL_Option);
+            }
+            else if (key == Operation.KEY_6)
+            {
+                al.Keyboard_Key_6(AL_Option);
+            }
+            else if (key == Operation.KEY_7)
+            {
+                al.Keyboard_Key_7(AL_Option);
+            }
+            else if (key == Operation.KEY_8)
+            {
+                al.Keyboard_Key_8(AL_Option);
+            }
+            else if (key == Operation.KEY_9)
+            {
+                al.Keyboard_Key_9(AL_Option);
+            }
+            #endregion
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Error! could not perform action. Location: Operation.CS -> PerformAction(int key, int keyEvent)");
+            }
+
         }
-        
+
 
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
