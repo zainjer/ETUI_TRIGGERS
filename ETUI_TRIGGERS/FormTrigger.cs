@@ -34,8 +34,8 @@ namespace ETUI_TRIGGERS
         public Thread triggerThread;
 
         //Variables to define trigger type and features
-        public int triggerType { get; set; }
-        public float timeDelayInSeconds { get; set; }
+        public int TriggerType { get; set; }
+        public float TimeDelayInSeconds { get; set; }
 
         //The editor of current trigger (Create Trigger Window)
         public TriggerEditor triggerEditor;
@@ -45,7 +45,7 @@ namespace ETUI_TRIGGERS
         public FormTrigger(int triggerType)
         {
             InitializeComponent();
-            this.triggerType = triggerType;
+            this.TriggerType = triggerType;
         }
 
         private void Trigger_Load(object sender, EventArgs e)
@@ -93,7 +93,7 @@ namespace ETUI_TRIGGERS
         void TriggerThreadMethod()
         {
 
-            Console.WriteLine(" Trigger Type: " + triggerType + " [Thread Active]");
+            Console.WriteLine(" Trigger Type: " + TriggerType + " [Thread Active]");
 
             while (true)
             {
@@ -103,7 +103,7 @@ namespace ETUI_TRIGGERS
         }
         void ThreadLogic()
         {
-            if (triggerType == TRIG_TYPE_FLUID)
+            if (TriggerType == TRIG_TYPE_FLUID)
             {
                 while (isTriggerActive)
                 {
@@ -121,7 +121,7 @@ namespace ETUI_TRIGGERS
                     }
                 }
             }
-            else if (triggerType == TRIG_TYPE_RECURRING)
+            else if (TriggerType == TRIG_TYPE_RECURRING)
             {
                 bool isDown = false;
                 while (isRecurringActive)
@@ -130,13 +130,13 @@ namespace ETUI_TRIGGERS
                     Console.WriteLine("Recurring Trigger Active");
                 }
             }
-            else if (triggerType == TRIG_TYPE_TIMEDELAY)
+            else if (TriggerType == TRIG_TYPE_TIMEDELAY)
             {
 
                 while (isTriggerActive)
                 {
-                    Console.WriteLine("Trigger Activated - Waiting for " + timeDelayInSeconds + " seconds delay");
-                    int timeInMiliSeconds = (Int32)(timeDelayInSeconds * 1000);
+                    Console.WriteLine("Trigger Activated - Waiting for " + TimeDelayInSeconds + " seconds delay");
+                    int timeInMiliSeconds = (Int32)(TimeDelayInSeconds * 1000);
                     Thread.Sleep(timeInMiliSeconds);
                     if (isTriggerActive)
                     {
@@ -166,19 +166,19 @@ namespace ETUI_TRIGGERS
         public void SetColor()
         {
 
-            if (triggerType == TRIG_TYPE_FLUID)
+            if (TriggerType == TRIG_TYPE_FLUID)
             {
                 this.BackColor = Color.Red;
             }
-            else if (triggerType == TRIG_TYPE_RECURRING)
+            else if (TriggerType == TRIG_TYPE_RECURRING)
             {
                 this.BackColor = Color.Cyan;
             }
-            else if (triggerType == TRIG_TYPE_TIMEDELAY)
+            else if (TriggerType == TRIG_TYPE_TIMEDELAY)
             {
                 this.BackColor = Color.Blue;
             }
-            else if (triggerType == TRIG_TYPE_BLINK)
+            else if (TriggerType == TRIG_TYPE_BLINK)
             {
                 this.BackColor = Color.Yellow;
             }

@@ -6,12 +6,10 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-
 /// <summary>
 /// This class is responsible for creating an operation object. With Relevant propoerties that contain what the user wants with this operation.  
 /// It create an operation object that knows what type of operation it is (Action , Powershell command or Keyboard/Mouse Event) The operation also knows its KeyEvent. Such as KeyPress and KeyUp
 /// </summary>
-
 
 namespace ETUI_TRIGGERS
 {
@@ -19,7 +17,9 @@ namespace ETUI_TRIGGERS
     {
 
         public Operation operation;
-        
+
+        FormTrigger trigger;
+
         #region Value Arrays
 
         string[] rangeAlphabets = new string[]
@@ -178,8 +178,7 @@ namespace ETUI_TRIGGERS
 
         #endregion
 
-
-        //Form Constructor
+        #region Constructor
         public SelectOperation()
         {
             InitializeComponent();
@@ -225,6 +224,7 @@ namespace ETUI_TRIGGERS
             rbKeyboardMouse.Checked = true;
 
         }
+        #endregion
 
         #region Methods for UI
 
@@ -242,7 +242,8 @@ namespace ETUI_TRIGGERS
             cbInternetBrowser.Enabled = false;
             cbWindowsPrograms.Enabled = false;
             tbApplicationPath.Enabled = false;
-           // rtbPowershellCommands.Enabled = false;
+          
+            // rtbPowershellCommands.Enabled = false;
         }
 
         private void SelectOperation_Load(object sender, EventArgs e)
@@ -259,7 +260,8 @@ namespace ETUI_TRIGGERS
             gbKeyboardMouse.Enabled = true;
             gbPowershell.Enabled = false;
             gbRun.Enabled = false;
-          //  rbAlphabets.Checked = true;
+         
+            //  rbAlphabets.Checked = true;
         }
 
         private void rbRun_CheckedChanged(object sender, EventArgs e)
@@ -268,7 +270,7 @@ namespace ETUI_TRIGGERS
             gbPowershell.Enabled = false;
             gbRun.Enabled = true;
 
-            rbSystemActions.Checked = true;
+           // rbSystemActions.Checked = true;
         }
 
         private void rbPowershell_CheckedChanged(object sender, EventArgs e)
@@ -330,8 +332,23 @@ namespace ETUI_TRIGGERS
         {
             DisableAll();
             if (rbApplication.Checked)
-            {
-                MessageBox.Show("Add OpenFileDialog here");
+            {                
+                OpenFileDialog fileDialog = new OpenFileDialog();
+                fileDialog.InitialDirectory = "c:\\";
+                fileDialog.RestoreDirectory = true;
+
+                var filePath = string.Empty;
+
+                if(fileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    filePath = fileDialog.FileName;
+                    tbApplicationPath.Text = filePath;
+                }
+                else
+                {
+                    rbSystemActions.Checked = true;
+                }
+               
             }                
         }
 
@@ -359,8 +376,41 @@ namespace ETUI_TRIGGERS
             ConstructOperation();            
         }
 
-        #endregion
 
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+            //var p = new System.Diagnostics.Process();
+
+            //p.StartInfo.FileName = "cmd.exe";
+            //p.StartInfo.Arguments = "/C " + rtbPowershellCommands.Text;
+            //p.Start();
+
+
+
+            #region old code
+            /*
+            //This method will create the operation Object. 
+            //KeyboardMouseOperationHandler();
+            ////This method will run the operation method found within opeartion class    
+            //for (int i = 0; i < 1000; i++)
+            //{
+            //    operation.Run();
+            //Console.WriteLine(i);
+            //}
+                        */
+            
+            //This method will create the operation Object.
+            RunOperationHandler();
+
+
+            //PowerShellOperationHandler();
+            operation.Run();
+            #endregion
+        }
+
+
+        #endregion
 
         #region Operation Generator
         void ConstructOperation()
@@ -370,7 +420,7 @@ namespace ETUI_TRIGGERS
                 KeyboardMouseOperationHandler();
             }
             else if (rbRun.Checked)
-            {
+            {                
                 RunOperationHandler();
             }
             else if (rbPowershell.Checked)
@@ -383,13 +433,15 @@ namespace ETUI_TRIGGERS
             }
 
             //Debug Message Box that shows if the operation object creation is successful             
-            //MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
+            MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
 
         }
         void PowerShellOperationHandler()
         {
-            Operation op = new Operation(Operation.POWERSHELL_COMMAND);
-            op.PowerShellCommand = rtbPowershellCommands.Text;
+
+            var command = rtbPowershellCommands.Text;
+
+            Operation op = new Operation(Operation.POWERSHELL_COMMAND, command);           
             this.operation = op;
         }
         void RunOperationHandler()
@@ -491,8 +543,7 @@ namespace ETUI_TRIGGERS
             else if (rbApplication.Checked)
             {
                 operation = new Operation(Operation.APPLICATION);                
-                operation.ApplicationPath = tbApplicationPath.Text;
-                MessageBox.Show("Application Path:"+tbApplicationPath.Text);
+                operation.ApplicationPath = tbApplicationPath.Text;              
             }
             else
             {
@@ -502,7 +553,6 @@ namespace ETUI_TRIGGERS
         }
         void KeyboardMouseOperationHandler()
         {
-
             //Getting KeyEvent
             int keyEvt = GetKeyEvent();
 
@@ -791,32 +841,7 @@ namespace ETUI_TRIGGERS
                 return Operation.EVENT_KEYDOWN;
         }
         #endregion
-
-
-
-        //This button is currently being used as a test feature for all the Operations to actually work. 
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-            //This method will create the operation Object. 
-            KeyboardMouseOperationHandler();
-
-
-
-            //This method will run the operation method found within opeartion class    
-            for (int i = 0; i < 1000; i++)
-            {
-                operation.Run();
-            Console.WriteLine(i);
-        }
-
-
-
-
+                       
     }
 
-      
-    }
-
-}
-
+} 

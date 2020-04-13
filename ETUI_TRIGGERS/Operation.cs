@@ -1,20 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using ActionLibraryWindows;
-
 
 namespace ETUI_TRIGGERS
 {
     [Serializable]
     public class Operation
     {
+        #region Class Variables
+
+        ActionLibrary al = new ActionLibrary();
+
+        public FormTrigger Trigger;
+              
+        #endregion
+
         #region Constant Values
-        //Operation Types
-        public static int TYPE_INPUTKEY = 101;
-        public static int TYPE_ACTION = 102;
-        public static int TYPE_POWERSHELL = 103;
 
         #region INPUT KEYS (KEYBOARD/MOUSE)
         //Event types 
@@ -151,6 +151,7 @@ namespace ETUI_TRIGGERS
         //Shell Command
         public static int POWERSHELL_COMMAND = 1500;
         #endregion
+
         #endregion
 
         #region Properties
@@ -159,30 +160,77 @@ namespace ETUI_TRIGGERS
         public int Key { get; set; }
         public int KeyEvent { get; set; }
         public string ApplicationPath { get; set; }
-        public FormTrigger Trigger;
         public string PowerShellCommand { get; set; }
         #endregion
-        
+
+        #region Core Operation Types
+        public static int TYPE_INPUTKEY = 101;
+        public static int TYPE_ACTION = 102;
+        public static int TYPE_POWERSHELL = 103;
+        #endregion            
+               
         #region Constructors
-        public Operation(int action)
+        public Operation(int action)                                //Constructor for [Application Execution] Operations
         {
             this.Type = Operation.TYPE_ACTION;
             this.Action = action;
         }
-        public Operation(int key,int keyEvent)
+        public Operation(int action,string powerShellCommand)       //Constructor for [Shell Command Execution] Operation
+        {
+            this.Type = Operation.TYPE_POWERSHELL;
+            this.Action = action;
+            this.PowerShellCommand = powerShellCommand;
+        }
+        public Operation(int key,int keyEvent)                      //Constructor for [Keyboard/Mouse Input] Operations 
         {
             this.Type = Operation.TYPE_INPUTKEY;
             this.Key = key;
             this.KeyEvent = keyEvent;
         }
-        ActionLibrary al = new ActionLibrary();
+
         #endregion
-        
+
         #region Methods
 
+        #region Core Operation Methods
+
+        int GetOperationType()  //Method that returns the current Operation Type 
+        {
+            switch (this.Type)
+            {
+                case 101:  //InputKeys
+                    return Operation.TYPE_INPUTKEY;
+                    break;
+
+                case 102: //Action
+                    return Operation.TYPE_ACTION;
+                    break;
+
+                case 103: //PowerShell
+                    return Operation.TYPE_POWERSHELL;
+                    break;
+            }
+            return 0;
+        }
+
+        int GetKeyEventType()   //Method that returns the current Key Event Type
+        {
+            if (this.KeyEvent == Operation.EVENT_KEYDOWN)
+            {
+                return ActionLibrary.KeyDown;
+            }
+            if (this.KeyEvent == Operation.EVENT_KEYPRESS)
+            {
+                return ActionLibrary.KeyPress;
+            }
+            else
+            {
+                return ActionLibrary.KeyUp;
+            }
+        }
 
 
-        public void HandleFluidTrigger()
+        public void Run()  //Method that Runs the show!
         {
             //find out the trigger type 
             int type = GetOperationType();
@@ -192,35 +240,168 @@ namespace ETUI_TRIGGERS
             {
                 PerformAction(this.Key, this.KeyEvent);
             }
-            else if(type == Operation.TYPE_ACTION)
+            else if (type == Operation.TYPE_ACTION)
             {
                 PerformAction(this.Action);
             }
-            else if(type == Operation.TYPE_POWERSHELL)
+            else if (type == Operation.TYPE_POWERSHELL)
             {
                 PerformAction(this.PowerShellCommand);
             }
             else  // if The returning value is 0
             {
+                System.Windows.Forms.MessageBox.Show("Operation has no TYPE!");
+            }
+        }
 
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
+        public void StopOperation()
+        {
+            //REMOVE THIS LINE
+            al.Keyboard_Key_A(ActionLibrary.KeyUp);
+
+        }
+        #endregion
+
+        #region Perform Action Methods
+
+        // Implemented  // 
+        private void PerformAction(string powerShellCommand)
+        {
+            System.Windows.Forms.MessageBox.Show(" about to call ActionLibrary : " + powerShellCommand);
+
+            al.start_CMD_Commands(powerShellCommand);
+        }
+
+        // Implemented  // 
+        private void PerformAction(int action)
+        {
+
+            #region System Actions
+            if (action == Operation.SYSTEM_LOCKSCREEN)
+            {
+                al.system_LockScreen();
+            }
+
+            else if (action == Operation.SYSTEM_HIBERNATE)
+            {
+                al.system_Hibernate();
+            }
+            else if( action == Operation.SYSTEM_LOGOFF)
+            {
+                al.system_Logoff();
+            }
+            else if (action == Operation.SYSTEM_SHUTDOWN)
+            {
+                al.system_Shutdown();
+            }
+            else if (action == Operation.SYSTEM_SLEEP)
+            {
+                al.system_Sleep();
+            }
+            else if (action == Operation.SYSTEM_RESTART)
+            {
+                al.system_Restart();
+            }
+            #endregion
+
+            #region Windows Actions
+
+            else if (action == Operation.WIN_EXPLORER)
+            {
+                al.start_Explorer();
+            }
+            else if (action == Operation.WIN_TASKMANAGER)
+            {
+                al.start_TaskManager();
+            }
+            else if (action == Operation.WIN_COMMAND_PROMPT)
+            {
+                al.start_CommandPrompt();
+            }
+            else if (action == Operation.WIN_REGISTRY)
+            {
+                al.start_Registry();
+            }
+            else if (action == Operation.WIN_PROGRAM_AND_FEATURES)
+            {
+                al.start_ProgramAndFeatures();
+            }
+            else if (action == Operation.WIN_DESKTOP_SETTINGS)
+            {
+                al.start_DesktopSettings();
+            }
+            else if (action == Operation.WIN_POWER_OPTIONS)
+            {
+                al.start_PowerOptions();
+            }
+            else if (action == Operation.WIN_MOUSE_PROPERTIES)
+            {
+                al.start_MouseProperties();
+            }
+            else if (action == Operation.WIN_SNIPPING_TOOL)
+            {
+                al.start_SnippingTool();
+            }
+            else if (action == Operation.WIN_SYSTEM_CONFIG)
+            {
+                al.start_SystemConfig();
+            }
+            else if (action == Operation.WIN_DISK_MANAGEMENT)
+            {
+                al.start_DiskManagement();
+            }
+            else if (action == Operation.WIN_CALCULATOR)
+            {
+                al.start_Calculator();
+            }
+            else if (action == Operation.WIN_COMPUTER_MANAGEMENT)
+            {
+                al.start_ComputerManagement();
+            }
+            else if (action == Operation.WIN_CLEAN_MANAGER)
+            {
+                al.start_CleanManager();
+            }
+            else if (action == Operation.WIN_SYSTEM_PROPERTIES)
+            {
+                al.start_SystemProperties();
+            }
+
+            #endregion
+
+            #region browser Actions
+
+            else if(action == Operation.BROWSER_CHROME)
+            {
+                al.start_chrome();
+            }
+            else if (action == Operation.BROWSER_FIREFOX)
+            {
+                al.start_firefox();
+            }
+            else if (action == Operation.BROWSER_IEXPLORER)
+            {
+                al.start_InternetExplorer();
+            }
+            else if (action == Operation.BROWSER_EDGE)
+            {
+                al.start_EdgeBrowser();
+            }
+            #endregion
+
+            else if(action == Operation.APPLICATION)
+            {
+                al.start_With_Path(this.ApplicationPath);
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Problem with performing action! Location: Operation -> PerformAction(action)");
             }
         }
 
 
-        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        private void PerformAction(string powerShellCommand)
-        {
-
-        }
-
-        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        private void PerformAction(int action)
-        {
-
-        }
-
-        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        // I think this method will compare what actually 'key' is and then perform the specific action.  
+        // Implemented  //        
         private void PerformAction(int key, int keyEvent)
         {
             var AL_Option = GetKeyEventType();
@@ -578,10 +759,16 @@ namespace ETUI_TRIGGERS
             {
                 System.Windows.Forms.MessageBox.Show("Error! could not perform action. Location: Operation.CS -> PerformAction(int key, int keyEvent)");
             }
-
         }
 
+        #endregion
 
+        #region Trigger Handlers
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
+        public void HandleFluidTrigger()
+        {
+            
+        }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeDelayTrigger(float timeDelay)
@@ -601,76 +788,8 @@ namespace ETUI_TRIGGERS
         {
 
         }
+        #endregion    
 
-
-        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        public void StopOperation()
-        {
-            //REMOVE THIS LINE
-            al.Keyboard_Key_A(ActionLibrary.KeyUp);
-
-        }
-
-
-        //Method that'll run on our test button in OperationForms
-        public void Run()
-        {
-            //find out the trigger type 
-            int type = GetOperationType();
-
-            //Handling the types
-            if (type == Operation.TYPE_INPUTKEY)
-            {
-                PerformAction(this.Key, this.KeyEvent);
-            }
-            else if (type == Operation.TYPE_ACTION)
-            {
-                PerformAction(this.Action);
-            }
-            else if (type == Operation.TYPE_POWERSHELL)
-            {
-                PerformAction(this.PowerShellCommand);
-            }
-            else  // if The returning value is 0
-            {
-                System.Windows.Forms.MessageBox.Show("Operation has no TYPE!");
-            }
-        }
-
-        int GetOperationType()
-        {
-            switch (this.Type)
-            {
-                case 101:  //InputKeys
-                    return Operation.TYPE_INPUTKEY;
-                    break;
-
-                case 102: //Action
-                    return Operation.TYPE_ACTION;
-                    break;
-
-                case 103: //PowerShell
-                    return Operation.TYPE_POWERSHELL;
-                    break;
-            }
-            return 0;
-        }
-
-        int GetKeyEventType()
-        {
-            if(this.KeyEvent == Operation.EVENT_KEYDOWN)
-            {
-                return ActionLibrary.KeyDown;
-            }
-            if (this.KeyEvent == Operation.EVENT_KEYPRESS)
-            {
-                return ActionLibrary.KeyPress;
-            }
-            else
-            {
-                return ActionLibrary.KeyUp;
-            }
-        }
         #endregion
     }
 }

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1062
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ETUI_TRIGGERS", "ETUI_TRIGGERS\ETUI_TRIGGERS.csproj", "{D7A4164B-1129-41C1-8163-CBEA02D0C022}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionLibrary", "..\..\..\..\..\..\~D\Studies\FYP Code\FYP_ActionLibrary\ActionLibrary\ActionLibrary.csproj", "{E9A198A2-087D-4491-AEF5-E5B8D83000FA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ActionLibrary", "ActionLibrary\ActionLibrary.csproj", "{E9A198A2-087D-4491-AEF5-E5B8D83000FA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

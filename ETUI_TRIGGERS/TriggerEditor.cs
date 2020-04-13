@@ -81,7 +81,7 @@ namespace ETUI_TRIGGERS
 
             if (!isTriggerEdit)
             {
-                if (myTriggerObject.triggerType != FormTrigger.TRIG_TYPE_TIMEDELAY)
+                if (myTriggerObject.TriggerType != FormTrigger.TRIG_TYPE_TIMEDELAY)
                 {
                     txtBxTimeDelay.Text = "Dummy Text";
                 }
@@ -107,7 +107,7 @@ namespace ETUI_TRIGGERS
                     
                     //creates a triggerInfo 
                     String name = txtbxName.Text.ToString();
-                    int Type = myTriggerObject.triggerType;
+                    int Type = myTriggerObject.TriggerType;
                     TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
 
                     //Checks if the name already exists
@@ -123,7 +123,7 @@ namespace ETUI_TRIGGERS
                         }
                     }
 
-                    if(myTriggerObject.triggerType == FormTrigger.TRIG_TYPE_TIMEDELAY)
+                    if(myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_TIMEDELAY)
                     {                      
                         float inputTime;
                         if (!float.TryParse(txtBxTimeDelay.Text.ToString(), out inputTime))
@@ -133,7 +133,7 @@ namespace ETUI_TRIGGERS
                         }
                         else
                         {
-                            myTriggerObject.timeDelayInSeconds = inputTime;
+                            myTriggerObject.TimeDelayInSeconds = inputTime;
                         }
                     }
                     
@@ -177,7 +177,7 @@ namespace ETUI_TRIGGERS
             if (cmbobxTriggerType.SelectedItem.Equals("Fluid"))
             {
                 //Set Trigger Type in trigger Object;
-                myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_FLUID;
+                myTriggerObject.TriggerType = FormTrigger.TRIG_TYPE_FLUID;
 
                 myTriggerObject.SetColor();
 
@@ -188,7 +188,7 @@ namespace ETUI_TRIGGERS
             else if (cmbobxTriggerType.SelectedItem.Equals("Recurring"))
             {             
                 //Set Trigger Type in trigger Object;
-                myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_RECURRING;
+                myTriggerObject.TriggerType = FormTrigger.TRIG_TYPE_RECURRING;
 
                 myTriggerObject.SetColor();
 
@@ -200,7 +200,7 @@ namespace ETUI_TRIGGERS
             {
 
                 //Set Trigger Type in trigger Object;
-                myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_TIMEDELAY;
+                myTriggerObject.TriggerType = FormTrigger.TRIG_TYPE_TIMEDELAY;
                 myTriggerObject.SetColor();
 
 
@@ -219,7 +219,7 @@ namespace ETUI_TRIGGERS
             else if (cmbobxTriggerType.SelectedItem.Equals("Blink"))
             {
                 //Set Trigger Type in trigger Object;
-                myTriggerObject.triggerType = FormTrigger.TRIG_TYPE_BLINK;
+                myTriggerObject.TriggerType = FormTrigger.TRIG_TYPE_BLINK;
 
                 myTriggerObject.SetColor();
 
