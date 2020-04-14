@@ -584,6 +584,7 @@
             this.Controls.Add(this.gbRun);
             this.Controls.Add(this.btnCreateOperation);
             this.Controls.Add(this.gbKeyboardMouse);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "SelectOperation";
             this.Text = "Select Operation";
             this.Load += new System.EventHandler(this.SelectOperation_Load);

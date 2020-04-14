@@ -405,7 +405,7 @@ namespace ETUI_TRIGGERS
         private void PerformAction(int key, int keyEvent)
         {
             var AL_Option = GetKeyEventType();
-
+            
             #region ALPHABETIC
             if (key == Operation.KEY_A)
             {
@@ -775,7 +775,6 @@ namespace ETUI_TRIGGERS
         {
 
         }
-
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleRecurring(float timeDelay)

@@ -16,9 +16,9 @@ namespace ETUI_TRIGGERS
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             
-            //Application.Run(new WelcomeScreen());
+            Application.Run(new WelcomeScreen());
             //Application.Run(new TriggerEditor());
-            Application.Run(new SelectOperation());
+            //Application.Run(new SelectOperation());
             //Application.Run(new Dock());
         }
     }
