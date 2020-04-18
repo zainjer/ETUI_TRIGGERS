@@ -20,6 +20,10 @@ namespace ETUI_TRIGGERS
 
         FormTrigger trigger;
 
+        public TriggerEditor myTriggerEditor;
+
+        private bool isOperationCreated = false;
+
         #region Value Arrays
 
         string[] rangeAlphabets = new string[]
@@ -373,20 +377,26 @@ namespace ETUI_TRIGGERS
 
         private void btnCreateOperation_Click(object sender, EventArgs e)
         {
-            ConstructOperation();            
+            ConstructOperation();
+
+            if (isOperationCreated)
+            {
+                this.Hide();
+                myTriggerEditor.myOperationObject = this.operation;
+                myTriggerEditor.Show();
+            }
+           
         }
-
-
+        
         private void button4_Click(object sender, EventArgs e)
         {
 
-            //var p = new System.Diagnostics.Process();
-
-            //p.StartInfo.FileName = "cmd.exe";
-            //p.StartInfo.Arguments = "/C " + rtbPowershellCommands.Text;
-            //p.Start();
+            var p = new System.Diagnostics.Process();
 
 
+            p.StartInfo.FileName = "cmd.exe";
+            p.StartInfo.Arguments = "/C " + rtbPowershellCommands.Text;
+            p.Start();
 
             #region old code
             /*
@@ -399,7 +409,7 @@ namespace ETUI_TRIGGERS
             //Console.WriteLine(i);
             //}
                         */
-            
+
             //This method will create the operation Object.
             RunOperationHandler();
 
@@ -415,6 +425,11 @@ namespace ETUI_TRIGGERS
         #region Operation Generator
         void ConstructOperation()
         {
+
+            //This will be marked false if any one of the radio buttons is unselected
+            isOperationCreated = true;
+
+
             if (rbKeyboardMouse.Checked)
             {
                 KeyboardMouseOperationHandler();
@@ -433,13 +448,18 @@ namespace ETUI_TRIGGERS
             }
 
             //Debug Message Box that shows if the operation object creation is successful             
-            MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
+            //MessageBox.Show("Operation Type: " + operation.Type + " Operation Key: " + operation.Key + " with KeyEvent: " + operation.KeyEvent);
 
         }
         void PowerShellOperationHandler()
         {
 
             var command = rtbPowershellCommands.Text;
+            if (String.IsNullOrWhiteSpace(command))
+            {
+                MessageBox.Show("Invalid Shell Command");
+            }
+
 
             Operation op = new Operation(Operation.POWERSHELL_COMMAND, command);           
             this.operation = op;
@@ -547,6 +567,7 @@ namespace ETUI_TRIGGERS
             }
             else
             {
+                isOperationCreated = false;
                 MessageBox.Show("Invalid Selection");
             }
             //MessageBox.Show("Type: " + operation.Type + " Action: " + operation.Action);
@@ -829,6 +850,7 @@ namespace ETUI_TRIGGERS
             }
             else
             {
+                isOperationCreated = false;
                 MessageBox.Show("Invalid Selection");
             }
     }

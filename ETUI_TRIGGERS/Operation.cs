@@ -10,7 +10,7 @@ namespace ETUI_TRIGGERS
 
         ActionLibrary al = new ActionLibrary();
 
-        public FormTrigger Trigger;
+        public FormTrigger myTrigger;
               
         #endregion
 
@@ -254,13 +254,7 @@ namespace ETUI_TRIGGERS
             }
         }
 
-        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        public void StopOperation()
-        {
-            //REMOVE THIS LINE
-            al.Keyboard_Key_A(ActionLibrary.KeyUp);
-
-        }
+        
         #endregion
 
         #region Perform Action Methods
@@ -785,6 +779,14 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeBlink(float timeDelay)
         {
+
+        }
+
+        // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
+        public void StopOperation()
+        {
+            //REMOVE THIS LINE
+            al.Keyboard_Key_A(ActionLibrary.KeyUp);
 
         }
         #endregion    

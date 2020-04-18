@@ -565,10 +565,10 @@
             this.rbPowershell.AutoSize = true;
             this.rbPowershell.Location = new System.Drawing.Point(273, 173);
             this.rbPowershell.Name = "rbPowershell";
-            this.rbPowershell.Size = new System.Drawing.Size(134, 17);
+            this.rbPowershell.Size = new System.Drawing.Size(106, 17);
             this.rbPowershell.TabIndex = 31;
             this.rbPowershell.TabStop = true;
-            this.rbPowershell.Text = "Powershell  Commands";
+            this.rbPowershell.Text = "Shell  Commands";
             this.rbPowershell.UseVisualStyleBackColor = true;
             this.rbPowershell.CheckedChanged += new System.EventHandler(this.rbPowershell_CheckedChanged);
             // 

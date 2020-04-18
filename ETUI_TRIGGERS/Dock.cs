@@ -111,7 +111,7 @@ namespace ETUI_TRIGGERS
             var obj = new TriggerEditor();
             obj.Show();
             obj.txtbxName.Text = "ETUI_" + createdTriggers;
-            obj.dockObject = this;           
+            obj.mainDockObject = this;           
             this.Hide();
             DeactiveUI();
         }

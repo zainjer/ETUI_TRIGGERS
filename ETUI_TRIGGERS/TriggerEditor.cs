@@ -11,7 +11,10 @@ namespace ETUI_TRIGGERS
     public partial class TriggerEditor : Form
     {
         public FormTrigger myTriggerObject;
-        public Dock dockObject;
+        public Dock mainDockObject;
+        public Operation myOperationObject;
+        public SelectOperation mySelectOperationObject;
+
 
         int positionX = 0, positionY = 0;
         public int currentScreenHeight ,currentScreenWidth;
@@ -111,9 +114,9 @@ namespace ETUI_TRIGGERS
                     TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
 
                     //Checks if the name already exists
-                    if (dockObject.triggerList.Count > 0)
+                    if (mainDockObject.triggerList.Count > 0)
                     {
-                        foreach (var ti in dockObject.triggerList)
+                        foreach (var ti in mainDockObject.triggerList)
                         {
                             if(ti.Name == thisTriggerInfo.Name)
                             {
@@ -138,11 +141,11 @@ namespace ETUI_TRIGGERS
                     }
                     
 
-                    dockObject.triggerList.Add(thisTriggerInfo);
+                    mainDockObject.triggerList.Add(thisTriggerInfo);
 
                     //Updates Active Triggers in Dock
-                    dockObject.UpdateActiveTriggers();
-                    dockObject.Show();
+                    mainDockObject.UpdateActiveTriggers();
+                    mainDockObject.Show();
 
                     //updates bools 
                     isTriggerEdit = true;
@@ -162,7 +165,7 @@ namespace ETUI_TRIGGERS
             {
                 myTriggerObject.toggleLogo();
                 myTriggerObject.SetColor();
-                dockObject.Show();
+                mainDockObject.Show();
                 
                 this.Hide();
             }
@@ -294,7 +297,18 @@ namespace ETUI_TRIGGERS
             cmbobxTriggerType.SelectedIndex = type;
             btnCreateTrigger.Text = "Save Changes";
            
-        }      
+        }
+
+
+        //----------This method invokes the Operation System
+        private void btnSelectOperation_Click(object sender, EventArgs e)
+        {
+            mySelectOperationObject = new SelectOperation();
+            this.Hide();
+            mySelectOperationObject.myTriggerEditor = this;
+            mySelectOperationObject.Show();
+        }
+
 
         public void UpdateToEditMode(string name) {
 
@@ -302,7 +316,7 @@ namespace ETUI_TRIGGERS
             txtbxName.Enabled = false;
             txtBxTimeDelay.Enabled = false;
             cmbobxTriggerType.Enabled = false;
-            cmbobxOperations.Enabled = false;
+            btnCreateTrigger.Enabled = false;
             btnClose.Text = "Delete";
         }
 
@@ -310,26 +324,26 @@ namespace ETUI_TRIGGERS
         {
             if (!isTriggerEdit)
             {
-                dockObject.Show();
+                mainDockObject.Show();
                 closeItAll();
             }
             else  //Delete the trigger
             {
                 //remove item from list 
                 TriggerInfo toRemove = new TriggerInfo();
-                foreach(TriggerInfo ti in dockObject.triggerList)
+                foreach(TriggerInfo ti in mainDockObject.triggerList)
                 {
                     if(ti.obj == myTriggerObject)
                     {
                         toRemove = ti;
                     }
                 }
-                dockObject.triggerList.Remove(toRemove);
+                mainDockObject.triggerList.Remove(toRemove);
 
-                dockObject.createdTriggers -= 1;
-                dockObject.UpdateActiveTriggers();    
+                mainDockObject.createdTriggers -= 1;
+                mainDockObject.UpdateActiveTriggers();    
                 
-                dockObject.Show();
+                mainDockObject.Show();
                 closeItAll();
 
             }
