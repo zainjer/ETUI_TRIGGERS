@@ -32,19 +32,22 @@ namespace ETUI_TRIGGERS
         //Thread of this trigger
         public Thread triggerThread;
 
-        //Variables to define trigger type and features
+        //Properties to define trigger type and features
         public int TriggerType { get; set; }
         public float TimeDelayInSeconds { get; set; }
 
         //The editor of current trigger (Create Trigger Window)
         public TriggerEditor triggerEditor;
 
-        public ActionLibrary actionLibrary = new ActionLibrary(); 
+        public ActionLibrary actionLibrary = new ActionLibrary();
+
+        public Operation myOperation;
 
         public FormTrigger(int triggerType)
         {
             InitializeComponent();
             this.TriggerType = triggerType;
+            
         }
 
         private void Trigger_Load(object sender, EventArgs e)
@@ -52,7 +55,7 @@ namespace ETUI_TRIGGERS
 
             //Give the thread a color based  on its type
             SetColor();
-
+            TimeDelayInSeconds = 0;
          
         }
 
@@ -60,35 +63,53 @@ namespace ETUI_TRIGGERS
         {
             if (isAlive)
             {
+                // Console.WriteLine("Mouse Leave");
                 //This will stop the Trigger from doing its job
                 isTriggerActive = false;
+                this.BackColor = currentColor;
+
+                myOperation.StopOperation();
 
                 //This will start a new thread
-                
-
-                // Console.WriteLine("Mouse Leave");
-                this.BackColor = currentColor;
-                triggerThread.Abort();
+                //triggerThread.Abort();
             }
            
         }
         private void mouseEnter(object sender, EventArgs e)
-        {
-            if (triggerEditor.isDraggable)
-            {
-
-            }
-            if (isAlive)
+        {           
+            if (isAlive && !triggerEditor.isDraggable)
             {
                 this.BackColor = Color.Green;
                 isTriggerActive = true;
-                
-                //Initializes the Trigger Thread
-                triggerThread = new Thread(this.TriggerThreadMethod);
-                triggerThread.Start();
+
+
+                //Find out Trigger Type
+                if (TriggerType == FormTrigger.TRIG_TYPE_FLUID)
+                {
+                    myOperation.HandleFluidTrigger();
+                }
+                else if (TriggerType == FormTrigger.TRIG_TYPE_RECURRING)
+                {
+                    myOperation.HandleRecurringTrigger(TimeDelayInSeconds);
+                }
+                else if (TriggerType == FormTrigger.TRIG_TYPE_TIMEDELAY)
+                {
+                    myOperation.HandleTimeDelayTrigger(TimeDelayInSeconds);
+                }
+                else if (TriggerType == FormTrigger.TRIG_TYPE_BLINK)
+                {
+                    myOperation.HandleTimeBlinkTrigger(TimeDelayInSeconds);
+                }
+                ////Initializes the Trigger Thread
+                //triggerThread = new Thread(this.TriggerThreadMethod);
+                //triggerThread.Start();
 
             }          
         }
+
+
+
+        #region Thread Based Old Code
         void TriggerThreadMethod()
         {
 
@@ -159,6 +180,7 @@ namespace ETUI_TRIGGERS
 
             }
         }
+        #endregion
 
 
         public void SetColor()

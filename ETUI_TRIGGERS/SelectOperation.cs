@@ -383,6 +383,7 @@ namespace ETUI_TRIGGERS
             {
                 this.Hide();
                 myTriggerEditor.myOperationObject = this.operation;
+                trigger.myOperation = this.operation;
                 myTriggerEditor.Show();
             }
            

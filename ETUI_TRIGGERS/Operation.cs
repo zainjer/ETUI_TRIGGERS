@@ -227,27 +227,15 @@ namespace ETUI_TRIGGERS
         }
 
 
-        public void Run(FormTrigger trigger)  //Method that Runs the show!
-        {            
-            
-
-            //Find out delay
-            var delay = trigger.TimeDelayInSeconds;
-
-
-            //Determine what action to perform
-            
-            //Wait if needed
-            
-            //Perform actions
-                       
+        private void Run(int keyPressEvent)  //Method that Runs the show!
+        {
             //find out the Operation type 
             int type = GetOperationType();
 
             //Handling the types
             if (type == Operation.TYPE_INPUTKEY)
             {
-                PerformAction(this.Key, this.KeyEvent);
+                PerformAction(this.Key, keyPressEvent);
             }
             else if (type == Operation.TYPE_ACTION)
             {
@@ -263,7 +251,7 @@ namespace ETUI_TRIGGERS
             }
         }
 
-        
+
         #endregion
 
         #region Perform Action Methods
@@ -770,7 +758,7 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleFluidTrigger()
         {
-            
+            Run()
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
@@ -780,13 +768,13 @@ namespace ETUI_TRIGGERS
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        public void HandleRecurring(float timeDelay)
+        public void HandleRecurringTrigger(float timeDelay)
         {
 
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        public void HandleTimeBlink(float timeDelay)
+        public void HandleTimeBlinkTrigger(float timeDelay)
         {
 
         }
