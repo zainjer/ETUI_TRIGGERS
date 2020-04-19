@@ -18,13 +18,26 @@ namespace ETUI_TRIGGERS
 
         public Operation operation;
 
-        FormTrigger trigger;
+        public FormTrigger trigger;
 
         public TriggerEditor myTriggerEditor;
 
         private bool isOperationCreated = false;
 
-        #region Value Arrays
+        #region This code snippet will Disable the Close button
+        private const int CP_NOCLOSE_BUTTON = 0x200;
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                CreateParams myCp = base.CreateParams;
+                myCp.ClassStyle = myCp.ClassStyle | CP_NOCLOSE_BUTTON;
+                return myCp;
+            }
+        }
+        #endregion
+
+        #region Value Range Arrays
 
         string[] rangeAlphabets = new string[]
         {
@@ -135,13 +148,6 @@ namespace ETUI_TRIGGERS
 
         };
 
-        string[] rangeEventType = new string[]
-        {
-            "Key Press",            
-            "Key Down"
-
-        };
-
         string[] rangeIntBrowser = new string[]
         {
             "Chrome",
@@ -211,10 +217,7 @@ namespace ETUI_TRIGGERS
 
             cbMouseButton.Items.AddRange(rangeMouseButton);
             cbMouseButton.SelectedIndex = 0;
-
-            cbEventType.Items.AddRange(rangeEventType);
-            cbEventType.SelectedIndex = 0;
-
+                     
             cbInternetBrowser.Items.AddRange(rangeIntBrowser);
             cbInternetBrowser.SelectedIndex = 0;
 
@@ -383,10 +386,9 @@ namespace ETUI_TRIGGERS
             {
                 this.Hide();
                 myTriggerEditor.myOperationObject = this.operation;
-                trigger.myOperation = this.operation;
-                myTriggerEditor.Show();
-            }
-           
+                myTriggerEditor.myTriggerObject.myOperation = this.operation;
+                myTriggerEditor.lblOperationStatus.Text = "Type:" + operation.Type + " Action:" + operation.Action + " Key:" + operation.Key;
+            }           
         }
         
         private void button4_Click(object sender, EventArgs e)
@@ -868,10 +870,12 @@ namespace ETUI_TRIGGERS
 
         private int GetKeyEvent()
         {
-            if (cbEventType.SelectedIndex == 0)
-                return Operation.EVENT_KEYPRESS;
-            else
-                return Operation.EVENT_KEYDOWN;
+            return Operation.EVENT_KEYPRESS;
+            //---This code is for when KeyEvent was an option exposed to the user;
+            //if (cbEventType.SelectedIndex == 0)
+            //    return Operation.EVENT_KEYPRESS;
+            //else
+            //    return Operation.EVENT_KEYDOWN;
         }
         #endregion
                        

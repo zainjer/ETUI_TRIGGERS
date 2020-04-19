@@ -99,6 +99,10 @@ namespace ETUI_TRIGGERS
                     MessageBox.Show("Please enter a Time Delay in Seconds", "Time Delay null", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 }
+                else if (myOperationObject==null)
+                {
+                    MessageBox.Show("Please create an Opearation for your Trigger", "Operation Not Created", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
                 else
                 {
 
@@ -267,7 +271,7 @@ namespace ETUI_TRIGGERS
         }
 
 
-        //The below code snippet will Disable the Close button
+        #region This code snippet will Disable the Close button
         private const int CP_NOCLOSE_BUTTON = 0x200;
         protected override CreateParams CreateParams
         {
@@ -278,6 +282,8 @@ namespace ETUI_TRIGGERS
                 return myCp;
             }
         }
+        #endregion
+
 
         private void button5_Click(object sender, EventArgs e)
         {
@@ -304,7 +310,6 @@ namespace ETUI_TRIGGERS
         private void btnSelectOperation_Click(object sender, EventArgs e)
         {
             mySelectOperationObject = new SelectOperation();
-            this.Hide();
             mySelectOperationObject.myTriggerEditor = this;
             mySelectOperationObject.Show();
         }
@@ -318,6 +323,7 @@ namespace ETUI_TRIGGERS
             cmbobxTriggerType.Enabled = false;
             btnCreateTrigger.Enabled = false;
             btnClose.Text = "Delete";
+            btnSelectOperation.Enabled = false;
         }
 
         private void closeBtn(object sender, EventArgs e)

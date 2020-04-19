@@ -65,7 +65,7 @@
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnSelectOperation = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.lblOperationStatus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).BeginInit();
             this.panel1.SuspendLayout();
@@ -439,9 +439,10 @@
             // 
             this.checkBox1.AutoSize = true;
             this.checkBox1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.checkBox1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.checkBox1.Location = new System.Drawing.Point(132, 204);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(75, 17);
+            this.checkBox1.Size = new System.Drawing.Size(72, 17);
             this.checkBox1.TabIndex = 25;
             this.checkBox1.Text = "Draggable";
             this.checkBox1.UseVisualStyleBackColor = true;
@@ -475,14 +476,14 @@
             this.btnSelectOperation.UseVisualStyleBackColor = false;
             this.btnSelectOperation.Click += new System.EventHandler(this.btnSelectOperation_Click);
             // 
-            // label11
+            // lblOperationStatus
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(184, 89);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(114, 13);
-            this.label11.TabIndex = 27;
-            this.label11.Text = "No operation selected!";
+            this.lblOperationStatus.AutoSize = true;
+            this.lblOperationStatus.Location = new System.Drawing.Point(184, 89);
+            this.lblOperationStatus.Name = "lblOperationStatus";
+            this.lblOperationStatus.Size = new System.Drawing.Size(114, 13);
+            this.lblOperationStatus.TabIndex = 27;
+            this.lblOperationStatus.Text = "No operation selected!";
             // 
             // TriggerEditor
             // 
@@ -491,7 +492,7 @@
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(384, 378);
-            this.Controls.Add(this.label11);
+            this.Controls.Add(this.lblOperationStatus);
             this.Controls.Add(this.btnSelectOperation);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.checkBox1);
@@ -574,7 +575,7 @@
         private System.Windows.Forms.CheckBox checkBox1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSelectOperation;
-        private System.Windows.Forms.Label label11;
+        public System.Windows.Forms.Label lblOperationStatus;
     }
 }
 

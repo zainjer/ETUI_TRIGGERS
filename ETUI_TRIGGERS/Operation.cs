@@ -1,5 +1,6 @@
 ﻿using System;
 using ActionLibraryWindows;
+using System.Threading;
 
 namespace ETUI_TRIGGERS
 {
@@ -9,9 +10,10 @@ namespace ETUI_TRIGGERS
         #region Class Variables
 
         ActionLibrary al = new ActionLibrary();
+        Thread mythread;
 
        // public FormTrigger myTrigger;
-              
+
         #endregion
 
         #region Constant Values
@@ -20,7 +22,7 @@ namespace ETUI_TRIGGERS
         //Event types 
         public static int EVENT_KEYPRESS = 501;
         public static int EVENT_KEYDOWN = 502;
-        
+
         //Alphabets
         public static int KEY_A = 1001;
         public static int KEY_B = 1002;
@@ -167,99 +169,41 @@ namespace ETUI_TRIGGERS
         public static int TYPE_INPUTKEY = 101;
         public static int TYPE_ACTION = 102;
         public static int TYPE_POWERSHELL = 103;
-        #endregion            
-               
+        #endregion
+
         #region Constructors
         public Operation(int action)                                //Constructor for [Application Execution] Operations
         {
             this.Type = Operation.TYPE_ACTION;
             this.Action = action;
+            this.Key = -1;
         }
-        public Operation(int action,string powerShellCommand)       //Constructor for [Shell Command Execution] Operation
+        public Operation(int action, string powerShellCommand)       //Constructor for [Shell Command Execution] Operation
         {
             this.Type = Operation.TYPE_POWERSHELL;
             this.Action = action;
             this.PowerShellCommand = powerShellCommand;
+            this.Key = -1;
         }
-        public Operation(int key,int keyEvent)                      //Constructor for [Keyboard/Mouse Input] Operations 
+        public Operation(int key, int keyEvent)                      //Constructor for [Keyboard/Mouse Input] Operations 
         {
             this.Type = Operation.TYPE_INPUTKEY;
             this.Key = key;
             this.KeyEvent = keyEvent;
+            this.Action = -1;
         }
 
         #endregion
 
         #region Methods
 
-        #region Core Operation Methods
-
-        int GetOperationType()  //Method that returns the current Operation Type 
-        {
-            switch (this.Type)
-            {
-                case 101:  //InputKeys
-                    return Operation.TYPE_INPUTKEY;
-                   
-                case 102: //Action
-                    return Operation.TYPE_ACTION;
-                                   
-                case 103: //PowerShell
-                    return Operation.TYPE_POWERSHELL;                  
-            }
-            return 0;
-        }
-
-        int GetKeyEventType()   //Method that returns the current Key Event Type
-        {
-            if (this.KeyEvent == Operation.EVENT_KEYDOWN)
-            {
-                return ActionLibrary.KeyDown;
-            }
-            if (this.KeyEvent == Operation.EVENT_KEYPRESS)
-            {
-                return ActionLibrary.KeyPress;
-            }
-            else
-            {
-                return ActionLibrary.KeyUp;
-            }
-        }
-
-
-        private void Run(int keyPressEvent)  //Method that Runs the show!
-        {
-            //find out the Operation type 
-            int type = GetOperationType();
-
-            //Handling the types
-            if (type == Operation.TYPE_INPUTKEY)
-            {
-                PerformAction(this.Key, keyPressEvent);
-            }
-            else if (type == Operation.TYPE_ACTION)
-            {
-                PerformAction(this.Action);
-            }
-            else if (type == Operation.TYPE_POWERSHELL)
-            {
-                PerformAction(this.PowerShellCommand);
-            }
-            else  // if The returning value is 0
-            {
-                System.Windows.Forms.MessageBox.Show("Operation has no TYPE!");
-            }
-        }
-
-
-        #endregion
-
+     
         #region Perform Action Methods
 
         // Implemented  // 
         private void PerformAction(string powerShellCommand)
         {
-            System.Windows.Forms.MessageBox.Show(" about to call ActionLibrary : " + powerShellCommand);
+           // System.Windows.Forms.MessageBox.Show(" about to call ActionLibrary : " + powerShellCommand);
 
             al.start_CMD_Commands(powerShellCommand);
         }
@@ -278,7 +222,7 @@ namespace ETUI_TRIGGERS
             {
                 al.system_Hibernate();
             }
-            else if( action == Operation.SYSTEM_LOGOFF)
+            else if (action == Operation.SYSTEM_LOGOFF)
             {
                 al.system_Logoff();
             }
@@ -363,7 +307,7 @@ namespace ETUI_TRIGGERS
 
             #region browser Actions
 
-            else if(action == Operation.BROWSER_CHROME)
+            else if (action == Operation.BROWSER_CHROME)
             {
                 al.start_chrome();
             }
@@ -381,7 +325,7 @@ namespace ETUI_TRIGGERS
             }
             #endregion
 
-            else if(action == Operation.APPLICATION)
+            else if (action == Operation.APPLICATION)
             {
                 al.start_With_Path(this.ApplicationPath);
             }
@@ -396,13 +340,13 @@ namespace ETUI_TRIGGERS
         private void PerformAction(int key, int keyEvent)
         {
             var AL_Option = GetKeyEventType();
-            
+
             #region ALPHABETIC
             if (key == Operation.KEY_A)
             {
                 al.Keyboard_Key_A(AL_Option);
             }
-            else if(key == Operation.KEY_B)
+            else if (key == Operation.KEY_B)
             {
                 al.Keyboard_Key_B(AL_Option);
             }
@@ -758,13 +702,16 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleFluidTrigger()
         {
-            Run()
+            Run(Operation.EVENT_KEYDOWN);
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeDelayTrigger(float timeDelay)
         {
+            var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYDOWN,this);
 
+            mythread = new Thread(tOp.RunThread);
+            mythread.Start();
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
@@ -782,12 +729,95 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void StopOperation()
         {
-            //REMOVE THIS LINE
-            al.Keyboard_Key_A(ActionLibrary.KeyUp);
+            if (mythread != null)
+            {
+                mythread.Abort();
+            }
 
         }
         #endregion    
 
+        public void Run(int KeyEvent)  //Method that Runs the show!
+        {
+            //find out the Operation type 
+            int type = GetOperationType();
+
+            //Handling the types
+            if (type == Operation.TYPE_INPUTKEY)
+            {
+                PerformAction(this.Key, KeyEvent);
+            }
+            else if (type == Operation.TYPE_ACTION)
+            {
+                PerformAction(this.Action);
+            }
+            else if (type == Operation.TYPE_POWERSHELL)
+            {
+                PerformAction(this.PowerShellCommand);
+            }
+            else  // if The returning value is 0
+            {
+                System.Windows.Forms.MessageBox.Show("Operation has no TYPE!");
+            }
+        }
+
+
+
+        int GetOperationType()  //Method that returns the current Operation Type 
+        {
+            switch (this.Type)
+            {
+                case 101:  //InputKeys
+                    return Operation.TYPE_INPUTKEY;
+
+                case 102: //Action
+                    return Operation.TYPE_ACTION;
+
+                case 103: //PowerShell
+                    return Operation.TYPE_POWERSHELL;
+            }
+            return 0;
+        }
+
+        int GetKeyEventType()   //Method that returns the current Key Event Type
+        {
+            if (this.KeyEvent == Operation.EVENT_KEYDOWN)
+            {
+                return ActionLibrary.KeyDown;
+            }
+            if (this.KeyEvent == Operation.EVENT_KEYPRESS)
+            {
+                return ActionLibrary.KeyPress;
+            }
+            else
+            {
+                return ActionLibrary.KeyUp;
+            }
+        }
+
+
         #endregion
     }
+
+    class ThreadedOperations
+    {
+        int Delay { get; set; }
+        int KeyEventType { get; set; }
+        Operation myOperation;
+
+        public ThreadedOperations(int delay,int keyEventType, Operation operation)
+        {
+            this.Delay = delay;
+            this.KeyEventType = keyEventType;
+            this.myOperation = operation;
+        }
+
+        public void RunThread()
+        {
+            Thread.Sleep(Delay * 1000);
+            myOperation.Run(KeyEventType);
+        }
+
+    }
+
 }

@@ -33,9 +33,7 @@
             this.cbMouseButton = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
             this.rbArithematic = new System.Windows.Forms.RadioButton();
-            this.cbEventType = new System.Windows.Forms.ComboBox();
             this.rbControlKeys = new System.Windows.Forms.RadioButton();
-            this.label9 = new System.Windows.Forms.Label();
             this.rbFunctionKeys = new System.Windows.Forms.RadioButton();
             this.rbNumbers = new System.Windows.Forms.RadioButton();
             this.cbNumbers = new System.Windows.Forms.ComboBox();
@@ -87,9 +85,7 @@
             this.gbKeyboardMouse.Controls.Add(this.cbMouseButton);
             this.gbKeyboardMouse.Controls.Add(this.label8);
             this.gbKeyboardMouse.Controls.Add(this.rbArithematic);
-            this.gbKeyboardMouse.Controls.Add(this.cbEventType);
             this.gbKeyboardMouse.Controls.Add(this.rbControlKeys);
-            this.gbKeyboardMouse.Controls.Add(this.label9);
             this.gbKeyboardMouse.Controls.Add(this.rbFunctionKeys);
             this.gbKeyboardMouse.Controls.Add(this.rbNumbers);
             this.gbKeyboardMouse.Controls.Add(this.cbNumbers);
@@ -109,18 +105,20 @@
             this.gbKeyboardMouse.Controls.Add(this.label2);
             this.gbKeyboardMouse.Controls.Add(this.cbAlphabets);
             this.gbKeyboardMouse.Controls.Add(this.label1);
+            this.gbKeyboardMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbKeyboardMouse.Location = new System.Drawing.Point(12, 12);
             this.gbKeyboardMouse.Name = "gbKeyboardMouse";
-            this.gbKeyboardMouse.Size = new System.Drawing.Size(244, 287);
+            this.gbKeyboardMouse.Size = new System.Drawing.Size(244, 241);
             this.gbKeyboardMouse.TabIndex = 0;
             this.gbKeyboardMouse.TabStop = false;
             // 
             // rbMouseButton
             // 
             this.rbMouseButton.AutoSize = true;
+            this.rbMouseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbMouseButton.Location = new System.Drawing.Point(215, 218);
             this.rbMouseButton.Name = "rbMouseButton";
-            this.rbMouseButton.Size = new System.Drawing.Size(14, 13);
+            this.rbMouseButton.Size = new System.Drawing.Size(13, 12);
             this.rbMouseButton.TabIndex = 17;
             this.rbMouseButton.TabStop = true;
             this.rbMouseButton.UseVisualStyleBackColor = true;
@@ -128,6 +126,7 @@
             // 
             // cbMouseButton
             // 
+            this.cbMouseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbMouseButton.FormattingEnabled = true;
             this.cbMouseButton.Location = new System.Drawing.Point(88, 215);
             this.cbMouseButton.Name = "cbMouseButton";
@@ -146,49 +145,34 @@
             // rbArithematic
             // 
             this.rbArithematic.AutoSize = true;
+            this.rbArithematic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbArithematic.Location = new System.Drawing.Point(215, 190);
             this.rbArithematic.Name = "rbArithematic";
-            this.rbArithematic.Size = new System.Drawing.Size(14, 13);
+            this.rbArithematic.Size = new System.Drawing.Size(13, 12);
             this.rbArithematic.TabIndex = 5;
             this.rbArithematic.TabStop = true;
             this.rbArithematic.UseVisualStyleBackColor = true;
             this.rbArithematic.CheckedChanged += new System.EventHandler(this.radioButton5_CheckedChanged);
             // 
-            // cbEventType
-            // 
-            this.cbEventType.FormattingEnabled = true;
-            this.cbEventType.Location = new System.Drawing.Point(116, 250);
-            this.cbEventType.Name = "cbEventType";
-            this.cbEventType.Size = new System.Drawing.Size(113, 21);
-            this.cbEventType.TabIndex = 18;
-            this.cbEventType.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
-            // 
             // rbControlKeys
             // 
             this.rbControlKeys.AutoSize = true;
+            this.rbControlKeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbControlKeys.Location = new System.Drawing.Point(215, 163);
             this.rbControlKeys.Name = "rbControlKeys";
-            this.rbControlKeys.Size = new System.Drawing.Size(14, 13);
+            this.rbControlKeys.Size = new System.Drawing.Size(13, 12);
             this.rbControlKeys.TabIndex = 6;
             this.rbControlKeys.TabStop = true;
             this.rbControlKeys.UseVisualStyleBackColor = true;
             this.rbControlKeys.CheckedChanged += new System.EventHandler(this.radioButton6_CheckedChanged);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(12, 253);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Select Event Type:";
-            // 
             // rbFunctionKeys
             // 
             this.rbFunctionKeys.AutoSize = true;
+            this.rbFunctionKeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbFunctionKeys.Location = new System.Drawing.Point(215, 136);
             this.rbFunctionKeys.Name = "rbFunctionKeys";
-            this.rbFunctionKeys.Size = new System.Drawing.Size(14, 13);
+            this.rbFunctionKeys.Size = new System.Drawing.Size(13, 12);
             this.rbFunctionKeys.TabIndex = 7;
             this.rbFunctionKeys.TabStop = true;
             this.rbFunctionKeys.UseVisualStyleBackColor = true;
@@ -197,9 +181,10 @@
             // rbNumbers
             // 
             this.rbNumbers.AutoSize = true;
+            this.rbNumbers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbNumbers.Location = new System.Drawing.Point(215, 109);
             this.rbNumbers.Name = "rbNumbers";
-            this.rbNumbers.Size = new System.Drawing.Size(14, 13);
+            this.rbNumbers.Size = new System.Drawing.Size(13, 12);
             this.rbNumbers.TabIndex = 8;
             this.rbNumbers.TabStop = true;
             this.rbNumbers.UseVisualStyleBackColor = true;
@@ -207,6 +192,7 @@
             // 
             // cbNumbers
             // 
+            this.cbNumbers.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbNumbers.FormattingEnabled = true;
             this.cbNumbers.Location = new System.Drawing.Point(88, 106);
             this.cbNumbers.Name = "cbNumbers";
@@ -224,6 +210,7 @@
             // 
             // cbArithematic
             // 
+            this.cbArithematic.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbArithematic.FormattingEnabled = true;
             this.cbArithematic.Location = new System.Drawing.Point(88, 187);
             this.cbArithematic.Name = "cbArithematic";
@@ -242,9 +229,10 @@
             // rbNavigation
             // 
             this.rbNavigation.AutoSize = true;
+            this.rbNavigation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbNavigation.Location = new System.Drawing.Point(215, 82);
             this.rbNavigation.Name = "rbNavigation";
-            this.rbNavigation.Size = new System.Drawing.Size(14, 13);
+            this.rbNavigation.Size = new System.Drawing.Size(13, 12);
             this.rbNavigation.TabIndex = 3;
             this.rbNavigation.TabStop = true;
             this.rbNavigation.UseVisualStyleBackColor = true;
@@ -252,6 +240,7 @@
             // 
             // cbNavigation
             // 
+            this.cbNavigation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbNavigation.FormattingEnabled = true;
             this.cbNavigation.Location = new System.Drawing.Point(88, 79);
             this.cbNavigation.Name = "cbNavigation";
@@ -261,9 +250,10 @@
             // rbFormatting
             // 
             this.rbFormatting.AutoSize = true;
+            this.rbFormatting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbFormatting.Location = new System.Drawing.Point(215, 55);
             this.rbFormatting.Name = "rbFormatting";
-            this.rbFormatting.Size = new System.Drawing.Size(14, 13);
+            this.rbFormatting.Size = new System.Drawing.Size(13, 12);
             this.rbFormatting.TabIndex = 2;
             this.rbFormatting.TabStop = true;
             this.rbFormatting.UseVisualStyleBackColor = true;
@@ -281,9 +271,10 @@
             // rbAlphabets
             // 
             this.rbAlphabets.AutoSize = true;
+            this.rbAlphabets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbAlphabets.Location = new System.Drawing.Point(215, 28);
             this.rbAlphabets.Name = "rbAlphabets";
-            this.rbAlphabets.Size = new System.Drawing.Size(14, 13);
+            this.rbAlphabets.Size = new System.Drawing.Size(13, 12);
             this.rbAlphabets.TabIndex = 1;
             this.rbAlphabets.TabStop = true;
             this.rbAlphabets.UseVisualStyleBackColor = true;
@@ -291,6 +282,7 @@
             // 
             // cbControlKeys
             // 
+            this.cbControlKeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbControlKeys.FormattingEnabled = true;
             this.cbControlKeys.Location = new System.Drawing.Point(88, 160);
             this.cbControlKeys.Name = "cbControlKeys";
@@ -317,6 +309,7 @@
             // 
             // cbFormatting
             // 
+            this.cbFormatting.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbFormatting.FormattingEnabled = true;
             this.cbFormatting.Location = new System.Drawing.Point(88, 52);
             this.cbFormatting.Name = "cbFormatting";
@@ -325,6 +318,7 @@
             // 
             // cbFuntionKeys
             // 
+            this.cbFuntionKeys.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbFuntionKeys.FormattingEnabled = true;
             this.cbFuntionKeys.Location = new System.Drawing.Point(88, 133);
             this.cbFuntionKeys.Name = "cbFuntionKeys";
@@ -342,6 +336,7 @@
             // 
             // cbAlphabets
             // 
+            this.cbAlphabets.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbAlphabets.FormattingEnabled = true;
             this.cbAlphabets.Location = new System.Drawing.Point(88, 25);
             this.cbAlphabets.Name = "cbAlphabets";
@@ -359,12 +354,16 @@
             // 
             // btnCreateOperation
             // 
-            this.btnCreateOperation.Location = new System.Drawing.Point(263, 260);
+            this.btnCreateOperation.BackColor = System.Drawing.SystemColors.MenuHighlight;
+            this.btnCreateOperation.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCreateOperation.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCreateOperation.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnCreateOperation.Location = new System.Drawing.Point(12, 260);
             this.btnCreateOperation.Name = "btnCreateOperation";
-            this.btnCreateOperation.Size = new System.Drawing.Size(335, 39);
+            this.btnCreateOperation.Size = new System.Drawing.Size(586, 39);
             this.btnCreateOperation.TabIndex = 19;
             this.btnCreateOperation.Text = "Create Operation";
-            this.btnCreateOperation.UseVisualStyleBackColor = true;
+            this.btnCreateOperation.UseVisualStyleBackColor = false;
             this.btnCreateOperation.Click += new System.EventHandler(this.btnCreateOperation_Click);
             // 
             // gbRun
@@ -390,9 +389,10 @@
             // rbApplication
             // 
             this.rbApplication.AutoSize = true;
+            this.rbApplication.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbApplication.Location = new System.Drawing.Point(312, 122);
             this.rbApplication.Name = "rbApplication";
-            this.rbApplication.Size = new System.Drawing.Size(14, 13);
+            this.rbApplication.Size = new System.Drawing.Size(13, 12);
             this.rbApplication.TabIndex = 30;
             this.rbApplication.TabStop = true;
             this.rbApplication.UseVisualStyleBackColor = true;
@@ -401,9 +401,10 @@
             // rbWindowsProgram
             // 
             this.rbWindowsProgram.AutoSize = true;
+            this.rbWindowsProgram.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbWindowsProgram.Location = new System.Drawing.Point(312, 92);
             this.rbWindowsProgram.Name = "rbWindowsProgram";
-            this.rbWindowsProgram.Size = new System.Drawing.Size(14, 13);
+            this.rbWindowsProgram.Size = new System.Drawing.Size(13, 12);
             this.rbWindowsProgram.TabIndex = 29;
             this.rbWindowsProgram.TabStop = true;
             this.rbWindowsProgram.UseVisualStyleBackColor = true;
@@ -412,9 +413,10 @@
             // rbInternet
             // 
             this.rbInternet.AutoSize = true;
+            this.rbInternet.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbInternet.Location = new System.Drawing.Point(312, 62);
             this.rbInternet.Name = "rbInternet";
-            this.rbInternet.Size = new System.Drawing.Size(14, 13);
+            this.rbInternet.Size = new System.Drawing.Size(13, 12);
             this.rbInternet.TabIndex = 28;
             this.rbInternet.TabStop = true;
             this.rbInternet.UseVisualStyleBackColor = true;
@@ -423,9 +425,10 @@
             // rbSystemActions
             // 
             this.rbSystemActions.AutoSize = true;
+            this.rbSystemActions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbSystemActions.Location = new System.Drawing.Point(312, 32);
             this.rbSystemActions.Name = "rbSystemActions";
-            this.rbSystemActions.Size = new System.Drawing.Size(14, 13);
+            this.rbSystemActions.Size = new System.Drawing.Size(13, 12);
             this.rbSystemActions.TabIndex = 18;
             this.rbSystemActions.TabStop = true;
             this.rbSystemActions.UseVisualStyleBackColor = true;
@@ -433,6 +436,7 @@
             // 
             // cbWindowsPrograms
             // 
+            this.cbWindowsPrograms.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbWindowsPrograms.FormattingEnabled = true;
             this.cbWindowsPrograms.Location = new System.Drawing.Point(113, 89);
             this.cbWindowsPrograms.Name = "cbWindowsPrograms";
@@ -450,6 +454,7 @@
             // 
             // cbInternetBrowser
             // 
+            this.cbInternetBrowser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbInternetBrowser.FormattingEnabled = true;
             this.cbInternetBrowser.Location = new System.Drawing.Point(113, 59);
             this.cbInternetBrowser.Name = "cbInternetBrowser";
@@ -467,6 +472,7 @@
             // 
             // cbSystemActions
             // 
+            this.cbSystemActions.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbSystemActions.FormattingEnabled = true;
             this.cbSystemActions.Location = new System.Drawing.Point(113, 29);
             this.cbSystemActions.Name = "cbSystemActions";
@@ -504,6 +510,7 @@
             this.gbPowershell.Controls.Add(this.button4);
             this.gbPowershell.Controls.Add(this.label14);
             this.gbPowershell.Controls.Add(this.rtbPowershellCommands);
+            this.gbPowershell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.gbPowershell.Location = new System.Drawing.Point(263, 175);
             this.gbPowershell.Name = "gbPowershell";
             this.gbPowershell.Size = new System.Drawing.Size(335, 78);
@@ -512,12 +519,16 @@
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(278, 33);
+            this.button4.BackColor = System.Drawing.SystemColors.Highlight;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.SystemColors.Control;
+            this.button4.Location = new System.Drawing.Point(278, 24);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(50, 21);
+            this.button4.Size = new System.Drawing.Size(50, 41);
             this.button4.TabIndex = 33;
             this.button4.Text = "Test";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button4.UseVisualStyleBackColor = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label14
@@ -539,9 +550,10 @@
             // rbRun
             // 
             this.rbRun.AutoSize = true;
+            this.rbRun.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbRun.Location = new System.Drawing.Point(273, 10);
             this.rbRun.Name = "rbRun";
-            this.rbRun.Size = new System.Drawing.Size(45, 17);
+            this.rbRun.Size = new System.Drawing.Size(44, 17);
             this.rbRun.TabIndex = 22;
             this.rbRun.TabStop = true;
             this.rbRun.Text = "Run";
@@ -551,9 +563,10 @@
             // rbKeyboardMouse
             // 
             this.rbKeyboardMouse.AutoSize = true;
+            this.rbKeyboardMouse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbKeyboardMouse.Location = new System.Drawing.Point(25, 10);
             this.rbKeyboardMouse.Name = "rbKeyboardMouse";
-            this.rbKeyboardMouse.Size = new System.Drawing.Size(140, 17);
+            this.rbKeyboardMouse.Size = new System.Drawing.Size(139, 17);
             this.rbKeyboardMouse.TabIndex = 31;
             this.rbKeyboardMouse.TabStop = true;
             this.rbKeyboardMouse.Text = "Keyboard/Mouse - Input";
@@ -563,9 +576,10 @@
             // rbPowershell
             // 
             this.rbPowershell.AutoSize = true;
+            this.rbPowershell.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.rbPowershell.Location = new System.Drawing.Point(273, 173);
             this.rbPowershell.Name = "rbPowershell";
-            this.rbPowershell.Size = new System.Drawing.Size(106, 17);
+            this.rbPowershell.Size = new System.Drawing.Size(105, 17);
             this.rbPowershell.TabIndex = 31;
             this.rbPowershell.TabStop = true;
             this.rbPowershell.Text = "Shell  Commands";
@@ -626,8 +640,6 @@
         private System.Windows.Forms.RadioButton rbNavigation;
         private System.Windows.Forms.RadioButton rbFormatting;
         private System.Windows.Forms.RadioButton rbAlphabets;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ComboBox cbEventType;
         private System.Windows.Forms.Button btnCreateOperation;
         private System.Windows.Forms.GroupBox gbRun;
         private System.Windows.Forms.Label label10;
