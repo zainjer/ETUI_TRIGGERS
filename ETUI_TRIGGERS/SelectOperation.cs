@@ -393,10 +393,19 @@ namespace ETUI_TRIGGERS
 
             var p = new System.Diagnostics.Process();
 
+            if (String.IsNullOrWhiteSpace(rtbPowershellCommands.Text))
+            {
+                MessageBox.Show("Please Enter a Command.");
+            }
 
-            p.StartInfo.FileName = "cmd.exe";
-            p.StartInfo.Arguments = "/C " + rtbPowershellCommands.Text;
-            p.Start();
+            else
+            {
+                p.StartInfo.FileName = "cmd.exe";
+                p.StartInfo.Arguments = "/C " + rtbPowershellCommands.Text;
+                p.Start();
+            }
+
+         
 
             #region old code
             /*
@@ -411,11 +420,11 @@ namespace ETUI_TRIGGERS
                         */
 
             //This method will create the operation Object.
-            RunOperationHandler();
+            //RunOperationHandler();
 
 
             //PowerShellOperationHandler();
-            operation.Run();
+            //operation.Run();
             #endregion
         }
 
@@ -458,6 +467,7 @@ namespace ETUI_TRIGGERS
             if (String.IsNullOrWhiteSpace(command))
             {
                 MessageBox.Show("Invalid Shell Command");
+                isOperationCreated = false;
             }
 
 

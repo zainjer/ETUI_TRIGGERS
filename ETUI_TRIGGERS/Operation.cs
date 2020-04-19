@@ -10,7 +10,7 @@ namespace ETUI_TRIGGERS
 
         ActionLibrary al = new ActionLibrary();
 
-        public FormTrigger myTrigger;
+       // public FormTrigger myTrigger;
               
         #endregion
 
@@ -200,15 +200,12 @@ namespace ETUI_TRIGGERS
             {
                 case 101:  //InputKeys
                     return Operation.TYPE_INPUTKEY;
-                    break;
-
+                   
                 case 102: //Action
                     return Operation.TYPE_ACTION;
-                    break;
-
+                                   
                 case 103: //PowerShell
-                    return Operation.TYPE_POWERSHELL;
-                    break;
+                    return Operation.TYPE_POWERSHELL;                  
             }
             return 0;
         }
@@ -230,9 +227,21 @@ namespace ETUI_TRIGGERS
         }
 
 
-        public void Run()  //Method that Runs the show!
-        {
-            //find out the trigger type 
+        public void Run(FormTrigger trigger)  //Method that Runs the show!
+        {            
+            
+
+            //Find out delay
+            var delay = trigger.TimeDelayInSeconds;
+
+
+            //Determine what action to perform
+            
+            //Wait if needed
+            
+            //Perform actions
+                       
+            //find out the Operation type 
             int type = GetOperationType();
 
             //Handling the types

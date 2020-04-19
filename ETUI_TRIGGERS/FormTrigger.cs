@@ -13,7 +13,6 @@ namespace ETUI_TRIGGERS
 {
     public partial class FormTrigger : Form
     {
-
         //Types of triggers
         public static int TRIG_TYPE_FLUID = 11;
         public static int TRIG_TYPE_RECURRING = 12;
@@ -98,7 +97,6 @@ namespace ETUI_TRIGGERS
             while (true)
             {
                 this.ThreadLogic();
-
             }            
         }
         void ThreadLogic()
