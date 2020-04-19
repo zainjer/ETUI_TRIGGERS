@@ -29,7 +29,7 @@ namespace ETUI_TRIGGERS
             "Fluid",
             "Recurring",
             "Time Delay",
-            "Time Once"
+            "Blink"
         };
 
         public TriggerEditor()
@@ -84,9 +84,9 @@ namespace ETUI_TRIGGERS
 
             if (!isTriggerEdit)
             {
-                if (myTriggerObject.TriggerType != FormTrigger.TRIG_TYPE_TIMEDELAY)
+                if (myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_FLUID)
                 {
-                    txtBxTimeDelay.Text = "Dummy Text";
+                    txtBxTimeDelay.Text = txtBxTimeDelay.Text+" x";
                 }
 
                 if (string.IsNullOrWhiteSpace(txtbxName.Text.ToString()))
@@ -130,10 +130,10 @@ namespace ETUI_TRIGGERS
                         }
                     }
 
-                    if(myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_TIMEDELAY)
+                    if(myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_TIMEDELAY || myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_RECURRING || myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_BLINK)
                     {                      
                         float inputTime;
-                        if (!float.TryParse(txtBxTimeDelay.Text.ToString(), out inputTime))
+                        if (!float.TryParse(txtBxTimeDelay.Text.ToString().Trim(), out inputTime))
                         {
                             MessageBox.Show("Please enter a valid Time Delay value","Invalid Format",MessageBoxButtons.OK,MessageBoxIcon.Warning);
                             return;
@@ -143,7 +143,6 @@ namespace ETUI_TRIGGERS
                             myTriggerObject.TimeDelayInSeconds = inputTime;
                         }
                     }
-                    
 
                     mainDockObject.triggerList.Add(thisTriggerInfo);
 
@@ -200,8 +199,8 @@ namespace ETUI_TRIGGERS
                 myTriggerObject.SetColor();
 
                 myTriggerObject.isRecurringActive = true;
-                labelTimeDelay.Hide();
-                txtBxTimeDelay.Hide();
+                labelTimeDelay.Show();
+                txtBxTimeDelay.Show();
             }
             else if (cmbobxTriggerType.SelectedItem.Equals("Time Delay"))
             {
@@ -231,8 +230,8 @@ namespace ETUI_TRIGGERS
                 myTriggerObject.SetColor();
 
                 myTriggerObject.isRecurringActive = false;
-                labelTimeDelay.Hide();
-                txtBxTimeDelay.Hide();
+                labelTimeDelay.Show();
+                txtBxTimeDelay.Show();
             }
         }
 
@@ -321,7 +320,7 @@ namespace ETUI_TRIGGERS
             txtbxName.Enabled = false;
             txtBxTimeDelay.Enabled = false;
             cmbobxTriggerType.Enabled = false;
-            btnCreateTrigger.Enabled = false;
+            //btnCreateTrigger.Enabled = false;
             btnClose.Text = "Delete";
             btnSelectOperation.Enabled = false;
         }

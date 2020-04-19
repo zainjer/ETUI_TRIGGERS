@@ -393,7 +393,6 @@ namespace ETUI_TRIGGERS
         
         private void button4_Click(object sender, EventArgs e)
         {
-
             var p = new System.Diagnostics.Process();
 
             if (String.IsNullOrWhiteSpace(rtbPowershellCommands.Text))

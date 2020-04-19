@@ -68,8 +68,10 @@ namespace ETUI_TRIGGERS
                 isTriggerActive = false;
                 this.BackColor = currentColor;
 
-                myOperation.StopOperation();
-
+                if (TriggerType != FormTrigger.TRIG_TYPE_RECURRING)
+                {
+                    myOperation.StopOperation();
+                }                
                 //This will start a new thread
                 //triggerThread.Abort();
             }
@@ -79,6 +81,7 @@ namespace ETUI_TRIGGERS
         {           
             if (isAlive && !triggerEditor.isDraggable)
             {
+                this.BackColor = Color.White;
                 this.BackColor = Color.Green;
                 isTriggerActive = true;
 
@@ -90,7 +93,7 @@ namespace ETUI_TRIGGERS
                 }
                 else if (TriggerType == FormTrigger.TRIG_TYPE_RECURRING)
                 {
-                    myOperation.HandleRecurringTrigger(TimeDelayInSeconds);
+                    myOperation.HandleRecurringTrigger(TimeDelayInSeconds,this);
                 }
                 else if (TriggerType == FormTrigger.TRIG_TYPE_TIMEDELAY)
                 {

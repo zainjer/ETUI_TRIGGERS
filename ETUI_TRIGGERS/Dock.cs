@@ -86,6 +86,11 @@ namespace ETUI_TRIGGERS
        
         private void button3_Click(object sender, EventArgs e)
         {
+            HideDock();
+        }
+
+        void HideDock()
+        {
             bool isPointerOnTaskbar = Screen.GetWorkingArea(this).Contains(Cursor.Position);
 
             oldFormState = this.WindowState;
@@ -222,6 +227,7 @@ namespace ETUI_TRIGGERS
             if (createdTriggers != 0)
             {
                 ActivateUI();
+                HideDock();
             }
             else
             {

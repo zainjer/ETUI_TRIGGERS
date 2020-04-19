@@ -339,7 +339,7 @@ namespace ETUI_TRIGGERS
         // Implemented  //        
         private void PerformAction(int key, int keyEvent)
         {
-            var AL_Option = GetKeyEventType();
+            var AL_Option = GetKeyEventType(keyEvent);
 
             #region ALPHABETIC
             if (key == Operation.KEY_A)
@@ -702,7 +702,16 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleFluidTrigger()
         {
-            Run(Operation.EVENT_KEYDOWN);
+            var x = new ThreadedOperations(Operation.EVENT_KEYDOWN, this);
+            if (this.Type==Operation.TYPE_INPUTKEY)
+            {                
+                mythread = new Thread(x.RunRecursive);
+                mythread.Start();
+            }
+            else
+            {
+                Run(Operation.EVENT_KEYDOWN);
+            }           
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
@@ -710,20 +719,60 @@ namespace ETUI_TRIGGERS
         {
             var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYDOWN,this);
 
-            mythread = new Thread(tOp.RunThread);
-            mythread.Start();
+            if (this.Type == Operation.TYPE_INPUTKEY)
+            {
+                mythread = new Thread(tOp.RunRecursive);
+                mythread.Start();
+            }
+            else
+            {
+                mythread = new Thread(tOp.RunThread);
+                mythread.Start();
+            }           
         }
-
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
-        public void HandleRecurringTrigger(float timeDelay)
+        public void HandleRecurringTrigger(float timeDelay,FormTrigger trigger)
         {
+            if (!trigger.isRecurringActive)
+            {
+                var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYDOWN, this);
 
+                if (this.Type == Operation.TYPE_INPUTKEY)
+                {
+                    mythread = new Thread(tOp.RunRecursive);
+                    mythread.IsBackground = true;
+                    mythread.Start();
+                }
+                else
+                {
+                    mythread = new Thread(tOp.RunThread);
+                    mythread.IsBackground = true;
+                    mythread.Start();
+                }
+
+                trigger.BackColor = System.Drawing.Color.Green;
+                trigger.isRecurringActive = true;
+            }
+            else
+            {
+                var x = new ThreadedOperations((int)Math.Round(timeDelay));
+                x.SleepOnly();
+
+                trigger.BackColor = System.Drawing.Color.Red;
+                if (mythread != null)
+                {
+                    mythread.Abort();
+                }
+                trigger.isRecurringActive = false;
+            }
         }
-
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeBlinkTrigger(float timeDelay)
         {
+            var x = new ThreadedOperations((int)Math.Round(timeDelay),Operation.EVENT_KEYPRESS,this);
 
+            var t = new Thread(x.RunThread);
+            t.Start();
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
@@ -733,7 +782,6 @@ namespace ETUI_TRIGGERS
             {
                 mythread.Abort();
             }
-
         }
         #endregion    
 
@@ -749,7 +797,7 @@ namespace ETUI_TRIGGERS
             }
             else if (type == Operation.TYPE_ACTION)
             {
-                PerformAction(this.Action);
+                PerformAction(this.Action);                
             }
             else if (type == Operation.TYPE_POWERSHELL)
             {
@@ -779,13 +827,13 @@ namespace ETUI_TRIGGERS
             return 0;
         }
 
-        int GetKeyEventType()   //Method that returns the current Key Event Type
+        int GetKeyEventType(int KeyEvent)   //Method that returns the current Key Event Type
         {
-            if (this.KeyEvent == Operation.EVENT_KEYDOWN)
+            if (KeyEvent == Operation.EVENT_KEYDOWN)
             {
                 return ActionLibrary.KeyDown;
             }
-            if (this.KeyEvent == Operation.EVENT_KEYPRESS)
+            if (KeyEvent == Operation.EVENT_KEYPRESS)
             {
                 return ActionLibrary.KeyPress;
             }
@@ -805,6 +853,11 @@ namespace ETUI_TRIGGERS
         int KeyEventType { get; set; }
         Operation myOperation;
 
+        public ThreadedOperations(int delay)
+        {
+            this.Delay = delay;
+        }
+
         public ThreadedOperations(int delay,int keyEventType, Operation operation)
         {
             this.Delay = delay;
@@ -812,12 +865,33 @@ namespace ETUI_TRIGGERS
             this.myOperation = operation;
         }
 
+        public ThreadedOperations(int keyEventType, Operation operation)
+        {
+            this.KeyEventType = keyEventType;
+            this.myOperation = operation;
+            this.Delay = 0;
+        }
+
         public void RunThread()
         {
             Thread.Sleep(Delay * 1000);
-            myOperation.Run(KeyEventType);
+            myOperation.Run(KeyEventType);                           
+           
+        }
+        public void RunRecursive()
+        {
+            Thread.Sleep(Delay * 1000);
+            while (true)
+            {
+                myOperation.Run(KeyEventType);
+                Thread.Sleep(10);
+            }
         }
 
+        public void SleepOnly()
+        {
+            Thread.Sleep(Delay);
+        }
     }
 
 }
