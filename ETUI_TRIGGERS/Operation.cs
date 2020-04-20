@@ -702,7 +702,7 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleFluidTrigger()
         {
-            var x = new ThreadedOperations(Operation.EVENT_KEYDOWN, this);
+            var x = new ThreadedOperations(Operation.EVENT_KEYPRESS, this);
             if (this.Type==Operation.TYPE_INPUTKEY)
             {                
                 mythread = new Thread(x.RunRecursive);
@@ -710,14 +710,14 @@ namespace ETUI_TRIGGERS
             }
             else
             {
-                Run(Operation.EVENT_KEYDOWN);
+                Run(Operation.EVENT_KEYPRESS);
             }           
         }
 
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeDelayTrigger(float timeDelay)
         {
-            var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYDOWN,this);
+            var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYPRESS,this);
 
             if (this.Type == Operation.TYPE_INPUTKEY)
             {
@@ -735,7 +735,7 @@ namespace ETUI_TRIGGERS
         {
             if (!trigger.isRecurringActive)
             {
-                var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYDOWN, this);
+                var tOp = new ThreadedOperations((int)Math.Round(timeDelay), Operation.EVENT_KEYPRESS, this);
 
                 if (this.Type == Operation.TYPE_INPUTKEY)
                 {
@@ -764,7 +764,9 @@ namespace ETUI_TRIGGERS
                     mythread.Abort();
                 }
                 trigger.isRecurringActive = false;
+
             }
+
         }
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleTimeBlinkTrigger(float timeDelay)
@@ -884,7 +886,7 @@ namespace ETUI_TRIGGERS
             while (true)
             {
                 myOperation.Run(KeyEventType);
-                Thread.Sleep(10);
+                Thread.Sleep(100-);
             }
         }
 

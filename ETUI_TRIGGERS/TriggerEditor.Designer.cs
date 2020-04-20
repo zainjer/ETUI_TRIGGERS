@@ -526,7 +526,6 @@
             this.Name = "TriggerEditor";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Create New Trigger [Trigger Editor]";
-            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.trkbarWidth)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trkbarHeight)).EndInit();
             this.panel1.ResumeLayout(false);

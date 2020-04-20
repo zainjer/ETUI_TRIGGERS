@@ -877,7 +877,11 @@ namespace ETUI_TRIGGERS
             //    return Operation.EVENT_KEYDOWN;
         }
         #endregion
-                       
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 
 } 

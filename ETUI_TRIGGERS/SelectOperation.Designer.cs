@@ -74,6 +74,7 @@
             this.rbRun = new System.Windows.Forms.RadioButton();
             this.rbKeyboardMouse = new System.Windows.Forms.RadioButton();
             this.rbPowershell = new System.Windows.Forms.RadioButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbKeyboardMouse.SuspendLayout();
             this.gbRun.SuspendLayout();
             this.gbPowershell.SuspendLayout();
@@ -360,7 +361,7 @@
             this.btnCreateOperation.ForeColor = System.Drawing.SystemColors.Control;
             this.btnCreateOperation.Location = new System.Drawing.Point(12, 260);
             this.btnCreateOperation.Name = "btnCreateOperation";
-            this.btnCreateOperation.Size = new System.Drawing.Size(586, 39);
+            this.btnCreateOperation.Size = new System.Drawing.Size(444, 39);
             this.btnCreateOperation.TabIndex = 19;
             this.btnCreateOperation.Text = "Create Operation";
             this.btnCreateOperation.UseVisualStyleBackColor = false;
@@ -586,11 +587,26 @@
             this.rbPowershell.UseVisualStyleBackColor = true;
             this.rbPowershell.CheckedChanged += new System.EventHandler(this.rbPowershell_CheckedChanged);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LightCoral;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Consolas", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.SystemColors.Control;
+            this.button1.Location = new System.Drawing.Point(462, 260);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(136, 39);
+            this.button1.TabIndex = 32;
+            this.button1.Text = "Cancel";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // SelectOperation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(609, 311);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.rbKeyboardMouse);
             this.Controls.Add(this.rbRun);
             this.Controls.Add(this.rbPowershell);
@@ -598,7 +614,7 @@
             this.Controls.Add(this.gbRun);
             this.Controls.Add(this.btnCreateOperation);
             this.Controls.Add(this.gbKeyboardMouse);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "SelectOperation";
             this.Text = "Select Operation";
             this.Load += new System.EventHandler(this.SelectOperation_Load);
@@ -661,5 +677,6 @@
         private System.Windows.Forms.RadioButton rbRun;
         private System.Windows.Forms.RadioButton rbKeyboardMouse;
         private System.Windows.Forms.RadioButton rbPowershell;
+        private System.Windows.Forms.Button button1;
     }
 }

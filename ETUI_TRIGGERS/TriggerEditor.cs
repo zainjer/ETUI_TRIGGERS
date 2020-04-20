@@ -159,6 +159,14 @@ namespace ETUI_TRIGGERS
                     myTriggerObject.toggleLogo();
                     myTriggerObject.SetColor();
 
+
+                   
+                    if (myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_RECURRING)
+                    {
+                        myTriggerObject.isRecurringActive = false;
+                    }
+
+
                     this.Hide();
                 }
 
