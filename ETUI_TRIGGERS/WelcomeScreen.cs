@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace ETUI_TRIGGERS
 {
@@ -30,6 +27,16 @@ namespace ETUI_TRIGGERS
 
             if(MessageBox.Show("Are you sure you want to Quit ETUI?", "Quit ETUI", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
+                var processes = Process.GetProcesses();
+
+                foreach (var p in processes)
+                {
+                    if (p.ProcessName == "ETUI_TRIGGERS")
+                    {
+                        p.Kill();
+                    }
+                }
+
                 Application.Exit();
             }
             

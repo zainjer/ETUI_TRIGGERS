@@ -22,7 +22,7 @@ namespace ActionLibraryWindows
         {
             Program_Start(path);
         }
-
+        
         public void start_CMD_Commands(string commands)
         {
             var p = new System.Diagnostics.Process();
@@ -81,8 +81,7 @@ namespace ActionLibraryWindows
         // Get a handle to an application window.
 
         #region AlphaNumeric and Typing Keys
-        
-        
+                
         public void Keyboard_Key_DECIMAL(int option)
         {
             if (option == KeyPress) { inputSimulator.Keyboard.KeyPress(VirtualKeyCode.DECIMAL); }
@@ -645,6 +644,7 @@ namespace ActionLibraryWindows
         
         #endregion
 
+
         #region Arithematic Operations Keys
 
           public void Keyboard_Key_DIVIDE(int option)
@@ -729,9 +729,7 @@ namespace ActionLibraryWindows
             this.processString = processString;
         }
         #endregion
-        
-
-
+               
         public void StartProcess_String()
         {
             try
@@ -759,3 +757,4 @@ namespace ActionLibraryWindows
         }
     }
 }
+

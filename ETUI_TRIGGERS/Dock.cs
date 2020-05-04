@@ -70,9 +70,7 @@ namespace ETUI_TRIGGERS
                     if(x.obj!=null)
                         x.obj.Close();
                 }
-
-                
-
+                                
                 welcomeScreenObj.Show();
                 this.Close();
             }
