@@ -83,10 +83,10 @@
             // 
             this.button6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.button6.BackColor = System.Drawing.Color.Black;
-            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGreen;
-            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Green;
+            this.button6.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkRed;
+            this.button6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Red;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Location = new System.Drawing.Point(832, 76);
             this.button6.Name = "button6";
@@ -117,7 +117,7 @@
             // 
             this.button4.BackColor = System.Drawing.Color.Black;
             this.button4.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
-            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Goldenrod;
+            this.button4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Orange;
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button4.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.Color.White;
@@ -150,10 +150,10 @@
             // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.button3.BackColor = System.Drawing.Color.Black;
-            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Goldenrod;
-            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.button3.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGreen;
+            this.button3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Green;
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
             this.button3.Location = new System.Drawing.Point(832, 4);
             this.button3.Name = "button3";
@@ -167,10 +167,10 @@
             // 
             this.btnBacktoMain.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnBacktoMain.BackColor = System.Drawing.Color.Black;
-            this.btnBacktoMain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkRed;
-            this.btnBacktoMain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Firebrick;
+            this.btnBacktoMain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DarkGoldenrod;
+            this.btnBacktoMain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Orange;
             this.btnBacktoMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBacktoMain.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBacktoMain.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBacktoMain.ForeColor = System.Drawing.Color.White;
             this.btnBacktoMain.Location = new System.Drawing.Point(832, 39);
             this.btnBacktoMain.Name = "btnBacktoMain";
