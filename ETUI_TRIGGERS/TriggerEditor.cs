@@ -114,6 +114,7 @@ namespace ETUI_TRIGGERS
                     
                     //creates a triggerInfo 
                     String name = txtbxName.Text.ToString();
+                    this.Text = name;
                     int Type = myTriggerObject.TriggerType;
                     TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
 

@@ -63,7 +63,7 @@ namespace ETUI_TRIGGERS
 
         private void btnBacktoMain_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Are you sure you want to Close All Triggers?", "Close Control Panel | ETUI © 2020", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            if (MessageBox.Show("Are you sure you want to Close All Triggers?", "Close Control Panel | ETUI © "+DateTime.Now.Year, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
                 foreach(TriggerInfo x in triggerList)
                 {
@@ -246,6 +246,22 @@ namespace ETUI_TRIGGERS
             this.isUIActive = true;
         }
 
-        
+        private void button6_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure you want to Quit All Triggers?", "Quit ETUI | ETUI © " + DateTime.Now.Year, MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                foreach (TriggerInfo x in triggerList)
+                {
+                    if (x.obj != null)
+                        x.obj.triggerEditor.Close();
+                        x.obj.myOperation = null;
+                        x.obj.Close();
+                }
+                welcomeScreenObj.Close();
+
+                Environment.Exit(0);
+
+            }
+        }
     }
 }

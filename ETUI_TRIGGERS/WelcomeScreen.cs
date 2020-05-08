@@ -22,7 +22,7 @@ namespace ETUI_TRIGGERS
      
         private void WelcomeScreen_Load(object sender, EventArgs e)
         {
-
+            label1.Hide();
         }
 
         private void btnQuit_Click(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SelectOperation));
             this.gbKeyboardMouse = new System.Windows.Forms.GroupBox();
             this.rbMouseButton = new System.Windows.Forms.RadioButton();
             this.cbMouseButton = new System.Windows.Forms.ComboBox();
@@ -615,8 +616,11 @@
             this.Controls.Add(this.btnCreateOperation);
             this.Controls.Add(this.gbKeyboardMouse);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SelectOperation";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Select Operation";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.SelectOperation_Load);
             this.gbKeyboardMouse.ResumeLayout(false);
             this.gbKeyboardMouse.PerformLayout();

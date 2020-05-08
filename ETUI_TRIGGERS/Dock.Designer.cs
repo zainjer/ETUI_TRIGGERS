@@ -88,12 +88,13 @@
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
-            this.button6.Location = new System.Drawing.Point(832, 4);
+            this.button6.Location = new System.Drawing.Point(832, 76);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(161, 33);
             this.button6.TabIndex = 6;
-            this.button6.Text = "Save Configuration";
+            this.button6.Text = "Exit Application";
             this.button6.UseVisualStyleBackColor = false;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // btnEditTrigger
             // 
@@ -154,7 +155,7 @@
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button3.ForeColor = System.Drawing.Color.White;
-            this.button3.Location = new System.Drawing.Point(832, 40);
+            this.button3.Location = new System.Drawing.Point(832, 4);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(161, 33);
             this.button3.TabIndex = 14;
@@ -171,7 +172,7 @@
             this.btnBacktoMain.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBacktoMain.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBacktoMain.ForeColor = System.Drawing.Color.White;
-            this.btnBacktoMain.Location = new System.Drawing.Point(832, 75);
+            this.btnBacktoMain.Location = new System.Drawing.Point(832, 39);
             this.btnBacktoMain.Name = "btnBacktoMain";
             this.btnBacktoMain.Size = new System.Drawing.Size(161, 34);
             this.btnBacktoMain.TabIndex = 15;

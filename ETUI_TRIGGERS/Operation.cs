@@ -886,7 +886,7 @@ namespace ETUI_TRIGGERS
             while (true)
             {
                 myOperation.Run(KeyEventType);
-                Thread.Sleep(100-);
+                Thread.Sleep(100);
             }
         }
 
