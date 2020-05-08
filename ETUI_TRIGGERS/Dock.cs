@@ -175,6 +175,8 @@ namespace ETUI_TRIGGERS
             createdTriggers = 0;
             UpdateActiveTriggers();
 
+            MessageBox.Show("All existing Triggers are deleted","All Triggers Deleted",MessageBoxButtons.OK,MessageBoxIcon.Information);
+
         }
 
         //Deactives the triggers by stopping their threads;
