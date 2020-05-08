@@ -1,18 +1,20 @@
 ﻿using System;
 using ActionLibraryWindows;
 using System.Threading;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
 
 namespace ETUI_TRIGGERS
 {
     [Serializable]
-    public class Operation
+    public class Operation : ISerializable 
     {
         #region Class Variables
 
         ActionLibrary al = new ActionLibrary();
         Thread mythread;
 
-       // public FormTrigger myTrigger;
+        public FormTrigger myTrigger;
 
         #endregion
 
@@ -193,6 +195,8 @@ namespace ETUI_TRIGGERS
             this.Action = -1;
         }
 
+        public Operation() { }
+
         #endregion
 
         #region Methods
@@ -334,7 +338,6 @@ namespace ETUI_TRIGGERS
                 System.Windows.Forms.MessageBox.Show("Problem with performing action! Location: Operation -> PerformAction(action)");
             }
         }
-
 
         // Implemented  //        
         private void PerformAction(int key, int keyEvent)
@@ -702,6 +705,7 @@ namespace ETUI_TRIGGERS
         // NEED TO IMPLEMENT  ---------------------------------------------------------------------------------
         public void HandleFluidTrigger()
         {
+
             var x = new ThreadedOperations(Operation.EVENT_KEYPRESS, this);
             if (this.Type==Operation.TYPE_INPUTKEY)
             {                
@@ -847,6 +851,45 @@ namespace ETUI_TRIGGERS
 
 
         #endregion
+
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("Type", Type);
+            info.AddValue("Action", Action);
+            info.AddValue("Key", Key);
+            info.AddValue("KeyEvent", KeyEvent);
+            info.AddValue("ApplicationPath", ApplicationPath);
+            info.AddValue("PowerShellCommand", PowerShellCommand);
+            info.AddValue("TriggerType", myTrigger.TriggerType);
+            info.AddValue("Location", myTrigger.Location);
+            info.AddValue("Size", myTrigger.Size);
+            info.AddValue("TimeDelayInSeconds", myTrigger.TimeDelayInSeconds);
+           // info.AddValue("thisTriggerInfo", myTrigger.triggerEditor.thisTriggerInfo);
+        }
+        public Operation(SerializationInfo info, StreamingContext context)
+        {
+            Type = (int)info.GetValue("Type", typeof(int));
+            Action = (int)info.GetValue("Action", typeof(int));
+            Key = (int)info.GetValue("Key", typeof(int));
+            KeyEvent = (int)info.GetValue("KeyEvent", typeof(int));
+            ApplicationPath = (string)info.GetValue("ApplicationPath", typeof(string));
+            PowerShellCommand = (string)info.GetValue("PowerShellCommand", typeof(int));
+           
+            //--------Trigger based information
+            //var triggertype = (int)info.GetValue("TriggerType", typeof(int));
+            //myTrigger = new FormTrigger(triggertype);
+
+            //myTrigger.Location =(System.Drawing.Point)info.GetValue("Location", typeof(System.Drawing.Point));
+            //myTrigger.Size  =(System.Drawing.Size)info.GetValue("Size", typeof(System.Drawing.Size));
+            //myTrigger.TimeDelayInSeconds = (float)info.GetValue("TimeDelayInSeconds", typeof(float));
+
+            //myTrigger.triggerEditor = new TriggerEditor();
+            //myTrigger.triggerEditor.thisTriggerInfo = (TriggerInfo)info.GetValue("thisTriggerInfo", typeof(TriggerInfo));
+            //myTrigger.triggerEditor.thisTriggerInfo.obj = myTrigger;
+            
+        }
+
     }
 
     class ThreadedOperations

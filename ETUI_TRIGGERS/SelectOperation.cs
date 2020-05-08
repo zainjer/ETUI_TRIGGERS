@@ -387,8 +387,9 @@ namespace ETUI_TRIGGERS
                 this.Hide();
                 myTriggerEditor.myOperationObject = this.operation;
                 myTriggerEditor.myTriggerObject.myOperation = this.operation;
-                myTriggerEditor.lblOperationStatus.Text = "Type:" + operation.Type + " Action:" + operation.Action + " Key:" + operation.Key;
+                myTriggerEditor.lblOperationStatus.Text = "Type:" + operation.Type + " Action:" + operation.Action + " Key:" + operation.Key;              
             }           
+
         }
         
         private void button4_Click(object sender, EventArgs e)
@@ -436,10 +437,8 @@ namespace ETUI_TRIGGERS
         #region Operation Generator
         void ConstructOperation()
         {
-
             //This will be marked false if any one of the radio buttons is unselected
             isOperationCreated = true;
-
 
             if (rbKeyboardMouse.Checked)
             {

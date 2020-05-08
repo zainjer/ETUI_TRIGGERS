@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
-using ActionLibraryWindows;
+using System.Diagnostics;
 
 namespace ETUI_TRIGGERS
 {
@@ -39,8 +34,6 @@ namespace ETUI_TRIGGERS
         //The editor of current trigger (Create Trigger Window)
         public TriggerEditor triggerEditor;
 
-        public ActionLibrary actionLibrary = new ActionLibrary();
-
         public Operation myOperation;
 
         public FormTrigger(int triggerType)
@@ -52,11 +45,9 @@ namespace ETUI_TRIGGERS
 
         private void Trigger_Load(object sender, EventArgs e)
         {
-
             //Give the thread a color based  on its type
             SetColor();
-            TimeDelayInSeconds = 0;
-         
+            //TimeDelayInSeconds = 0;
         }
 
         private void FormTrigger_MouseLeave(object sender, EventArgs e)
@@ -78,7 +69,8 @@ namespace ETUI_TRIGGERS
            
         }
         private void mouseEnter(object sender, EventArgs e)
-        {           
+        {
+
             if (isAlive && !triggerEditor.isDraggable)
             {
                 this.BackColor = Color.White;
@@ -106,85 +98,8 @@ namespace ETUI_TRIGGERS
                 ////Initializes the Trigger Thread
                 //triggerThread = new Thread(this.TriggerThreadMethod);
                 //triggerThread.Start();
-
             }          
         }
-
-
-
-        #region Thread Based Old Code
-        void TriggerThreadMethod()
-        {
-
-            Console.WriteLine(" Trigger Type: " + TriggerType + " [Thread Active]");
-
-            while (true)
-            {
-                this.ThreadLogic();
-            }            
-        }
-        void ThreadLogic()
-        {
-            if (TriggerType == TRIG_TYPE_FLUID)
-            {
-                while (isTriggerActive)
-                {
-                    Thread.Sleep(1);
-                    Console.WriteLine("Fluid Trigger Active");
-                    if (!isTriggerActive)
-                    {
-
-
-                        actionLibrary.Keyboard_Key_A(ActionLibrary.KeyPress);
-
-
-                        Console.WriteLine("Fluid Trigger Deactive");
-                        break;
-                    }
-                }
-            }
-            else if (TriggerType == TRIG_TYPE_RECURRING)
-            {
-                bool isDown = false;
-                while (isRecurringActive)
-                {
-                    Thread.Sleep(1);
-                    Console.WriteLine("Recurring Trigger Active");
-                }
-            }
-            else if (TriggerType == TRIG_TYPE_TIMEDELAY)
-            {
-
-                while (isTriggerActive)
-                {
-                    Console.WriteLine("Trigger Activated - Waiting for " + TimeDelayInSeconds + " seconds delay");
-                    int timeInMiliSeconds = (Int32)(TimeDelayInSeconds * 1000);
-                    Thread.Sleep(timeInMiliSeconds);
-                    if (isTriggerActive)
-                    {
-                        while (true)
-                        {
-                            actionLibrary.Keyboard_Key_A(ActionLibrary.KeyPress);
-                            Console.WriteLine("Trigger Active");
-                            if (!isTriggerActive)
-                            {
-                                Console.WriteLine("Trigger Deactive");
-                                break;
-                            }
-                        }
-                    }
-                    else Console.WriteLine("Time Delay Trigger Deactivated");
-                }
-            }
-            else
-            {
-                Thread.Sleep(1000);
-                Console.WriteLine("Trigger Under Development");
-
-            }
-        }
-        #endregion
-
 
         public void SetColor()
         {

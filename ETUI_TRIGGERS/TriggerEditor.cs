@@ -14,6 +14,7 @@ namespace ETUI_TRIGGERS
         public Dock mainDockObject;
         public Operation myOperationObject;
         public SelectOperation mySelectOperationObject;
+        public TriggerInfo thisTriggerInfo;
 
 
         int positionX = 0, positionY = 0;
@@ -44,7 +45,6 @@ namespace ETUI_TRIGGERS
 
         private void CreateTriggerObject(int trigType)
         {         
-
             this.myTriggerObject = new FormTrigger(trigType);
             myTriggerObject.Height = 200;
             myTriggerObject.Width = 300;
@@ -82,7 +82,7 @@ namespace ETUI_TRIGGERS
         private void btnCreateTrigger_Click(object sender, EventArgs e)
         {
 
-            if (!isTriggerEdit)
+            if (!isTriggerEdit)  //If its not in Edit Trigger mode [Means when its in the actual thing, the first time thing]
             {
                 if (myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_FLUID)
                 {
@@ -115,7 +115,7 @@ namespace ETUI_TRIGGERS
                     //creates a triggerInfo 
                     String name = txtbxName.Text.ToString();
                     int Type = myTriggerObject.TriggerType;
-                    TriggerInfo thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
+                    thisTriggerInfo = new TriggerInfo(myTriggerObject, name, Type);
 
                     //Checks if the name already exists
                     if (mainDockObject.triggerList.Count > 0)
@@ -158,15 +158,14 @@ namespace ETUI_TRIGGERS
                     //updates Visual Elements
                     myTriggerObject.toggleLogo();
                     myTriggerObject.SetColor();
-
-
                    
                     if (myTriggerObject.TriggerType == FormTrigger.TRIG_TYPE_RECURRING)
                     {
                         myTriggerObject.isRecurringActive = false;
                     }
 
-
+                    //Gives Trigger reference to Operation Object
+                    myOperationObject.myTrigger = myTriggerObject;
                     this.Hide();
                 }
 

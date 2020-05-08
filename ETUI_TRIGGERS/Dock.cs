@@ -6,6 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Xml.Serialization;
+using System.IO;
 
 namespace ETUI_TRIGGERS
 {
@@ -244,6 +247,28 @@ namespace ETUI_TRIGGERS
             this.isUIActive = true;
         }
 
-        
+
+
+
+        //Serialization------------------------------------------------------------------------------------------------------------------------------------
+        private void button6_Click(object sender, EventArgs e)
+        {
+            var operationList = new List<Operation>();
+
+            foreach (var x in triggerList)
+            {
+                operationList.Add(x.obj.myOperation);
+            }
+
+            //Implement Open File Dialog
+
+            using(var fs = new FileStream(@"C:\etui\demo.xml", FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Operation>));
+                xmlSerializer.Serialize(fs, operationList);
+            }
+            System.Diagnostics.Process.Start(@"C:\etui\demo.xml");
+        }
+
     }
 }
