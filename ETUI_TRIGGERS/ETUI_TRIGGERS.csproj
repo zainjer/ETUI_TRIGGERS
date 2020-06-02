@@ -85,6 +85,7 @@
     <Compile Include="SelectTiggerToEdit.Designer.cs">
       <DependentUpon>SelectTiggerToEdit.cs</DependentUpon>
     </Compile>
+    <Compile Include="TriggerData.cs" />
     <Compile Include="TriggerEditor.cs">
       <SubType>Form</SubType>
     </Compile>

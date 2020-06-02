@@ -875,7 +875,7 @@ namespace ETUI_TRIGGERS
             KeyEvent = (int)info.GetValue("KeyEvent", typeof(int));
             ApplicationPath = (string)info.GetValue("ApplicationPath", typeof(string));
             PowerShellCommand = (string)info.GetValue("PowerShellCommand", typeof(int));
-           
+              
             //--------Trigger based information
             //var triggertype = (int)info.GetValue("TriggerType", typeof(int));
             //myTrigger = new FormTrigger(triggertype);

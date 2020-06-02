@@ -234,7 +234,6 @@ namespace ETUI_TRIGGERS
             {
                 MessageBox.Show("Error: No Triggers Found", "No Active Triggers", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
             
         }
         void ActivateUI()
@@ -247,27 +246,46 @@ namespace ETUI_TRIGGERS
             this.isUIActive = true;
         }
 
-
-
-
         //Serialization------------------------------------------------------------------------------------------------------------------------------------
         private void button6_Click(object sender, EventArgs e)
         {
             var operationList = new List<Operation>();
+            var triggerDataList = new List<TriggerData>();
 
             foreach (var x in triggerList)
             {
                 operationList.Add(x.obj.myOperation);
             }
 
+            //Create Trigger Data
+
+            foreach (var ti in triggerList)
+            {
+                var op = ti.obj.myOperation;
+                var tr = ti.obj;
+                var td = new TriggerData(op.Type, 
+                                         op.Action, 
+                                         op.Key, 
+                                         op.KeyEvent, 
+                                         op.ApplicationPath, 
+                                         op.PowerShellCommand, 
+                                         tr.TriggerType, 
+                                         tr.Location.X, 
+                                         tr.Location.Y, 
+                                         tr.Size.Width, 
+                                         tr.Size.Height, 
+                                         tr.TimeDelayInSeconds);
+                td.PrintProperties();
+                triggerDataList.Add(td);
+            }
             //Implement Open File Dialog
 
-            using(var fs = new FileStream(@"C:\etui\demo.xml", FileMode.Create, FileAccess.Write, FileShare.None))
+            using (var fs = new FileStream(@"C:\Users\Areeb\Documents\demo.xml", FileMode.Create, FileAccess.Write, FileShare.None))
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Operation>));
-                xmlSerializer.Serialize(fs, operationList);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<TriggerData>));
+                xmlSerializer.Serialize(fs, triggerDataList);
             }
-            System.Diagnostics.Process.Start(@"C:\etui\demo.xml");
+            System.Diagnostics.Process.Start(@"C:\Users\Areeb\Documents\demo.xml");
         }
 
     }
